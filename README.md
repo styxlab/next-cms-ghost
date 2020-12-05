@@ -64,8 +64,8 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
 <summary>Developer friendly</summary>
 <br />
 <ul>
-  <li>Truly open-source</li>
   <li>MIT licenced</li>
+  <li>Truly open-source</li>
   <li>Easy to contribute</li>
   <li>Made type safe with TypeScript</li>
 </ul>
@@ -79,13 +79,12 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Syntax highlighting with PrismJS</li>
   <li>Table Of Contents</li>
   <li>Contact Page with built-in notification service</li>
+  <li>Support for Next.js Preview</li>
 </ul>
 </details>
-<details>
 <summary>Coming soon...</summary>
 <br />
 <ul>
-  <li>Preview</li>
   <li>Incremental Regeneration</li>
 </ul>
 </details>
@@ -142,10 +141,10 @@ The `SITE_URL` environment variable should be set to the public facing URL of yo
 
 If you don't specify `SITE_URL`, it will get populated according to the following defaults:
 
-| Platform     | System Value |  Conditions                                                         |
-| ------------ | ------------ | --------------------------------------------------------------------|
-| Vercel       | VERCEL_URL   | _Automatically expose System Environment Variables_ must be checked |
-| Netlify      | URL          |                                                                     |
+| Platform | System Value | Conditions                                                          |
+| -------- | ------------ | ------------------------------------------------------------------- |
+| Vercel   | VERCEL_URL   | _Automatically expose System Environment Variables_ must be checked |
+| Netlify  | URL          |                                                                     |
 
 In all other cases `SITE_URL` is set to `http://localhost:3000`.
 
