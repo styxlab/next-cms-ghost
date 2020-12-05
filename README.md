@@ -82,6 +82,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Support for Next.js Preview</li>
 </ul>
 </details>
+<details>
 <summary>Coming soon...</summary>
 <br />
 <ul>
