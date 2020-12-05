@@ -147,10 +147,11 @@ export async function getAllAuthors() {
   return await createNextProfileImages(authors)
 }
 
-export async function getAllPosts(): Promise<GhostPostsOrPages> {
+export async function getAllPosts(props?: { limit: number }): Promise<GhostPostsOrPages> {
   const posts = await api.posts.browse({
     ...postAndPageFetchOptions,
-    filter: excludePostOrPageBySlug()
+    filter: excludePostOrPageBySlug(),
+    ...props && { ...props }
   })
   const results = await createNextProfileImagesFromPosts(posts)
   return await createNextFeatureImages(results)
@@ -161,10 +162,11 @@ export async function getAllPostSlugs(): Promise<string[]> {
   return posts.map(p => p.slug)
 }
 
-export async function getAllPages(): Promise<GhostPostsOrPages> {
+export async function getAllPages(props?: { limit: number }): Promise<GhostPostsOrPages> {
   const pages = await api.pages.browse({
     ...postAndPageFetchOptions,
-    filter: excludePostOrPageBySlug()
+    filter: excludePostOrPageBySlug(),
+    ...props && { ...props }
   })
   return await createNextFeatureImages(pages)
 }
@@ -237,15 +239,6 @@ export async function getPostsByTag(slug: string, limit?: number, excludeId?: st
     ...limit && { limit: `${limit}` },
     filter: `tags.slug:${slug}${exclude}`,
   })
-  return await createNextFeatureImages(posts)
-}
-
-export async function getPosts({ limit }: { limit: number }): Promise<GhostPostsOrPages> {
-  const options = {
-    ...postAndPageFetchOptions,
-    limit: `${limit}`
-  }
-  const posts = await api.posts.browse(options)
   return await createNextFeatureImages(posts)
 }
 

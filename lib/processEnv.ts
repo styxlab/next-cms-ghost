@@ -14,24 +14,24 @@ const platform = (process.env.NETLIFY === 'true' && 'netlify') || 'vercel'
 
 // Environment variables that can be used to override the defaults in appconfig.js
 const resolveBool = (value: string | undefined, defaultValue: boolean) => {
-  if(!value) return defaultValue
-  if( value === 'true' ) return true
+  if (!value) return defaultValue
+  if (value === 'true') return true
   return false
 }
 
 const resolveNumber = (value: string | undefined, defaultValue: number) => {
-  if(!value) return defaultValue
+  if (!value) return defaultValue
   return parseInt(value, 10)
 }
 
 const resolveDarkMode = (value: string | undefined, defaultValue: appConfig.DarkMode) => {
-  if(!value) return defaultValue
-  if( value === 'dark' ) return 'dark'
+  if (!value) return defaultValue
+  if (value === 'dark') return 'dark'
   return 'light'
 }
 
 function reolveJSON<T>(value: string | undefined, defaultValue: T) {
-  if(!value) return defaultValue
+  if (!value) return defaultValue
   return (JSON.parse(value) as T)
 }
 
@@ -63,6 +63,11 @@ export interface ProcessEnvProps {
     maxDepth: number
   }
   customNavigation: NavItem[]
+  isr: {
+    enable: boolean
+    maxNumberOfPosts: number
+    maxNumberOfPages: number
+  }
 }
 
 export const processEnv: ProcessEnvProps = {
@@ -92,5 +97,10 @@ export const processEnv: ProcessEnvProps = {
     enable: resolveBool(process.env.JAMIFY_TOC, appConfig.toc),
     maxDepth: resolveNumber(process.env.JAMIFY_TOC_MAX_DEPTH, appConfig.maxDepth)
   },
-  customNavigation: reolveJSON(process.env.JAMIFY_CUSTOM_NAVIGATION, appConfig.customNavigation)
+  customNavigation: reolveJSON(process.env.JAMIFY_CUSTOM_NAVIGATION, appConfig.customNavigation),
+  isr: {
+    enable: resolveBool(process.env.JAMIFY_NEXT_ISR, appConfig.isr),
+    maxNumberOfPosts: resolveNumber(process.env.JAMIFY_NEXT_ISR_MAX_NUMBER_POSTS, appConfig.maxNumberOfPosts),
+    maxNumberOfPages: resolveNumber(process.env.JAMIFY_NEXT_ISR_MAX_NUMBER_PAGES, appConfig.maxNumberOfPages)
+  },
 }

@@ -79,14 +79,14 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Syntax highlighting with PrismJS</li>
   <li>Table Of Contents</li>
   <li>Contact Page with built-in notification service</li>
-  <li>Support for Next.js Preview</li>
 </ul>
 </details>
 <details>
-<summary>Coming soon...</summary>
+<summary>NextJS Features</summary>
 <br />
 <ul>
   <li>Incremental Regeneration</li>
+  <li>Support for Preview</li>
 </ul>
 </details>
 

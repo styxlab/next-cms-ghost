@@ -6,11 +6,11 @@ import { Layout } from '@components/Layout'
 import { HeaderPage } from '@components/HeaderPage'
 import { PostCard } from '@components/PostCard'
 
-import { getPosts, getAllSettings, GhostSettings, GhostPostsOrPages } from '@lib/ghost'
+import { getAllPosts, getAllSettings, GhostSettings, GhostPostsOrPages } from '@lib/ghost'
 import { useLang, get } from '@utils/use-lang'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPosts({ limit: 3 })
+  const posts = await getAllPosts({ limit: 3 })
   const settings = await getAllSettings()
 
   return {
@@ -40,7 +40,7 @@ export default function Custom404({ posts, settings }: Custom404Props) {
 
         <div className="post-feed">
           {posts.map((post, i) => (
-            <PostCard key={post.id} {...{ settings, post, num: i}} />
+            <PostCard key={post.id} {...{ settings, post, num: i }} />
           ))}
         </div>
 

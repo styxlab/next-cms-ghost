@@ -1,10 +1,11 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import { Post } from '@components/Post'
 import { Page } from '@components/Page'
 
 import { getPostsByTag, getTagBySlug, GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
 
-import { getPosts, getPostBySlug, getPageBySlug, getAllPosts, getAllPages, getAllSettings, getAllPostSlugs } from '@lib/ghost'
+import { getPostBySlug, getPageBySlug, getAllPosts, getAllPages, getAllSettings, getAllPostSlugs } from '@lib/ghost'
 import { resolveUrl } from '@utils/routing'
 import { collections } from '@lib/collections'
 
@@ -42,8 +43,10 @@ interface PostOrPageProps {
 }
 
 const PostOrPageIndex = ({ cmsData }: PostOrPageProps) => {
-  const { isPost, contactPage } = cmsData
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
 
+  const { isPost, contactPage } = cmsData
   if (isPost) {
     return <Post {...{ cmsData }} />
   } else if (!!contactPage) {
@@ -95,7 +98,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let nextPost: GhostPostOrPage | null = null
 
   if (isContactPage) {
-    previewPosts = await getPosts({ limit: 3 })
+    previewPosts = await getAllPosts({ limit: 3 })
   } else if (isPost && post?.id && post?.slug) {
     const tagSlug = post?.primary_tag?.slug
     previewPosts = tagSlug && await getPostsByTag(tagSlug, 3, post?.id) || []
@@ -127,12 +130,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         nextPost,
       },
     },
+    revalidate: 1, // re-generate at most once every second
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts()
-  const pages = await getAllPages()
+  const { enable, maxNumberOfPosts, maxNumberOfPages } = processEnv.isr
+  const limitForPosts = enable && { limit: maxNumberOfPosts } || undefined
+  const limitForPages = enable && { limit: maxNumberOfPages } || undefined
+  const posts = await getAllPosts(limitForPosts)
+  const pages = await getAllPages(limitForPages)
 
   const postRoutes = (posts as GhostPostsOrPages).map(post => {
     const collectionPath = collections.getCollectionByNode(post)
@@ -153,6 +160,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: enable
   }
 }
