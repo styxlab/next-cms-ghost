@@ -1,0 +1,74 @@
+.contact {
+  font-family: avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  display: block;
+  margin: 0 0 2rem 0;
+  padding: 1rem 0;
+  width: 100% !important;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.contact :focus {
+  border-color: #3eb0ef;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.contact :placeholder,
+.contact :required,
+.contact :invalid {
+  color: silver;
+}
+
+.contact select {
+  appearance: none;
+}
+
+.element {
+  composes: contact;
+  color: darkslategray;
+  background-color: white;
+  background-clip: padding-box;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  padding: 1rem 4rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.robot {
+  display: none !important;
+}
+
+.button {
+  composes: contact;
+  margin-bottom: 1rem;
+  color: white;
+  background-color: #3eb0ef;
+  border-color: #3eb0ef;
+  user-select: none;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.validate {
+  composes: contact;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: #ed3c3c;
+  font-size: smaller;
+  font-style: oblique;
+  height: 4rem;
+}
+
+.response {
+  composes: contact;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: silver;
+  font-size: smaller;
+  font-style: oblique;
+  height: 4rem;
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://next.jamify.org
+Sitemap: https://next.jamify.org/sitemap.xml

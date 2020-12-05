@@ -1,0 +1,41 @@
+html.casper body {
+  transition: opacity 0.5s ease;
+}
+
+html.casper body.fade-in {
+  opacity: 0;
+}
+
+html.casper .next-image-wrapper {
+  display: flex;
+}
+
+html.casper .next-image-wrapper img {
+  background-color: #eee;
+}
+
+@media (min-width: 1040px) {
+  html.casper .post-full-content .kg-image-card.kg-width-wide .next-image-wrapper {
+    width: 1040px;
+  }
+  html.casper .post-full-content .kg-image-card.kg-width-full .next-image-wrapper {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 1040px) {
+  html.casper .post-full-content .kg-image-card.kg-width-wide .next-image-wrapper,
+  html.casper .post-full-content .kg-image-card.kg-width-full .kg-image {
+    width: 100%;
+  }
+}
+
+html.casper .kg-bookmark-thumbnail .next-image-wrapper > div > div {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+  object-fit: cover;
+}

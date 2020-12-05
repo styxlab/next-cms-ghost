@@ -1,0 +1,162 @@
+@import 'global.css';
+
+/* Table of Content Box
+/* ---------------------------------------------------------- */
+
+/* Need for sticky to work */
+html.casper body {
+  overflow: visible;
+}
+
+/* Adjust outer wrapper */
+html.casper .post-full-content {
+  display: block;
+}
+
+@media (min-width: 1170px) {
+  html.casper .post-full-content {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+/* Adjust content wrapper */
+html.casper .post-content {
+  display: block;
+  min-width: 100%;
+}
+
+/* Offset headings from fixed header */
+html.casper .post-content h2::before,
+html.casper .post-content h3::before,
+html.casper .post-content h4::before,
+html.casper .post-content h5::before,
+html.casper .post-content h6::before {
+  display: block;
+  content: ' ';
+  height: 80px;
+  margin-top: -80px;
+  visibility: hidden;
+}
+
+/* Adjustments to wide and full width cards */
+html.casper .kg-gallery-card,
+html.casper .kg-width-wide,
+html.casper .kg-width-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+html.casper .kg-gallery-card > *,
+html.casper .kg-width-wide > *,
+html.casper .kg-width-full > *,
+html.casper figure.kg-width-full:not(.fluid-image) {
+  margin-left: -50vw;
+  margin-right: -50vw;
+  z-index: 1;
+}
+
+/* Dark mode */
+html.casper body.dark .post-full-content aside {
+  color: #bbb;
+  background: color-mod(var(--darkgrey) alpha(0.6));
+}
+html.casper body.dark .post-full-content aside a {
+  box-shadow: none;
+}
+
+/* Page styles */
+html.casper aside.toc {
+  order: 1;
+  font-family: -apple-system, Liberation Sans, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  line-height: 1.5em;
+  font-size: 1.6rem;
+  color: #78757a;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+
+@media (min-width: 1170px) {
+  html.casper aside.toc {
+    position: sticky;
+    top: 120px;
+    min-width: 260px;
+    font-size: 1.4rem;
+    padding: 0 2.4rem;
+    margin-left: 0.2rem;
+  }
+}
+
+html.casper aside.toc h2 {
+  font-size: 1.4rem;
+  letter-spacing: 0.075em;
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@media (min-width: 1170px) {
+  html.casper aside.toc h2 {
+    font-size: 1.2rem;
+  }
+}
+
+html.casper aside.toc ul.list {
+  overflow: hidden;
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: -1.6rem;
+  margin-bottom: 2rem;
+  padding-top: 0.6rem;
+  padding-left: 0.9rem;
+}
+
+html.casper aside.toc ul.sub {
+  margin-top: 0.5rem;
+  padding-left: 1.6rem;
+  margin-bottom: 0.1rem;
+}
+
+html.casper aside.toc li {
+  list-style: none;
+  margin-bottom: calc(1.5rem / 2);
+}
+
+html.casper aside.toc li a {
+  height: 100%;
+  box-shadow: none;
+  text-decoration: none;
+  color: inherit !important;
+  border-bottom: none;
+}
+
+html.casper aside.toc li a.active {
+  color: #54bc4b !important;
+  border-bottom: 1px solid #54bc4b;
+}
+
+html.casper aside.toc li a::before {
+  background-color: #eee;
+  content: ' ';
+  display: inline-block;
+  height: inherit;
+  left: 0;
+  position: absolute;
+  width: 2px;
+  margin-left: 1px;
+}
+
+html.casper aside.toc li a.active::before {
+  background-color: #54bc4b;
+}
+
+html.casper aside.toc li a:hover {
+  color: #54bc4b !important;
+  border-bottom: 1px solid #54bc4b;
+  text-decoration: none;
+  box-shadow: none;
+}

@@ -1,0 +1,137 @@
+/**
+ * Taken from overreacted https://github.com/gaearon/overreacted.io/blob/942b41555f5e5ccbb5f93f6c26142cd90b314236/src/utils/global.css#L68
+ */
+
+html.casper code[class*='language-'],
+html.casper pre[class*='language-'] {
+  color: white;
+  background: none;
+  font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
+  font-feature-settings: normal;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+/* Code blocks */
+html.casper pre[class*='language-'] {
+  overflow: auto;
+}
+html.casper pre[class*='language-']::-moz-selection {
+  /* Firefox */
+  /* background: hsl(207, 4%, 16%); */
+  background: #cbeafb;
+}
+html.casper pre[class*='language-']::selection {
+  /* Safari */
+  /* background: hsl(207, 4%, 16%); */
+  background: #cbeafb;
+}
+/* Text Selection colour */
+html.casper pre[class*='language-']::-moz-selection {
+  text-shadow: none;
+  background: hsla(0, 0%, 100%, 0.15);
+}
+html.casper pre[class*='language-']::selection {
+  text-shadow: none;
+  background: hsla(0, 0%, 100%, 0.15);
+}
+/* Inline code */
+html.casper *:not(pre) > code[class*='language-'] {
+  color: inherit;
+  border-radius: 0.3em;
+  background: #cbeafb;
+  padding: 0.15em 0.5em;
+  white-space: normal;
+  text-shadow: none;
+}
+/* Text Selection colour */
+html.casper *:not(pre) > code[class*='language-']::-moz-selection {
+    text-shadow: none;
+    background: #8ad2fa;
+}
+html.casper *:not(pre) > code[class*='language-']::selection {
+    text-shadow: none;
+    background: #8ad2fa;
+}
+
+html.casper .token.attr-name {
+  color: rgb(173, 219, 103);
+  font-style: italic;
+}
+html.casper .token.comment {
+  color: rgb(128, 147, 147);
+}
+html.casper .token.string,
+html.casper .token.url {
+  color: rgb(173, 219, 103);
+}
+html.casper .token.variable {
+  color: rgb(214, 222, 235);
+}
+html.casper .token.number {
+  color: rgb(247, 140, 108);
+}
+html.casper .token.builtin,
+html.casper .token.char,
+html.casper .token.constant,
+html.casper .token.function {
+  color: rgb(130, 170, 255);
+}
+html.casper .token.punctuation {
+  color: rgb(199, 146, 234);
+}
+html.casper .token.selector,
+html.casper .token.doctype {
+  color: rgb(199, 146, 234);
+  font-style: 'italic';
+}
+html.casper .token.class-name {
+  color: rgb(255, 203, 139);
+}
+html.casper .token.tag,
+html.casper .token.operator,
+html.casper .token.keyword {
+  color: #ffa7c4;
+}
+html.casper .token.boolean {
+  color: rgb(255, 88, 116);
+}
+html.casper .token.property {
+  color: rgb(128, 203, 196);
+}
+html.casper .token.namespace {
+  color: rgb(178, 204, 214);
+}
+html.casper pre[data-line] {
+  padding: 1em 0 1em 3em;
+  position: relative;
+}
+html.casper .gatsby-highlight-code-line {
+  background-color: hsla(207, 95%, 15%, 1);
+  display: block;
+  padding-right: 1em;
+  padding-left: 1.25em;
+  border-left: 0.25em solid #ffa7c4;
+}
+html.casper .post-full-content pre {
+    background: #011627;
+
+}
+html.casper .gatsby-highlight pre[class*='language-'] {
+  min-width: 100%;
+  margin-bottom: 3em;
+}
+html.casper body.dark code[class*='language-'],
+html.casper body.dark pre[class*='language-'] {
+  background: none;
+}
