@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getPostBySlug } from '@lib/ghost'
+import { resolveUrl } from '@utils/routing'
+import { collections } from '@lib/collections'
 
 /**
  *
@@ -10,10 +12,13 @@ import { getPostBySlug } from '@lib/ghost'
 // The preview mode cookies expire in 1 hour
 const maxAge = 60 * 60
 
-export async function verifySlug(slug: string): Promise<string | null> {
-  const post = await getPostBySlug(slug)
+export async function verifySlug(postSlug: string): Promise<string | null> {
+  const post = await getPostBySlug(postSlug)
   if (!post) return null
-  return post.slug
+
+  const collectionPath = collections.getCollectionByNode(post)
+  const { slug, url } = post
+  return resolveUrl({ collectionPath, slug, url })
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
@@ -24,6 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextAp
 
   const slug = Array.isArray(req.query.slug) ? req.query.slug[0] : req.query.slug
   const url = await verifySlug(slug)
+  console.log(url)
 
   if (!url) {
     return res.status(401).json({ message: 'Invalid slug' })
