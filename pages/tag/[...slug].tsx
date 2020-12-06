@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import { Tag } from '@tryghost/content-api'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { HeaderTag } from '@components/HeaderTag'
@@ -8,6 +10,7 @@ import { SEO } from '@meta/seo'
 import { getTagBySlug, getAllTags, getAllSettings, getPostsByTag, GhostSettings, GhostPostOrPage, GhostPostsOrPages } from '@lib/ghost'
 import { resolveUrl } from '@utils/routing'
 import { ISeoImage, seoImage } from '@meta/seoImage'
+import { processEnv } from '@lib/processEnv'
 
 /**
  * Tag page (/tag/:slug)
@@ -31,6 +34,9 @@ interface TagIndexProps {
 }
 
 const TagIndex = ({ cmsData }: TagIndexProps) => {
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
+
   const { tag, posts, settings, seoImage } = cmsData
   const { meta_title, meta_description } = tag
 
@@ -65,6 +71,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl })
       },
     },
+    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
   }
 }
 
@@ -77,6 +84,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: processEnv.isr.enable
   }
 }

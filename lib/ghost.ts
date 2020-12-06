@@ -85,8 +85,9 @@ const excludePostOrPageBySlug = () => {
 // helpers
 export const createNextImage = async (url?: string | null): Promise<NextImage | undefined> => {
   if (!url) return undefined
-  const dimensions = await imageDimensions(url)
-  return dimensions && { url, dimensions } || undefined
+  const normalizedUrl = url.startsWith('//') ? `https:${url}` : url
+  const dimensions = await imageDimensions(normalizedUrl)
+  return dimensions && { url: normalizedUrl, dimensions } || undefined
 }
 
 async function createNextFeatureImages(nodes: BrowseResults<Tag | PostOrPage>): Promise<GhostTags | PostsOrPages> {

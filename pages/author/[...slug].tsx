@@ -1,4 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
+
 import { Layout } from '@components/Layout'
 import { PostView } from '@components/PostView'
 import { HeaderAuthor } from '@components/HeaderAuthor'
@@ -8,6 +10,7 @@ import { SEO, authorSameAs } from '@meta/seo'
 
 import { getAuthorBySlug, getAllAuthors, getAllSettings, getPostsByAuthor, GhostSettings, GhostPostOrPage, GhostPostsOrPages, GhostAuthor } from '@lib/ghost'
 import { ISeoImage, seoImage } from '@meta/seoImage'
+import { processEnv } from '@lib/processEnv'
 
 /**
  * Author page (/author/:slug)
@@ -30,6 +33,9 @@ interface AuthorIndexProps {
 }
 
 const AuthorIndex = ({ cmsData }: AuthorIndexProps) => {
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
+
   const { author, posts, settings, seoImage } = cmsData
   const { name, bio } = author
   const description = bio || undefined
@@ -69,6 +75,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         seoImage: authorImage
       },
     },
+    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
   }
 }
 
@@ -81,6 +88,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: processEnv.isr.enable
   }
 }

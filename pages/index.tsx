@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { useRouter } from 'next/router'
 import fs from 'fs'
 
 import { Layout } from '@components/Layout'
@@ -7,6 +8,7 @@ import { HeaderIndex } from '@components/HeaderIndex'
 import { StickyNavContainer } from '@effects/StickyNavContainer'
 import { SEO } from '@meta/seo'
 
+import { processEnv } from '@lib/processEnv'
 import { getAllPosts, getAllSettings, GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
 import { seoImage, ISeoImage } from '@meta/seoImage'
 import { generateRSSFeed } from '@utils/rss'
@@ -32,6 +34,9 @@ interface IndexProps {
 }
 
 export default function Index({ cmsData }: IndexProps) {
+  const router = useRouter()
+  if (router.isFallback) return <div>Loading...</div>
+
   const { settings, posts, seoImage } = cmsData
 
   return (
@@ -76,5 +81,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       cmsData,
     },
+    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
   }
 }

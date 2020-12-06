@@ -10,8 +10,12 @@ html.casper .next-image-wrapper {
   display: flex;
 }
 
+ {
+  /*
 html.casper .next-image-wrapper img {
   background-color: #eee;
+}
+*/
 }
 
 @media (min-width: 1040px) {

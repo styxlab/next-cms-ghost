@@ -9,13 +9,14 @@ import { getPostBySlug, getPageBySlug, getAllPosts, getAllPages, getAllSettings,
 import { resolveUrl } from '@utils/routing'
 import { collections } from '@lib/collections'
 
-import { processEnv } from '@lib/processEnv'
+
 import { customPage } from '@appConfig'
 import { ContactPage, defaultPage } from '@lib/contactPageDefaults'
 import { imageDimensions } from '@lib/images'
 
 import { Contact } from '@components/ContactPage'
 import { ISeoImage, seoImage } from '@meta/seoImage'
+import { processEnv } from '@lib/processEnv'
 
 /**
  *
@@ -130,7 +131,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         nextPost,
       },
     },
-    revalidate: 1, // re-generate at most once every second
+    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
   }
 }
 
