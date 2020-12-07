@@ -33,11 +33,12 @@ interface PostProps {
     previewPosts?: GhostPostsOrPages
     prevPost?: GhostPostOrPage
     nextPost?: GhostPostOrPage
+    bodyClass: string
   }
 }
 
 export const Post = ({ cmsData }: PostProps) => {
-  const { post, settings, seoImage, previewPosts, prevPost, nextPost } = cmsData
+  const { post, settings, seoImage, previewPosts, prevPost, nextPost, bodyClass } = cmsData
   const { slug, url, meta_description, excerpt } = post
   const description = meta_description || excerpt
 
@@ -62,7 +63,7 @@ export const Post = ({ cmsData }: PostProps) => {
         isPost={true}
         activeClass="nav-post-title-active"
         render={(sticky) => (
-          <Layout {...{ isPost: true, settings, sticky }}
+          <Layout {...{ bodyClass, settings, sticky }}
             header={<HeaderPost {...{ settings, sticky, title: post.title }} />}
             previewPosts={<PreviewPosts {...{ settings, primaryTag: post.primary_tag, posts: previewPosts, prev: prevPost, next: nextPost }} />}
           >

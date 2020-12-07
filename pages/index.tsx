@@ -13,6 +13,8 @@ import { getAllPosts, getAllSettings, GhostPostOrPage, GhostPostsOrPages, GhostS
 import { seoImage, ISeoImage } from '@meta/seoImage'
 import { generateRSSFeed } from '@utils/rss'
 
+import { BodyClass } from '@helpers/BodyClass'
+
 /**
  * Main index page (home page)
  *
@@ -27,6 +29,7 @@ interface CmsData {
   previewPosts?: GhostPostsOrPages
   prevPost?: GhostPostOrPage
   nextPost?: GhostPostOrPage
+  bodyClass: string
 }
 
 interface IndexProps {
@@ -37,7 +40,7 @@ export default function Index({ cmsData }: IndexProps) {
   const router = useRouter()
   if (router.isFallback) return <div>Loading...</div>
 
-  const { settings, posts, seoImage } = cmsData
+  const { settings, posts, seoImage, bodyClass } = cmsData
 
   return (
     <>
@@ -46,7 +49,7 @@ export default function Index({ cmsData }: IndexProps) {
         throttle={300}
         activeClass="fixed-nav-active"
         render={(sticky) => (
-          <Layout {...{ isHome: true, sticky, settings }} header={<HeaderIndex {...{ settings }} />}>
+          <Layout {...{ bodyClass, sticky, settings }} header={<HeaderIndex {...{ settings }} />}>
             <PostView {...{ settings, posts, isHome: true }} />
           </Layout>
         )}
@@ -74,7 +77,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const cmsData = {
     settings,
     posts,
-    seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl })
+    seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
+    bodyClass: BodyClass({ isHome: true })
   }
 
   return {

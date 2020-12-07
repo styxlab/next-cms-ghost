@@ -28,27 +28,20 @@ export default class MyDocument extends Document<Props> {
     return { ...documentProps, helmet: Helmet.renderStatic() }
   }
 
-  // should render on <html>
-  get helmetHtmlAttrComponents() {
-    return this.props.helmet.htmlAttributes.toComponent()
-  }
-
   // should render on <body>
   get helmetBodyAttrComponents() {
     return this.props.helmet.bodyAttributes.toComponent()
   }
 
-  // should render on <head>
-  get helmetHeadComponents() {
-    return Object.keys(this.props.helmet)
-      .filter(el => el !== 'htmlAttributes' && el !== 'bodyAttributes')
-      .map(el => this.props.helmet[el as keyof typeof HelmetAttributes].toComponent())
-  }
-
   render() {
+    const { pageProps } = this.props.__NEXT_DATA__.props
+    const { cmsData }  = pageProps || { cmsData: null }
+    const { settings } = cmsData || { settings: null }
+    const { lang } = settings || { lang: 'en' }
+
     return (
-      <Html {...this.helmetHtmlAttrComponents}>
-        <Head>{this.helmetHeadComponents}
+      <Html {...{lang, className: 'casper' }}>
+        <Head>
           <link
             rel="alternate"
             type="application/rss+xml"

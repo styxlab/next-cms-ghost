@@ -8,6 +8,7 @@ import { PostCard } from '@components/PostCard'
 
 import { getAllPosts, getAllSettings, GhostSettings, GhostPostsOrPages } from '@lib/ghost'
 import { useLang, get } from '@utils/use-lang'
+import { BodyClass } from '@helpers/BodyClass'
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPosts({ limit: 3 })
@@ -16,7 +17,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       settings,
-      posts
+      posts,
+      bodyClass: BodyClass({})
     },
   }
 }
@@ -24,13 +26,14 @@ export const getStaticProps: GetStaticProps = async () => {
 interface Custom404Props {
   posts: GhostPostsOrPages
   settings: GhostSettings
+  bodyClass: string
 }
 
-export default function Custom404({ posts, settings }: Custom404Props) {
+export default function Custom404({ posts, settings, bodyClass }: Custom404Props) {
   const text = get(useLang())
 
   return (
-    <Layout {...{ settings }} header={<HeaderPage {...{ settings }} />} errorClass="error-content">
+    <Layout {...{ settings, bodyClass }} header={<HeaderPage {...{ settings }} />} errorClass="error-content">
       <div className="inner">
         <section className="error-message">
           <h1 className="error-code">404</h1>

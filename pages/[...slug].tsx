@@ -17,6 +17,7 @@ import { imageDimensions } from '@lib/images'
 import { Contact } from '@components/ContactPage'
 import { ISeoImage, seoImage } from '@meta/seoImage'
 import { processEnv } from '@lib/processEnv'
+import { BodyClass } from '@helpers/BodyClass'
 
 /**
  *
@@ -33,6 +34,7 @@ interface CmsDataCore {
   previewPosts?: GhostPostsOrPages
   prevPost?: GhostPostOrPage
   nextPost?: GhostPostOrPage
+  bodyClass: string
 }
 
 interface CmsData extends CmsDataCore {
@@ -51,8 +53,8 @@ const PostOrPageIndex = ({ cmsData }: PostOrPageProps) => {
   if (isPost) {
     return <Post {...{ cmsData }} />
   } else if (!!contactPage) {
-    const { contactPage, previewPosts, settings, seoImage } = cmsData
-    return <Contact cmsData={{ page: contactPage, previewPosts, settings, seoImage }} />
+    const { contactPage, previewPosts, settings, seoImage, bodyClass } = cmsData
+    return <Contact cmsData={{ page: contactPage, previewPosts, settings, seoImage, bodyClass }} />
   } else {
     return <Page cmsData={cmsData} />
   }
@@ -129,6 +131,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         previewPosts,
         prevPost,
         nextPost,
+        bodyClass: BodyClass({ isPost, page: page || undefined, tags: page && page.tags || undefined })
       },
     },
     ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second

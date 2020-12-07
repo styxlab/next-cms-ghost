@@ -5,14 +5,11 @@ import { DocumentHead } from '@components/DocumentHead'
 import { StickyNav } from '@components/StickyNav'
 import { SubscribeOverlay } from '@components/SubscribeOverlay'
 import { SubscribeSuccess } from '@components/SubscribeSuccess'
-import { BodyClass } from '@helpers/BodyClass'
 
 import { useLang, get } from '@utils/use-lang'
 import { GhostSettings } from '@lib/ghost'
 
 import { StickyNavContainer } from '@effects/StickyNavContainer'
-import { Author, PostOrPage, Tag } from '@tryghost/content-api'
-
 import { resolve } from 'url'
 
 /**
@@ -29,21 +26,17 @@ interface LayoutProps {
   header: ReactFragment
   children: ReactFragment
   isHome?: boolean
-  isPost?: boolean
   sticky?: StickyNavContainer
   previewPosts?: ReactFragment
-  author?: Author
-  tags?: Tag[]
-  page?: PostOrPage
+  bodyClass: string
   errorClass?: string
 }
 
 
-export const Layout = ({ settings, header, children, isHome, isPost, sticky, previewPosts, author, tags, page, errorClass }: LayoutProps) => {
+export const Layout = ({ settings, header, children, isHome, sticky, previewPosts, bodyClass, errorClass }: LayoutProps) => {
   const text = get(useLang())
   const site = settings
   const title = text(`SITE_TITLE`, site.title)
-  const bodyClass = BodyClass({ isHome: isHome, isPost: isPost, author: author, tags: tags, page: page })
   const { siteUrl, memberSubscriptions } = settings.processEnv
 
   const twitterUrl = site.twitter && `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
@@ -53,8 +46,7 @@ export const Layout = ({ settings, header, children, isHome, isPost, sticky, pre
 
   return (
     <>
-      {/* Dark Mode shadows DocumentHead */}
-      <DocumentHead site={site} className={bodyClass} />
+      <DocumentHead className={bodyClass} />
 
       <div className="site-wrapper">
         {/* The main header section on top of the screen */}

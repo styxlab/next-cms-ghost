@@ -12,6 +12,8 @@ import { resolveUrl } from '@utils/routing'
 import { ISeoImage, seoImage } from '@meta/seoImage'
 import { processEnv } from '@lib/processEnv'
 
+import { BodyClass } from '@helpers/BodyClass'
+
 /**
  * Tag page (/tag/:slug)
  *
@@ -27,6 +29,7 @@ interface CmsData {
   prevPost?: GhostPostOrPage
   nextPost?: GhostPostOrPage
   settings: GhostSettings
+  bodyClass: string
 }
 
 interface TagIndexProps {
@@ -37,15 +40,13 @@ const TagIndex = ({ cmsData }: TagIndexProps) => {
   const router = useRouter()
   if (router.isFallback) return <div>Loading...</div>
 
-  const { tag, posts, settings, seoImage } = cmsData
+  const { tag, posts, settings, seoImage, bodyClass } = cmsData
   const { meta_title, meta_description } = tag
 
   return (
     <>
       <SEO {...{ settings, meta_title, meta_description, seoImage }} />
-      <Layout {...{ settings, tags: [tag] }}
-        header={<HeaderTag {...{ settings, tag }} />}
-      >
+      <Layout {...{ settings, bodyClass }} header={<HeaderTag {...{ settings, tag }} />}>
         <PostView {...{ settings, posts }} />
       </Layout>
     </>
@@ -68,7 +69,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         tag,
         posts,
         settings,
-        seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl })
+        seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
+        bodyClass: BodyClass({ tags: [tag] })
       },
     },
     ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second

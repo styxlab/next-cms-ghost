@@ -5,7 +5,6 @@ import { useTheme } from '@components/contexts/themeProvider'
 import { DarkMode } from '@appConfig'
 
 interface DocumentHeadProps {
-  site: GhostSettings
   className: string
 }
 
@@ -35,7 +34,7 @@ const addActionClass = ({ className, action = `ssr`, success }: AddActionClassPr
   )
 }
 
-export const DocumentHead = ({ site, className }: DocumentHeadProps) => {
+export const DocumentHead = ({ className }: DocumentHeadProps) => {
   const { getDark } = useTheme()
   const router = useRouter()
   const { action, success } = router.query
@@ -46,7 +45,6 @@ export const DocumentHead = ({ site, className }: DocumentHeadProps) => {
 
   return (
     <Helmet>
-      <html lang={site.lang} className="casper" />
       <body className={bodyClass} />
     </Helmet>
   )

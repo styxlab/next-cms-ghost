@@ -12,6 +12,8 @@ import { getAuthorBySlug, getAllAuthors, getAllSettings, getPostsByAuthor, Ghost
 import { ISeoImage, seoImage } from '@meta/seoImage'
 import { processEnv } from '@lib/processEnv'
 
+import { BodyClass } from '@helpers/BodyClass'
+
 /**
  * Author page (/author/:slug)
  *
@@ -26,6 +28,7 @@ interface CmsData {
   prevPost?: GhostPostOrPage
   nextPost?: GhostPostOrPage
   settings: GhostSettings
+  bodyClass: string
 }
 
 interface AuthorIndexProps {
@@ -36,7 +39,7 @@ const AuthorIndex = ({ cmsData }: AuthorIndexProps) => {
   const router = useRouter()
   if (router.isFallback) return <div>Loading...</div>
 
-  const { author, posts, settings, seoImage } = cmsData
+  const { author, posts, settings, seoImage, bodyClass } = cmsData
   const { name, bio } = author
   const description = bio || undefined
   const sameAs = authorSameAs(author)
@@ -44,7 +47,7 @@ const AuthorIndex = ({ cmsData }: AuthorIndexProps) => {
   return (
     <>
       <SEO {...{ settings, description, seoImage, sameAs, title: name }} />
-      <Layout  {...{ settings, author }} header={<HeaderAuthor {...{ settings, author }} />}>
+      <Layout  {...{ settings, bodyClass }} header={<HeaderAuthor {...{ settings, author }} />}>
         <PostView {...{ settings, posts }} />
       </Layout>
     </>
@@ -72,7 +75,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         author,
         posts,
         settings,
-        seoImage: authorImage
+        seoImage: authorImage,
+        bodyClass: BodyClass({ author })
       },
     },
     ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second

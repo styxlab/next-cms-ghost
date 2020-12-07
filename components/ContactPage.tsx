@@ -25,11 +25,12 @@ interface PageProps {
     previewPosts?: GhostPostsOrPages
     settings: GhostSettings
     seoImage: ISeoImage
+    bodyClass: string
   }
 }
 
 export function Contact({ cmsData }: PageProps) {
-  const { page, previewPosts, settings, seoImage } = cmsData
+  const { page, previewPosts, settings, seoImage, bodyClass } = cmsData
   const { meta_title, meta_description } = page
 
   const { processEnv } = settings
@@ -54,7 +55,7 @@ export function Contact({ cmsData }: PageProps) {
   return (
     <>
       <SEO {...{ settings, meta_title, meta_description, seoImage }} />
-      <Layout {...{ settings, page }} tags={page.tags} header={<HeaderPage {...{ settings }} />}>
+      <Layout {...{ settings, bodyClass }} header={<HeaderPage {...{ settings }} />}>
         <div className="inner">
           <article className={`post-full ${postClass}`}>
 
