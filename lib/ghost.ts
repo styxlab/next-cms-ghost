@@ -5,7 +5,7 @@ import { collections as config } from '@routesConfig'
 import { Collections } from '@lib/collections'
 
 import { ghostAPIUrl, ghostAPIKey, processEnv, ProcessEnvProps } from '@lib/processEnv'
-import { imageDimensions, Dimensions } from '@lib/images'
+import { imageDimensions, normalizedImageUrl, Dimensions } from '@lib/images'
 import { IToC } from '@lib/toc'
 
 import { contactPage } from '@appConfig'
@@ -85,7 +85,7 @@ const excludePostOrPageBySlug = () => {
 // helpers
 export const createNextImage = async (url?: string | null): Promise<NextImage | undefined> => {
   if (!url) return undefined
-  const normalizedUrl = url.startsWith('//') ? `https:${url}` : url
+  const normalizedUrl = await normalizedImageUrl(url)
   const dimensions = await imageDimensions(normalizedUrl)
   return dimensions && { url: normalizedUrl, dimensions } || undefined
 }

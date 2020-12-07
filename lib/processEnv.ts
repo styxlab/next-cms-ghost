@@ -46,6 +46,7 @@ export interface ProcessEnvProps {
     feature: boolean
     inline: boolean
     quality: number
+    source: boolean
   }
   rssFeed: boolean
   memberSubscriptions: boolean
@@ -80,7 +81,8 @@ export const processEnv: ProcessEnvProps = {
   nextImages: {
     feature: resolveBool(process.env.JAMIFY_NEXT_FEATURE_IMAGES, appConfig.nextFeatureImages),
     inline: resolveBool(process.env.JAMIFY_NEXT_INLINE_IMAGES, appConfig.nextInlineImages),
-    quality: resolveNumber(process.env.JAMIFY_NEXT_IMAGES_QUALITY, appConfig.imageQuality)
+    quality: resolveNumber(process.env.JAMIFY_NEXT_IMAGES_QUALITY, appConfig.imageQuality),
+    source: resolveBool(process.env.JAMIFY_NEXT_SOURCE_IMAGES, appConfig.sourceImages)
   },
   rssFeed: resolveBool(process.env.JAMIFY_RSS_FEED, appConfig.rssFeed),
   memberSubscriptions: resolveBool(process.env.JAMIFY_MEMBER_SUBSCRIPTIONS, appConfig.memberSubscriptions),

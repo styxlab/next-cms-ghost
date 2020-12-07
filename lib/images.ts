@@ -1,6 +1,13 @@
 import probe from 'probe-image-size'
 import { getCache, setCache } from '@lib/cache'
 
+import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs'
+import { join } from 'path'
+import { processEnv } from '@lib/processEnv'
+import { promisify } from 'util'
+
+const streamPipeline = promisify(require('stream').pipeline)
+
 /**
  * Determine image dimensions
  *
@@ -79,9 +86,36 @@ export const imageDimensionsFromFile = async (file: string, noCache?: boolean) =
   const cached = getCache<Dimensions>(cacheKey)
   if (cached) return cached
 
-  const { width, height } = await probe(require('fs').createReadStream(file))
+  const { width, height } = await probe(createReadStream(file))
   if (0 === width + height) return null
 
   setCache(cacheKey, { width, height })
   return { width, height }
+}
+
+/**
+ * If the sourceImage flag is set, stream images
+ * from localhost to the public image folder
+ */
+
+const imageRoot = join(process.cwd(), 'public/images')
+if (!existsSync(imageRoot)) {
+  mkdirSync(imageRoot)
+}
+
+export const normalizedImageUrl = async (url: string) => {
+  const localhostRegExp = /^http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/.*)*\/(.*)$/
+  const filename = url.match(localhostRegExp)?.reverse()[0]
+
+  if (processEnv.nextImages.source && filename) {
+    const filePath = join(imageRoot, filename)
+
+    if (!existsSync(filePath)) {
+      const response = await fetch(url)
+      if (!response.ok) throw new Error(`images.ts: unexpected response ${response.statusText}`)
+      await streamPipeline(response.body, createWriteStream(filePath))
+    }
+    return `${processEnv.siteUrl}/images/${filename}`
+  }
+  return url.startsWith('//') ? `https:${url}` : url
 }

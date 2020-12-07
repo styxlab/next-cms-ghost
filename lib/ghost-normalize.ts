@@ -10,7 +10,7 @@ import { generateTableOfContents } from '@lib/toc'
 import { GhostPostOrPage, createNextProfileImagesFromAuthors } from './ghost'
 
 import { processEnv } from '@lib/processEnv'
-const  { prism, toc, nextImages } = processEnv
+const { prism, toc, nextImages } = processEnv
 
 const rehype = Rehype().use({ settings: { fragment: true, space: `html`, emitParseErrors: false, verbose: false } })
 
@@ -146,15 +146,16 @@ const tableOfContents = (htmlAst: Node) => {
 
 /**
  * Rewrite img tags to be used with next/image
+ * Always attach aspectRatio for image cards
  */
 
 const rewriteInlineImages = async (htmlAst: Node) => {
-  if (!nextImages.inline) return htmlAst
-
   let nodes: { node: Node, parent: Parent | undefined }[] = []
 
   visit(htmlAst, { tagName: `img` }, (node: Node, _index: number, parent: Parent | undefined) => {
-    node.tagName = `Image`
+    if (nextImages.inline) {
+      node.tagName = `Image`
+    }
 
     const { src } = (node.properties as HTMLImageElement)
     node.imageDimensions = imageDimensions(src)
