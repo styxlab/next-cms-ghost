@@ -119,6 +119,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const imageUrl = (post || contactPage || page)?.feature_image || undefined
   const image = await seoImage({ siteUrl, imageUrl })
 
+  const tags = (contactPage && contactPage.tags) || (page && page.tags) || undefined
+
   return {
     props: {
       cmsData: {
@@ -131,7 +133,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         previewPosts,
         prevPost,
         nextPost,
-        bodyClass: BodyClass({ isPost, page: page || undefined, tags: page && page.tags || undefined })
+        bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags })
       },
     },
     ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
