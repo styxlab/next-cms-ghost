@@ -36,6 +36,7 @@ export const HeaderAuthor = ({ settings, author }: HeaderAuthorProps) => {
             {profileImg && nextImages.feature ? (
               <div className="author-profile-image">
                 <Image
+                  className="author-profile-image"
                   src={profileImg.url}
                   alt={author.name}
                   layout="responsive"

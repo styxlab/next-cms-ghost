@@ -36,6 +36,7 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
                     <div className="author-profile-image">
                       {profileImg && nextImages.feature ? (
                         <Image
+                          className="author-profile-image"
                           src={profileImg.url}
                           alt={author.name}
                           layout="responsive"
