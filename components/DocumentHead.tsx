@@ -1,5 +1,4 @@
-import { GhostSettings } from 'lib/ghost'
-import { Helmet } from 'react-helmet'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useTheme } from '@components/contexts/themeProvider'
 import { DarkMode } from '@appConfig'
@@ -43,9 +42,16 @@ export const DocumentHead = ({ className }: DocumentHeadProps) => {
   const dark = getDark()
   const bodyClass = addDarkClass({ className: cln, dark })
 
-  return (
-    <Helmet>
-      <body className={bodyClass} />
-    </Helmet>
-  )
+  /**
+   * Not declarative, but allows to get rid of Helmet which
+   * 1. saves 5 KB in bundle size
+   * 2. allows strict mode in next.config
+   *
+  */
+  useEffect(() => {
+    const body = document.querySelector('body')
+    if (body) body.className = bodyClass
+  }, [bodyClass])
+
+  return null
 }

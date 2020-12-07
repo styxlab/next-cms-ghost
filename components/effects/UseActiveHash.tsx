@@ -26,7 +26,7 @@ export const useActiveHash = (itemIds: string[], rootMargin: string | undefined 
         itemIds.forEach(id => trigger(id, `observe`))
 
         return () => itemIds.forEach(id => trigger(id, `unobserve`))
-    }, [])
+    }, [itemIds, rootMargin, setActiveHash])
 
     return activeHash
 }

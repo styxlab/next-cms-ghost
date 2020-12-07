@@ -24,5 +24,5 @@ module.exports = withBundleAnalyzer({
       'github.githubassets.com',
     ],
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
 })
