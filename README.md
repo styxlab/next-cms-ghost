@@ -4,7 +4,7 @@
 
 [![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-Create and publish flaring fast blogs with this Jamify blogging system. Powered by the React framework Next.js and content fed by headleass Ghost, you'll get a production ready hybrid static & server rendered website that you can easily distribute globally. At the same time your content creators can continue to work with the Ghost authoring system as they used to.
+Create and publish flaring fast blogs with this Jamify blogging system. Powered by the React framework Next.js and content fed by headless Ghost, you'll get a production ready hybrid static & server-rendered website that you can easily distribute globally. At the same time your content creators can continue to work with the Ghost authoring system they are used to.
 
 &nbsp;
 
@@ -48,15 +48,15 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
 <br />
 <ul>
   <li>Feature and inline images</li>
-  <li>Auto optimized images</li>
-  <li>No content shifts due to conistent placeholders</li>
+  <li>Auto-optimized images</li>
+  <li>No content shifts due to consistent placeholders</li>
 </ul>
 </details>
 <details>
-<summary>Andvanced Routing</summary>
+<summary>Advanced Routing</summary>
 <br />
 <ul>
-  <li>Auto detects custom paths</li>
+  <li>Auto-detects custom paths</li>
   <li>Configurable collections</li>
 </ul>
 </details>
@@ -67,7 +67,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>MIT licenced</li>
   <li>Truly open-source</li>
   <li>Easy to contribute</li>
-  <li>Made type safe with TypeScript</li>
+  <li>Made typesafe with TypeScript</li>
 </ul>
 </details>
 <details>
@@ -118,7 +118,7 @@ yarn build
 
 ## 🌀 NextJS image optimizations
 
-You must add all domains that you use for insourcing images in the `next.config.js` file, for example:
+You must add all domains that you use for in-sourcing images in the `next.config.js` file, for example:
 
 ```javascript
 module.exports = {
