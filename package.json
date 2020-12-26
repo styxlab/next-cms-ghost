@@ -58,6 +58,7 @@
     "rehype-react": "^6.1.0",
     "rss": "^1.2.2",
     "sanitize-html": "^2.2.0",
+    "slash": "^3.0.0",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {

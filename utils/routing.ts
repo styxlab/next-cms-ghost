@@ -1,7 +1,9 @@
 import { normalize } from 'path'
+// Hot fix Windows normalize function returning backslash
+import slash from 'slash'
 
 // higher order function
-const withPrefixPath = (prefixPath: string) => (path: string) => normalize(`/${prefixPath}/${path}/`)
+const withPrefixPath = (prefixPath: string) => (path: string) => slash(normalize(`/${prefixPath}/${path}/`))
 
 const trimSlash = (text: string) => text.replace(/^\//, '').replace(/\/$/, '')
 
@@ -22,7 +24,7 @@ interface ResolveUrlProps {
 
 export const resolveUrl = ({ collectionPath = `/`, slug, url }: ResolveUrlProps) => {
   const resolvePath = withPrefixPath(collectionPath)
-  if (!slug || slug.length === 0) return normalize(resolvePath(`/`))
+  if (!slug || slug.length === 0) return slash(normalize(resolvePath(`/`)))
   if (!url || url.length === 0) return resolvePath(slug)
   if (trimSlash(url) === slug) return resolvePath(slug)
 
