@@ -18,9 +18,9 @@ export const useTheme = (): ThemeProviderValues => useContext(ThemeContext)
 
 // Getting dark mode information from OS!
 // You need macOS Mojave + Safari Technology Preview Release 68 to test this currently.
-const supportsDarkMode = () => window.matchMedia(`(prefers-color-scheme: dark)`).matches === true
+const supportsDarkMode = () => typeof window !== 'undefined' && window.matchMedia(`(prefers-color-scheme: dark)`).matches === true
 
-const supportsLightMode = () => window.matchMedia(`(prefers-color-scheme: light)`).matches === true
+const supportsLightMode = () => typeof window !== 'undefined' && window.matchMedia(`(prefers-color-scheme: light)`).matches === true
 
 const getLocalStoragelsDark = () => {
   if (typeof localStorage === 'undefined') return null
