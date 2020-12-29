@@ -99,9 +99,6 @@ export const imageDimensionsFromFile = async (file: string, noCache?: boolean) =
  */
 
 const imageRoot = join(process.cwd(), 'public/images')
-//if (!existsSync(imageRoot)) {
-//  mkdirSync(imageRoot)
-//}
 
 export const normalizedImageUrl = async (url: string) => {
   const localhostRegExp = /^http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/.*)*\/(.*)$/
