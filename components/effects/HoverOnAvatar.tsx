@@ -8,7 +8,7 @@ interface HoverOnAvatarProps {
 export class HoverOnAvatar extends Component<HoverOnAvatarProps> {
   anchorRef: RefObject<HTMLLIElement>
   activeClass: string
-  hoverTimeout: number
+  hoverTimeout: NodeJS.Timeout | undefined
   state: {
     currentClass: string
   }
@@ -17,7 +17,7 @@ export class HoverOnAvatar extends Component<HoverOnAvatarProps> {
     super(props)
     this.anchorRef = createRef<HTMLLIElement>()
     this.activeClass = this.props.activeClass
-    this.hoverTimeout = 0
+    this.hoverTimeout = undefined
     this.state = {
       currentClass: ''
     }
@@ -29,13 +29,13 @@ export class HoverOnAvatar extends Component<HoverOnAvatarProps> {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.hoverTimeout)
+    this.hoverTimeout && clearTimeout(this.hoverTimeout)
     this.anchorRef?.current?.removeEventListener(`mouseover`, this.onHoverIn)
     this.anchorRef?.current?.removeEventListener(`mouseout`, this.onHoverOut)
   }
 
   onHoverIn = () => {
-    clearTimeout(this.hoverTimeout)
+    this.hoverTimeout && clearTimeout(this.hoverTimeout)
     this.setState({ currentClass: this.activeClass })
   }
 
