@@ -94,6 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       if (dimensions) contactPage.featureImage = { url, dimensions }
     }
   }
+
   if (!post && !page && !isContactPage) {
     return {
       notFound: true,
@@ -170,6 +171,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: enable && 'blocking'
+    fallback: enable && "blocking"
   }
 }

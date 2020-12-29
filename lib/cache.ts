@@ -3,8 +3,15 @@ import path from 'path'
 import { fileCache } from '@appConfig'
 
 const cacheRoot = path.join(process.cwd(), '.cache')
-if (!fs.existsSync(cacheRoot)) {
-  fs.mkdirSync(cacheRoot)
+
+const makeCacheRootDirectory = (path: string) => {
+  if (fs.existsSync(path)) return true
+  try {
+    fs.mkdirSync(path)
+  } catch {
+    return false
+  }
+  return true
 }
 
 export function getCache<T>(key: string | null): T | null {
@@ -21,6 +28,7 @@ export function getCache<T>(key: string | null): T | null {
 
 export function setCache(key: string | null, object: unknown): void {
   if (!fileCache || !key) return
+  if (!makeCacheRootDirectory(cacheRoot)) return
 
   const filePath = path.join(cacheRoot, `${key}.txt`)
   fs.writeFileSync(filePath, JSON.stringify(object as JSON))
