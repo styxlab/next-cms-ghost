@@ -5,8 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   ...(process.env.NETLIFY === 'true' && { target: 'serverless' }),
   images: {
-    loader: 'imgix',
-    path: '',
+    // loader: 'imgix',
+    // path: '',
     deviceSizes: [320, 500, 680, 1040, 2080, 2048, 3120],
     domains: [
       'localhost',
@@ -21,6 +21,7 @@ module.exports = withBundleAnalyzer({
       'repository-images.githubusercontent.com',
       'www.gravatar.com',
       'github.githubassets.com',
+      'blog.miguelbernard.com'
     ],
   },
   reactStrictMode: true,
