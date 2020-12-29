@@ -16,7 +16,7 @@ module.exports = withBundleAnalyzer({
       'hooshmand.net',
       'cms.jamify.org',
       'demo.jamify.org',
-      'www.jamify.org',
+      // 'www.jamify.org',
       'www.gatsbyjs.org',
       'cdn.commento.io',
       'gatsby.ghost.io',
