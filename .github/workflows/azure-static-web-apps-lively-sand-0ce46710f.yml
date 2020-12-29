@@ -18,11 +18,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Debug Action
-        uses: hmarr/debug-action@v1.0.0
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
+        env:
+          CMS_GHOST_API_URL: ${{ secrets.CMS_GHOST_API_URL }}
+          CMS_GHOST_API_KEY: ${{ secrets.CMS_GHOST_API_KEY }}
+          SITE_URL: ${{ secrets.SITE_URL }}
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_SAND_0CE46710F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
