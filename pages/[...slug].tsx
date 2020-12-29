@@ -94,7 +94,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       if (dimensions) contactPage.featureImage = { url, dimensions }
     }
   }
-  if (!post && !page && !isContactPage) throw new Error(`Expected post or page for slug: ${slug}`)
+  if (!post && !page && !isContactPage) {
+    return {
+      notFound: true,
+    }
+  }
 
   let previewPosts: GhostPostsOrPages | never[] = []
   let prevPost: GhostPostOrPage | null = null
@@ -166,6 +170,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: enable
+    fallback: enable && "blocking"
   }
 }
