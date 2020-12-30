@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "clean": "rm -rf .cache public/images",
     "format": "prettier --write **/*.{js,ts,tsx}",

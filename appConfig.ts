@@ -21,7 +21,7 @@ export const sourceImages: boolean = false
 export const rssFeed: boolean = true
 
 // Ghost Member Subscriptions
-export const memberSubscriptions: boolean = true
+export const memberSubscriptions: boolean = false
 
 // Commento commenting system
 export const commento: boolean = false
