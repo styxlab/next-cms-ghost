@@ -12,9 +12,6 @@
     "nextjs-starter-ghost",
     "nextjs-serverless",
     "gatsby-alternative",
-    "jamify",
-    "jamify-starter",
-    "jamify-starter-ghost",
     "ghost",
     "ghost-cms",
     "ghost-theme",
@@ -30,7 +27,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "clean": "rm -rf .cache public/images",
     "format": "prettier --write **/*.{js,ts,tsx}",
