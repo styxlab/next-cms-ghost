@@ -1,6 +1,6 @@
 import { DiscussionEmbed } from "disqus-react"
 
-const DisqusComments = ({ post }: GhostPostOrPage) => {
+const DisqusComments = ({ post }) => {
     const disqusShortname = "miguelblog-1"
     const disqusConfig = {
         url: post.url,
