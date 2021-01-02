@@ -15,6 +15,7 @@ import { RenderContent } from '@components/RenderContent'
 import { Comments } from '@components/Comments'
 import { Subscribe } from '@components/Subscribe'
 import { TableOfContents } from '@components/toc/TableOfContents'
+import DisqusComments from '@components/DisqusComments'
 
 import { StickyNavContainer } from '@effects/StickyNavContainer'
 import { SEO } from '@meta/seo'
@@ -27,6 +28,7 @@ import { ISeoImage } from '@meta/seoImage'
 
 import React, { useEffect } from 'react'
 import Prism from 'prismjs'
+
 
 interface PostProps {
   cmsData: {
@@ -157,6 +159,10 @@ export const Post = ({ cmsData }: PostProps) => {
                 {memberSubscriptions && (
                   <Subscribe {...{ settings }} />
                 )}
+
+                <section>
+                  <DisqusComments {...{ post: post }} />
+                </section>
 
                 {commento.enable && (
                   <Comments {...{ id: post.id, url: commento.url }} />
