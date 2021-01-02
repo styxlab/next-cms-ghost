@@ -25,6 +25,9 @@ import { collections } from '@lib/collections'
 
 import { ISeoImage } from '@meta/seoImage'
 
+import React, { useEffect } from 'react'
+import Prism from 'prismjs'
+
 interface PostProps {
   cmsData: {
     post: GhostPostOrPage
@@ -43,7 +46,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const description = meta_description || excerpt
 
   const { processEnv } = settings
-  const { nextImages, toc, memberSubscriptions, commento } = processEnv
+  const { nextImages, toc, memberSubscriptions, commento, prism } = processEnv
 
   const text = get(useLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
@@ -54,6 +57,11 @@ export const Post = ({ cmsData }: PostProps) => {
   if (htmlAst === undefined) throw Error('Post.tsx: htmlAst must be defined.')
 
   const collectionPath = collections.getCollectionByNode(post)
+
+  // Prism
+  if (prism.enable) {
+    useEffect(() => Prism.highlightAll(), []);
+  }
 
   return (
     <>
@@ -86,7 +94,7 @@ export const Post = ({ cmsData }: PostProps) => {
 
                   <div className="post-full-byline">
                     <section className="post-full-byline-content">
-                      <AuthorList {...{ settings, authors: post.authors, isPost: true}} />
+                      <AuthorList {...{ settings, authors: post.authors, isPost: true }} />
 
                       <section className="post-full-byline-meta">
                         <h4 className="author-name">
@@ -139,7 +147,7 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 <section className="post-full-content">
                   {toc.enable && !!post.toc && (
-                    <TableOfContents {...{toc: post.toc, url: resolveUrl({ collectionPath, slug, url }), maxDepth: toc.maxDepth }} />
+                    <TableOfContents {...{ toc: post.toc, url: resolveUrl({ collectionPath, slug, url }), maxDepth: toc.maxDepth }} />
                   )}
                   <div className="post-content load-external-scripts">
                     <RenderContent htmlAst={htmlAst} />
@@ -151,7 +159,7 @@ export const Post = ({ cmsData }: PostProps) => {
                 )}
 
                 {commento.enable && (
-                  <Comments {...{id: post.id, url: commento.url }} />
+                  <Comments {...{ id: post.id, url: commento.url }} />
                 )}
               </article>
             </div>

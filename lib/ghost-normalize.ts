@@ -98,38 +98,14 @@ interface NodeProperties {
 const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
   if (!prism.enable) return htmlAst
 
-  const getLanguage = (node: Node) => {
-    const className = (node.properties as NodeProperties).className || []
-
-    for (const classListItem of className) {
-      if (classListItem.slice(0, 9) === 'language-') {
-        return classListItem.slice(9).toLowerCase()
-      }
-    }
-    return null
-  }
-
   visit(htmlAst, 'element', (node: Node, _index: number, parent: Parent | undefined) => {
-    if (!parent || parent.tagName !== 'pre' || node.tagName !== 'code') {
+    if (node.tagName !== 'pre') {
       return
     }
 
-    const lang = getLanguage(node)
-    if (lang === null) return
-
-    let className = (node.properties as NodeProperties).className
-
-    let result
-    try {
-      className = (className || []).concat('language-' + lang)
-      result = refractor.highlight(nodeToString(node), lang)
-    } catch (err) {
-      if (prism.ignoreMissing && /Unknown language/.test(err.message)) {
-        return
-      }
-      throw err
-    }
-    node.children = result
+    // hack to enable the 'line-numbers' plugins
+    let className = (node.properties as NodeProperties).className;
+    (node.properties as NodeProperties).className = (className || []).concat('line-numbers');
   })
 
   return htmlAst

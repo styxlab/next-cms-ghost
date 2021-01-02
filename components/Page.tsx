@@ -10,6 +10,9 @@ import { SEO } from '@meta/seo'
 import { GhostPostOrPage, GhostSettings } from '@lib/ghost'
 import { ISeoImage } from '@meta/seoImage'
 
+import React, { useEffect} from 'react'
+import Prism from 'prismjs'
+
 /**
  * Single page (/:slug)
  *
@@ -29,12 +32,19 @@ interface PageProps {
 export const Page = ({ cmsData }: PageProps) => {
   const { page, settings, seoImage, bodyClass } = cmsData
   const { meta_title, meta_description } = page
-  const { nextImages } = settings.processEnv
 
   const featImg = page.featureImage
   const postClass = PostClass({ tags: page.tags, isPage: page && true, isImage: !!featImg })
   const htmlAst = page.htmlAst
   if (htmlAst === undefined) throw Error('Page.tsx: htmlAst must be defined.')
+ 
+  const { processEnv } = settings
+  const { nextImages, prism } = processEnv
+  
+  // Prism
+  if (prism.enable) {
+    useEffect(() => Prism.highlightAll(), []);
+  }
 
   return (
     <>

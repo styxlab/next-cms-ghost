@@ -127,6 +127,10 @@ html.casper body.dark .post-full-content code {
   background: #000;
 }
 
+html.casper body.dark .post-full-content pre > code {
+  background: transparent;
+}
+
 html.casper body.dark hr {
   border-top-color: color-mod(var(--darkmode) l(+8%));
 }

@@ -1205,13 +1205,9 @@ html.casper .post-full-content p code {
 html.casper .post-full-content pre {
     overflow-x: auto;
     margin: 1.5em 0 3em;
-    padding: 20px;
     max-width: 100%;
     border: color-mod(var(--darkgrey) l(-10%)) 1px solid;
     color: var(--whitegrey);
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    background: color-mod(var(--darkgrey) l(-3%));
     border-radius: 5px;
 }
 

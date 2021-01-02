@@ -29,8 +29,7 @@ export const commentoUrl: string = 'https://cdn.commento.io'
 //export const commentoUrl: string = 'https://commento.your-blog.com'
 
 // PrismJS
-export const prism: boolean = true
-export const prismIgnoreMissing: boolean = true
+export const prism: boolean = false
 
 // Contact Page
 export const contactPage: boolean = false
