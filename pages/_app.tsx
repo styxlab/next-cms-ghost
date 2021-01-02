@@ -20,7 +20,6 @@ function App({ Component, pageProps }: AppProps) {
             color: 'social',      // set the color of buttons (social, white)
             enabled: true,        // show/hide buttons (true, false)
             font_size: 16,        // font size for the buttons
-            hide_desktop: false,  // hide buttons on desktop (true, false)
             labels: 'cta',     // button labels (cta, counts, null)
             language: 'en',       // which language to use (see LANGUAGES)
             min_count: 25,         // hide react counts less than min_count (INTEGER)

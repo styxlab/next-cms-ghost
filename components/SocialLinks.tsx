@@ -27,8 +27,8 @@ export const SocialLinks = ({ siteUrl, site }: SocialLinkProps) => {
           <TwitterIcon />
         </a>
       )}
-      <a class="social-link social-link-in" href="https://www.linkedin.com/in/miguelbernard/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedinIcon/></a>
-      <a class="social-link social-link-gh" href="https://github.com/mbernard/" title="Github" target="_blank" rel="noopener noreferrer"><GithubIcon/></a>
+      <a className="social-link social-link-in" href="https://www.linkedin.com/in/miguelbernard/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedinIcon/></a>
+      <a className="social-link social-link-gh" href="https://github.com/mbernard/" title="Github" target="_blank" rel="noopener noreferrer"><GithubIcon/></a>
       <SocialRss {...{ siteUrl }} />
     </>
   )

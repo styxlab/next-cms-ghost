@@ -161,7 +161,7 @@ export const Post = ({ cmsData }: PostProps) => {
                 )}
 
                 <section>
-                  <DisqusComments {...{ post: post }} />
+                  <DisqusComments {...post } />
                 </section>
 
                 {commento.enable && (
