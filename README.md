@@ -199,7 +199,7 @@ Please report all bugs and issues at [next-cms-ghost/issues](https://github.com/
 
 ## 🎈 Contributions
 
-Special thanks go to the following contributors: [Vince Fulco](https://github.com/weisisheng) and [Akshat Mittal](https://github.com/akshatmittal).
+Special thanks go to the following contributors: [Vince Fulco](https://github.com/weisisheng), [Akshat Mittal](https://github.com/akshatmittal) and [Manuel Taberna](https://github.com/BeatPlus).
 
 PRs are welcome! Consider contributing to this project if you want to make a better web.
 
