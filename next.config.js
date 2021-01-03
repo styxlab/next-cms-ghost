@@ -23,4 +23,11 @@ module.exports = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
+  redirects: () => [
+    {
+      source: '/rss',
+      destination: '/rss.xml',
+      permanent: true,
+    },
+  ]
 })
