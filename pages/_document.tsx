@@ -11,12 +11,12 @@ export default class MyDocument extends Document {
 
   render() {
     const { pageProps } = this.props.__NEXT_DATA__.props
-    const { cmsData, settings }  = pageProps || { cmsData: null, settings: null }
-    const { settings: cmsSettings , bodyClass } = cmsData || { settings: null, bodyClass: '' }
+    const { cmsData, settings } = pageProps || { cmsData: null, settings: null }
+    const { settings: cmsSettings, bodyClass } = cmsData || { settings: null, bodyClass: '' }
     const { lang } = settings || cmsSettings || { lang: 'en' }
 
     return (
-      <Html {...{lang, className: 'casper' }}>
+      <Html {...{ lang, className: 'casper' }}>
         <Head>
           <link
             rel="alternate"
@@ -25,7 +25,7 @@ export default class MyDocument extends Document {
             href={`${resolve(processEnv.siteUrl, 'rss.xml')}`}
           />
         </Head>
-        <body {...{className: bodyClass}}>
+        <body {...{ className: bodyClass }}>
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -43,6 +43,8 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+        <script type="text/javascript" src="mailchimp.js"></script>
       </Html>
     )
   }
