@@ -2,6 +2,7 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { resolve } from 'url'
 import { processEnv } from '@lib/processEnv'
+import { MailchimpPopup } from '@components/MailchimpPopup'
 
 export default class MyDocument extends Document {
 
@@ -43,8 +44,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-        <script type="text/javascript" src="mailchimp.js"></script>
+        <MailchimpPopup />
       </Html>
     )
   }
