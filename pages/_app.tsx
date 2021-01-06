@@ -3,11 +3,17 @@ import { OverlayProvider } from '@components/contexts/overlayProvider'
 import { ThemeProvider } from '@components/contexts/themeProvider'
 import { processEnv } from '@lib/processEnv'
 import { StickyShareButtons } from 'sharethis-reactjs';
+import React, { Fragment } from 'react'
+import Router from 'next/router'
+import * as gtag from '@lib/gtag'
 
 import '@styles/screen.css'
 import '@styles/screen-fixings.css'
 import '@styles/dark-mode.css'
 import '@styles/toc.css'
+
+// Notice how we track pageview when route is changed
+Router.events.on('routeChangeComplete', (url) => gtag.pageview(url))
 
 function App({ Component, pageProps }: AppProps) {
   return (
