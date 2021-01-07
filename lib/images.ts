@@ -35,7 +35,7 @@ export interface Dimensions {
 export const imageDimensions = async (url: string | undefined | null, noCache?: boolean): Promise<Dimensions | null> => {
   if (!url) return null
 
-  const cacheKey = !noCache && encodeURIComponent(url) || null
+  const cacheKey = (!noCache && encodeURIComponent(url)) || null
   const cached = getCache<Dimensions>(cacheKey)
   if (cached) return cached
 
@@ -69,7 +69,6 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
         throw new Error(error)
       }
       //console.warn(`images.ts: Network error while probing image with url: ${url}.`)
-
     }
   } while (hasError && retry < maxRetries)
   if (hasError) throw new Error(`images.ts: Bad network connection. Failed image probe after ${maxRetries} retries for url: ${url}.`)
@@ -82,7 +81,7 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
 export const imageDimensionsFromFile = async (file: string, noCache?: boolean) => {
   if (!file) return null
 
-  const cacheKey = !noCache && encodeURIComponent(file) || null
+  const cacheKey = (!noCache && encodeURIComponent(file)) || null
   const cached = getCache<Dimensions>(cacheKey)
   if (cached) return cached
 
