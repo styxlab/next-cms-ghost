@@ -72,7 +72,7 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
 
     }
   } while (hasError && retry < maxRetries)
-  if (hasError) throw new Error(`images.ts: Bad network connection. Failed image probe after ${maxRetries} retries.`)
+  if (hasError) throw new Error(`images.ts: Bad network connection. Failed image probe after ${maxRetries} retries for url: ${url}.`)
   if (0 === width + height) return null
 
   setCache(cacheKey, { width, height })
