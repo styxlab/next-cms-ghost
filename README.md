@@ -222,6 +222,8 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+&nbsp;
+
 ## 🧐 Disclaimer
 
 This project is not affiliated with [NextJS](https://nextjs.org/) or [Ghost](https://ghost.org/).
