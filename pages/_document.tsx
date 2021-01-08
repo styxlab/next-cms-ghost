@@ -4,6 +4,7 @@ import { resolve } from 'url'
 import { processEnv } from '@lib/processEnv'
 import { MailchimpPopup } from '@components/MailchimpPopup'
 import { GA_TRACKING_ID } from '@lib/gtag'
+import { AdWords } from '@components/AdWords'
 
 export default class MyDocument extends Document {
 
@@ -70,6 +71,7 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
         <MailchimpPopup />
+        <AdWords />
       </Html>
     )
   }
