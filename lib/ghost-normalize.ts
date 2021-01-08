@@ -1,7 +1,7 @@
 import Rehype from 'rehype'
 import { Node, Parent } from 'unist'
 import visit from 'unist-util-visit'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, upperCase } from 'lodash'
 import refractor from 'refractor'
 import nodeToString from 'hast-util-to-string'
 import { PostOrPage } from '@tryghost/content-api'
@@ -22,7 +22,8 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
     rewriteGhostLinks,
     rewriteRelativeLinks,
     syntaxHighlightWithPrismJS,
-    rewriteInlineImages
+    rewriteInlineImages,
+    rewriteMvpLinks
   ]
 
   let htmlAst = rehype.parse(post.html || '')
@@ -48,6 +49,25 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
   }
 }
 
+/**
+ * Rewrite Microsoft link to include my MVP tracking id
+ */
+
+const rewriteMvpLinks = (htmlAst: Node) => {
+  visit(htmlAst, { tagName: `a` }, (node: Node) => {
+    const href = (node.properties as HTMLAnchorElement).href
+    try {
+      var url = new URL(href);
+      if (url.hostname.endsWith('microsoft.com') || url.hostname.endsWith('azure.com')) {
+        url.searchParams.set("WT.mc_id", "DOP-MVP-5003880");
+        (node.properties as HTMLAnchorElement).href = url.href
+      }
+    }
+    catch { }
+  })
+
+  return htmlAst
+}
 
 /**
  * Rewrite absolute Ghost CMS links to relative
