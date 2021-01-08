@@ -13,6 +13,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "BeatPlus",
+      "name": "Manuel Taberna",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2022256?v=4",
+      "profile": "https://github.com/BeatPlus",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
