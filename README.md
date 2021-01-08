@@ -1,11 +1,7 @@
 ![next-cms-ghost](https://static.gotsby.org/v1/assets/images/next-ghost.png)
 
 # next-cms-ghost
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-</div>
+[![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 Create and publish flaring fast blogs with this Jamify blogging system. Powered by the React framework Next.js and content fed by headless Ghost, you'll get a production ready hybrid static & server-rendered website that you can easily distribute globally. At the same time your content creators can continue to work with the Ghost authoring system they are used to.
 
@@ -213,6 +209,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
   <tr>
     <td align="center"><a href="https://github.com/weisisheng"><img src="https://avatars1.githubusercontent.com/u/47701145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vince Fulco</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=weisisheng" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/BeatPlus"><img src="https://avatars3.githubusercontent.com/u/2022256?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manuel Taberna</b></sub></a><br /><a href="#translation-BeatPlus" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://akshatmittal.com"><img src="https://avatars1.githubusercontent.com/u/1667481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akshat Mittal</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=akshatmittal" title="Code">💻</a></td>
   </tr>
 </table>
 
