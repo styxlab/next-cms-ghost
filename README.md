@@ -3,8 +3,7 @@
 # next-cms-ghost
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </div>
 
@@ -213,6 +212,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
 <table>
   <tr>
     <td align="center"><a href="https://github.com/weisisheng"><img src="https://avatars1.githubusercontent.com/u/47701145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vince Fulco</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=weisisheng" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://akshatmittal.com"><img src="https://avatars1.githubusercontent.com/u/1667481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akshat Mittal</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=akshatmittal" title="Code">💻</a></td>
   </tr>
 </table>
 
