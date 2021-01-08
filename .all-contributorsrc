@@ -13,6 +13,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "akshatmittal",
+      "name": "Akshat Mittal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1667481?v=4",
+      "profile": "https://akshatmittal.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
