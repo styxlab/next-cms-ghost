@@ -210,6 +210,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="https://github.com/weisisheng"><img src="https://avatars1.githubusercontent.com/u/47701145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vince Fulco</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=weisisheng" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/BeatPlus"><img src="https://avatars3.githubusercontent.com/u/2022256?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manuel Taberna</b></sub></a><br /><a href="#translation-BeatPlus" title="Translation">🌍</a></td>
     <td align="center"><a href="https://akshatmittal.com"><img src="https://avatars1.githubusercontent.com/u/1667481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akshat Mittal</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=akshatmittal" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/christianlauer"><img src="https://avatars0.githubusercontent.com/u/65625616?v=4?s=100" width="100px;" alt=""/><br /><sub><b>christianlauer</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Achristianlauer" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
