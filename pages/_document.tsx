@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const isProduction = !this.props.isDevelopment
+    const isProduction = process.env.NODE_ENV === 'production'
     const { pageProps } = this.props.__NEXT_DATA__.props
     const { cmsData, settings } = pageProps || { cmsData: null, settings: null }
     const { settings: cmsSettings, bodyClass } = cmsData || { settings: null, bodyClass: '' }
