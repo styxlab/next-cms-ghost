@@ -5,6 +5,7 @@ import { processEnv } from '@lib/processEnv'
 import { MailchimpPopup } from '@components/MailchimpPopup'
 import { GA_TRACKING_ID } from '@lib/gtag'
 import { AdWords } from '@components/AdWords'
+import { BuyMeACoffee } from '@components/BuyMeACoffee'
 
 export default class MyDocument extends Document {
 
@@ -72,6 +73,7 @@ export default class MyDocument extends Document {
         </body>
         <MailchimpPopup />
         <AdWords />
+        <BuyMeACoffee />
       </Html>
     )
   }
