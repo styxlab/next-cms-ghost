@@ -202,25 +202,9 @@ Please report all bugs and issues at [next-cms-ghost/issues](https://github.com/
 
 ## 🎈 Contributions
 
-Special thanks go to the following contributors: [Vince Fulco](https://github.com/weisisheng), [Akshat Mittal](https://github.com/akshatmittal) and [Manuel Taberna](https://github.com/BeatPlus).
-
 PRs are welcome! Consider contributing to this project if you want to make a better web.
 
-&nbsp;
-
-## 🧐 Disclaimer
-
-This project is not affiliated with [NextJS](https://nextjs.org/) or [Ghost](https://ghost.org/).
-
-&nbsp;
-
-# Copyright & License
-
-Copyright (c) 2020 styxlab - Released under the [MIT license](LICENSE).
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Special thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -237,3 +221,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## 🧐 Disclaimer
+
+This project is not affiliated with [NextJS](https://nextjs.org/) or [Ghost](https://ghost.org/).
+
+&nbsp;
+
+# Copyright & License
+
+Copyright (c) 2020 styxlab - Released under the [MIT license](LICENSE).
