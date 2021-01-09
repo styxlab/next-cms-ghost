@@ -27,6 +27,7 @@ module.exports = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
+  trailingSlash: true,
   redirects: () => [
     {
       source: '/rss',
