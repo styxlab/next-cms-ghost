@@ -19,11 +19,11 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
   const rewriteGhostLinks = withRewriteGhostLinks(cmsUrl, basePath)
 
   const processors = [
+    rewriteMvpLinks,
     rewriteGhostLinks,
     rewriteRelativeLinks,
     syntaxHighlightWithPrismJS,
-    rewriteInlineImages,
-    rewriteMvpLinks
+    rewriteInlineImages
   ]
 
   let htmlAst = rehype.parse(post.html || '')
