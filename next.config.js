@@ -19,7 +19,11 @@ module.exports = withBundleAnalyzer({
       'repository-images.githubusercontent.com',
       'www.gravatar.com',
       'github.githubassets.com',
-      'blog.miguelbernard.com'
+      'miguelbernard.com',
+      'blog.miguelbernard.com',
+      'www.miguelbernard.com',
+      'cms.miguelbernard.com',
+      'cms-dev.miguelbernard.com',
     ],
   },
   reactStrictMode: true,
