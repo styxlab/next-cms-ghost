@@ -58,7 +58,10 @@ const rewriteMvpLinks = (htmlAst: Node) => {
     const href = (node.properties as HTMLAnchorElement).href
     try {
       var url = new URL(href);
-      if (url.hostname.endsWith('microsoft.com') || url.hostname.endsWith('azure.com')) {
+      if (url.hostname.endsWith('microsoft.com') 
+          || url.hostname.endsWith('azure.com')
+          || url.hostname.endsWith('linkedin.com')
+          || url.hostname.endsWith('github.com')) {
         url.searchParams.set("WT.mc_id", "DOP-MVP-5003880");
         (node.properties as HTMLAnchorElement).href = url.href
       }
