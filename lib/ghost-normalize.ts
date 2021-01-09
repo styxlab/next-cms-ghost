@@ -55,18 +55,20 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
 
 const rewriteMvpLinks = (htmlAst: Node) => {
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = (node.properties as HTMLAnchorElement).href
-    try {
-      var url = new URL(href);
-      if (url.hostname.endsWith('microsoft.com') 
+    const href = (node.properties as HTMLAnchorElement)?.href
+    if (href) {
+      try {
+        var url = new URL(href);
+        if (url.hostname.endsWith('microsoft.com')
           || url.hostname.endsWith('azure.com')
           || url.hostname.endsWith('linkedin.com')
           || url.hostname.endsWith('github.com')) {
-        url.searchParams.set("WT.mc_id", "DOP-MVP-5003880");
-        (node.properties as HTMLAnchorElement).href = url.href
+          url.searchParams.set("WT.mc_id", "DOP-MVP-5003880");
+          (node.properties as HTMLAnchorElement).href = url.href
+        }
       }
+      catch { }
     }
-    catch { }
   })
 
   return htmlAst
@@ -79,7 +81,7 @@ const rewriteMvpLinks = (htmlAst: Node) => {
 const withRewriteGhostLinks = (cmsUrl: string, basePath = '/') => (htmlAst: Node) => {
 
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = (node.properties as HTMLAnchorElement).href
+    const href = (node.properties as HTMLAnchorElement)?.href
     if (href?.startsWith(cmsUrl)) {
       (node.properties as HTMLAnchorElement).href = href.replace(cmsUrl, basePath).replace('//', '/')
     }
@@ -95,12 +97,12 @@ const withRewriteGhostLinks = (cmsUrl: string, basePath = '/') => (htmlAst: Node
 const rewriteRelativeLinks = (htmlAst: Node) => {
 
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = (node.properties as HTMLAnchorElement).href
+    const href = (node.properties as HTMLAnchorElement)?.href
     if (href && !href.startsWith(`http`)) {
       const copyOfNode = cloneDeep(node)
       delete copyOfNode.properties
       delete copyOfNode.position
-      copyOfNode.tagName = `span`
+      // copyOfNode.tagName = `span`
       node.tagName = `Link`
       node.children = [copyOfNode]
     }
