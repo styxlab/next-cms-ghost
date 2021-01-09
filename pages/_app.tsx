@@ -30,9 +30,9 @@ function App({ Component, pageProps }: AppProps) {
             language: 'en',       // which language to use (see LANGUAGES)
             min_count: 25,         // hide react counts less than min_count (INTEGER)
             networks: [           // which networks to include (see SHARING NETWORKS)
+              'twitter',
               'linkedin',
               'facebook',
-              'twitter',
               'pinterest',
               'email',
               'reddit',
