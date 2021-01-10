@@ -31,5 +31,11 @@ export function setCache(key: string | null, object: unknown): void {
   if (!makeDirectory(cacheRoot)) return
 
   const filePath = path.join(cacheRoot, `${key}.txt`)
-  fs.writeFileSync(filePath, JSON.stringify(object as JSON))
+  try{
+    fs.writeFileSync(filePath, JSON.stringify(object as JSON))
+  }
+  catch{
+    // Can't write to disk when hosted live in prod. It's a read-only filesystem
+  }
+  
 }
