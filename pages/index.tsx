@@ -71,7 +71,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
   if (settings.processEnv.rssFeed) {
     const rss = generateRSSFeed({ posts, settings })
-    fs.writeFileSync('./public/rss.xml', rss)
+    try
+    {
+      fs.writeFileSync('./public/rss.xml', rss)
+    }
+    catch{
+      // Ignore failure when live in prod
+      // This may fail because the filesystem is readonly once hosted in prod
+    }
   }
 
   const cmsData = {
