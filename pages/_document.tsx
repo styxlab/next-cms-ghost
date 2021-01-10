@@ -73,8 +73,9 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
         <MailchimpPopup />
-        <AdWords />
         <BuyMeACoffee />
+
+        {isProduction && ( <AdWords />)}
        
       </Html>
     )
