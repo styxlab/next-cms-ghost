@@ -1,5 +1,5 @@
 import React from 'react'
-import rehypeReact, { ComponentProps } from 'rehype-react'
+import rehypeReact, { ComponentProps, ComponentPropsWithNode } from 'rehype-react'
 import unified from 'unified'
 import { Node } from 'unist'
 
@@ -11,9 +11,9 @@ const options = {
   Fragment: React.Fragment,
   passNode: true,
   components: {
-    Link: (props: ComponentProps) => <NextLink {...props} />,
-    Image: (props: ComponentProps) => <NextImage {...props} />,
-  }
+    Link: (props: ComponentProps) => <NextLink {...(props as ComponentPropsWithNode)} />,
+    Image: (props: ComponentProps) => <NextImage {...(props as ComponentPropsWithNode)} />,
+  },
 }
 
 const renderAst = unified().use(rehypeReact, options)
@@ -24,11 +24,7 @@ interface RenderContentProps {
 
 export const RenderContent = ({ htmlAst }: RenderContentProps) => {
   if (!htmlAst) return null
-  return (
-    <>
-      {renderAst.stringify(htmlAst)}
-    </>
-  )
+  return <>{renderAst.stringify(htmlAst)}</>
 }
 
 //<div className="post-content load-external-scripts">{renderAst.stringify(htmlAst)}</div>
