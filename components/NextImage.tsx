@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ComponentProps } from 'rehype-react'
+import { ComponentPropsWithNode } from 'rehype-react'
 import { Dimensions } from '@lib/images'
 
 interface PropertyProps {
@@ -7,7 +7,7 @@ interface PropertyProps {
   className?: string[]
 }
 
-export const NextImage = (props: ComponentProps) => {
+export const NextImage = (props: ComponentPropsWithNode) => {
   const { node } = props
   if (!node) return null
   const imageDimensions = node.imageDimensions as Dimensions
