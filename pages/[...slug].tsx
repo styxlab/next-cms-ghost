@@ -9,7 +9,6 @@ import { getPostBySlug, getPageBySlug, getAllPosts, getAllPages, getAllSettings,
 import { resolveUrl } from '@utils/routing'
 import { collections } from '@lib/collections'
 
-
 import { customPage } from '@appConfig'
 import { ContactPage, defaultPage } from '@lib/contactPageDefaults'
 import { imageDimensions } from '@lib/images'
@@ -38,7 +37,7 @@ interface CmsDataCore {
 }
 
 interface CmsData extends CmsDataCore {
-  isPost: boolean,
+  isPost: boolean
 }
 
 interface PostOrPageProps {
@@ -109,15 +108,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     previewPosts = await getAllPosts({ limit: 3 })
   } else if (isPost && post?.id && post?.slug) {
     const tagSlug = post?.primary_tag?.slug
-    previewPosts = tagSlug && await getPostsByTag(tagSlug, 3, post?.id) || []
+    previewPosts = (tagSlug && (await getPostsByTag(tagSlug, 3, post?.id))) || []
 
     const postSlugs = await getAllPostSlugs()
     const index = postSlugs.indexOf(post?.slug)
     const prevSlug = index > 0 ? postSlugs[index - 1] : null
     const nextSlug = index < postSlugs.length - 1 ? postSlugs[index + 1] : null
 
-    prevPost = prevSlug && await getPostBySlug(prevSlug) || null
-    nextPost = nextSlug && await getPostBySlug(nextSlug) || null
+    prevPost = (prevSlug && (await getPostBySlug(prevSlug))) || null
+    nextPost = (nextSlug && (await getPostBySlug(nextSlug))) || null
   }
 
   const siteUrl = settings.processEnv.siteUrl
@@ -138,21 +137,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         previewPosts,
         prevPost,
         nextPost,
-        bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags })
+        bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags }),
       },
     },
-    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { enable, maxNumberOfPosts, maxNumberOfPages } = processEnv.isr
-  const limitForPosts = enable && { limit: maxNumberOfPosts } || undefined
-  const limitForPages = enable && { limit: maxNumberOfPages } || undefined
+  const limitForPosts = (enable && { limit: maxNumberOfPosts }) || undefined
+  const limitForPages = (enable && { limit: maxNumberOfPages }) || undefined
   const posts = await getAllPosts(limitForPosts)
   const pages = await getAllPages(limitForPages)
 
-  const postRoutes = (posts as GhostPostsOrPages).map(post => {
+  const postRoutes = (posts as GhostPostsOrPages).map((post) => {
     const collectionPath = collections.getCollectionByNode(post)
     const { slug, url } = post
     return resolveUrl({ collectionPath, slug, url })
@@ -165,12 +164,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     contactPageRoute = resolveUrl({ slug, url })
   }
 
-  const customRoutes = contactPageRoute && [contactPageRoute] || []
+  const customRoutes = (contactPageRoute && [contactPageRoute]) || []
   const pageRoutes = (pages as GhostPostsOrPages).map(({ slug, url }) => resolveUrl({ slug, url }))
   const paths = [...postRoutes, ...pageRoutes, ...customRoutes]
 
   return {
     paths,
-    fallback: enable && 'blocking'
+    fallback: enable && 'blocking',
   }
 }

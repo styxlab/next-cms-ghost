@@ -22,6 +22,7 @@ module.exports = withBundleAnalyzer({
       'repository-images.githubusercontent.com',
       'www.gravatar.com',
       'github.githubassets.com',
+      'www.crio.do',
     ],
   },
   reactStrictMode: true,

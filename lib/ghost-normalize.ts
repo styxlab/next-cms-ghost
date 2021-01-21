@@ -18,12 +18,7 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
   if (!cmsUrl) throw Error('ghost-normalize.ts: cmsUrl expected.')
   const rewriteGhostLinks = withRewriteGhostLinks(cmsUrl, basePath)
 
-  const processors = [
-    rewriteGhostLinks,
-    rewriteRelativeLinks,
-    syntaxHighlightWithPrismJS,
-    rewriteInlineImages
-  ]
+  const processors = [rewriteGhostLinks, rewriteRelativeLinks, syntaxHighlightWithPrismJS, rewriteInlineImages]
 
   let htmlAst = rehype.parse(post.html || '')
   for (const process of processors) {
@@ -43,22 +38,20 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
     ...post,
     authors,
     htmlAst,
-    featureImage: url && dimensions && { url, dimensions } || null,
-    toc
+    featureImage: (url && dimensions && { url, dimensions }) || null,
+    toc,
   }
 }
-
 
 /**
  * Rewrite absolute Ghost CMS links to relative
  */
 
 const withRewriteGhostLinks = (cmsUrl: string, basePath = '/') => (htmlAst: Node) => {
-
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
     const href = (node.properties as HTMLAnchorElement).href
     if (href?.startsWith(cmsUrl)) {
-      (node.properties as HTMLAnchorElement).href = href.replace(cmsUrl, basePath).replace('//', '/')
+      ;(node.properties as HTMLAnchorElement).href = href.replace(cmsUrl, basePath).replace('//', '/')
     }
   })
 
@@ -70,7 +63,6 @@ const withRewriteGhostLinks = (cmsUrl: string, basePath = '/') => (htmlAst: Node
  */
 
 const rewriteRelativeLinks = (htmlAst: Node) => {
-
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
     const href = (node.properties as HTMLAnchorElement).href
     if (href && !href.startsWith(`http`)) {
@@ -92,7 +84,7 @@ const rewriteRelativeLinks = (htmlAst: Node) => {
 
 interface NodeProperties {
   className?: string[]
-  style?: string[]
+  style?: string | string[]
 }
 
 const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
@@ -150,14 +142,14 @@ const tableOfContents = (htmlAst: Node) => {
  */
 
 const rewriteInlineImages = async (htmlAst: Node) => {
-  let nodes: { node: Node, parent: Parent | undefined }[] = []
+  let nodes: { node: Node; parent: Parent | undefined }[] = []
 
   visit(htmlAst, { tagName: `img` }, (node: Node, _index: number, parent: Parent | undefined) => {
     if (nextImages.inline) {
       node.tagName = `Image`
     }
 
-    const { src } = (node.properties as HTMLImageElement)
+    const { src } = node.properties as HTMLImageElement
     node.imageDimensions = imageDimensions(src)
     nodes.push({ node, parent })
   })
@@ -171,8 +163,9 @@ const rewriteInlineImages = async (htmlAst: Node) => {
     const aspectRatio = width / height
     const flex = `flex: ${aspectRatio} 1 0`
     if (parent) {
-      const parentStyle = (parent.properties as NodeProperties).style || [];
-      (parent.properties as NodeProperties).style = [...parentStyle, flex]
+      let parentStyle = (parent.properties as NodeProperties).style || []
+      if (typeof parentStyle === 'string') parentStyle = [parentStyle]
+      ;(parent.properties as NodeProperties).style = [...parentStyle, flex]
     }
   })
 
