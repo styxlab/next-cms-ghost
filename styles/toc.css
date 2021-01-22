@@ -22,7 +22,6 @@ html.casper .post-full-content {
 
 /* Adjust content wrapper */
 html.casper .post-content {
-  display: block;
   min-width: 100%;
 }
 
