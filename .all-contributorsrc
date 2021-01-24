@@ -1,0 +1,60 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "weisisheng",
+      "name": "Vince Fulco",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/47701145?v=4",
+      "profile": "https://github.com/weisisheng",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "BeatPlus",
+      "name": "Manuel Taberna",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2022256?v=4",
+      "profile": "https://github.com/BeatPlus",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "akshatmittal",
+      "name": "Akshat Mittal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1667481?v=4",
+      "profile": "https://akshatmittal.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "christianlauer",
+      "name": "christianlauer",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/65625616?v=4",
+      "profile": "https://github.com/christianlauer",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "icy-meteor",
+      "name": "Rahul Suresh",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22114682?v=4",
+      "profile": "https://linkedin.com/in/rahulsuresh98",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "next-cms-ghost",
+  "projectOwner": "styxlab",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

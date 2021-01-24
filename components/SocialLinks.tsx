@@ -15,6 +15,9 @@ export const SocialLinks = ({ siteUrl, site }: SocialLinkProps) => {
   const twitterUrl = site.twitter && `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
   const facebookUrl = site.facebook && `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
 
+  const { processEnv } = site
+  const { memberSubscriptions } = processEnv
+
   return (
     <>
       {site.facebook && (

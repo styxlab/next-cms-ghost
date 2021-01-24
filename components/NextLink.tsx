@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ComponentProps } from 'rehype-react'
+import { ComponentPropsWithNode } from 'rehype-react'
 import { Node } from 'unist'
 
 import { RenderContent } from '@components/RenderContent'
@@ -8,7 +8,7 @@ interface PropertyProps {
   href?: string
 }
 
-export const NextLink = (props: ComponentProps) => {
+export const NextLink = (props: ComponentPropsWithNode) => {
   const { href } = props.node?.properties as PropertyProps
   const [child] = props.node?.children as Node[]
 
@@ -24,4 +24,3 @@ export const NextLink = (props: ComponentProps) => {
     </>
   )
 }
-
