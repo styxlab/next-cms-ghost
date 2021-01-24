@@ -1,7 +1,6 @@
 ![next-cms-ghost](https://static.gotsby.org/v1/assets/images/next-ghost.png)
 
 # next-cms-ghost
-
 [![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 Create and publish flaring fast blogs with this Jamify blogging system. Powered by the React framework Next.js and content fed by headless Ghost, you'll get a production ready hybrid static & server-rendered website that you can easily distribute globally. At the same time your content creators can continue to work with the Ghost authoring system they are used to.
@@ -199,9 +198,29 @@ Please report all bugs and issues at [next-cms-ghost/issues](https://github.com/
 
 ## 🎈 Contributions
 
-Special thanks go to the following contributors: [Vince Fulco](https://github.com/weisisheng) and [Akshat Mittal](https://github.com/akshatmittal).
-
 PRs are welcome! Consider contributing to this project if you want to make a better web.
+
+Special thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/weisisheng"><img src="https://avatars1.githubusercontent.com/u/47701145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vince Fulco</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=weisisheng" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/BeatPlus"><img src="https://avatars3.githubusercontent.com/u/2022256?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manuel Taberna</b></sub></a><br /><a href="#translation-BeatPlus" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://akshatmittal.com"><img src="https://avatars1.githubusercontent.com/u/1667481?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Akshat Mittal</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=akshatmittal" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/christianlauer"><img src="https://avatars0.githubusercontent.com/u/65625616?v=4?s=100" width="100px;" alt=""/><br /><sub><b>christianlauer</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Achristianlauer" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://linkedin.com/in/rahulsuresh98"><img src="https://avatars2.githubusercontent.com/u/22114682?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rahul Suresh</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Aicy-meteor" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 &nbsp;
 

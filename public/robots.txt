@@ -1,3 +1,4 @@
+# *
 User-agent: *
 Sitemap: https://blog.miguelbernard.com/sitemap.xml
 Disallow: /404
