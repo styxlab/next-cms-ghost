@@ -26,7 +26,7 @@ export const SubscribeOverlay = ({ settings }: { settings: GhostSettings }) => {
           <img className="subscribe-overlay-logo" src={siteLogo} alt={title} />
         }
         <div className="subscribe-form">
-          <h1 className="subscribe-overlay-title">{text(`SUBSCRIBE_TO`)} {title}</h1>
+          <h2 className="subscribe-overlay-title">{text(`SUBSCRIBE_TO`)} {title}</h2>
           <p className="subscribe-overlay-description">{text(`SUBSCRIBE_OVERLAY`)}</p>
           <SubscribeForm {...{ settings }} />
         </div>
