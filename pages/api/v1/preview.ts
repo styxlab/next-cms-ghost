@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getPostBySlug } from '@lib/ghost'
+import { getAllSettings, getPostBySlug } from '@lib/ghost'
 import { resolveUrl } from '@utils/routing'
 import { collections } from '@lib/collections'
 
@@ -18,11 +18,13 @@ export async function verifySlug(postSlug: string): Promise<string | null> {
 
   const collectionPath = collections.getCollectionByNode(post)
   const { slug, url } = post
-  return resolveUrl({ collectionPath, slug, url })
+
+  const settings = await getAllSettings()
+  const { url: cmsUrl } = settings
+  return resolveUrl({ cmsUrl, collectionPath, slug, url })
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
-
   if (req.query.secret !== process.env.JAMIFY_PREVIEW_TOKEN || !req.query.slug) {
     return res.status(401).json({ message: 'Invalid token' })
   }
@@ -40,5 +42,4 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextAp
 
   // TODO: Option for cookie clearing
   // res.clearPreviewData()
-
 }

@@ -70,22 +70,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         posts,
         settings,
         seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
-        bodyClass: BodyClass({ tags: [tag] })
+        bodyClass: BodyClass({ tags: [tag] }),
       },
     },
-    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await getAllTags()
+  const settings = await getAllSettings()
+  const { url: cmsUrl } = settings
 
-  const paths = tags
-    .map(({ slug, url }) => resolveUrl({ slug, url }))
-    .filter(path => path.startsWith(`/tag/`))
+  const paths = tags.map(({ slug, url }) => resolveUrl({ cmsUrl, slug, url })).filter((path) => path.startsWith(`/tag/`))
 
   return {
     paths,
-    fallback: processEnv.isr.enable
+    fallback: processEnv.isr.enable,
   }
 }

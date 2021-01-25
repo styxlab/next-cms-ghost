@@ -17,11 +17,12 @@ interface AuthorListProps {
 export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
   const text = get(useLang())
   const { nextImages } = settings.processEnv
+  const { url: cmsUrl } = settings
 
   return (
     <ul className="author-list">
       {authors?.map((author, i) => {
-        const url = resolveUrl({ slug: author.slug, url: author.url || undefined })
+        const url = resolveUrl({ cmsUrl, slug: author.slug, url: author.url || undefined })
         const profileImg = author.profileImage
 
         return (
@@ -43,9 +44,9 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
                           quality={nextImages.quality}
                           {...profileImg.dimensions}
                         />
-                      ) : (author.profile_image && (
-                        <img src={author.profile_image} alt={author.name} />
-                      ))}
+                      ) : (
+                        author.profile_image && <img src={author.profile_image} alt={author.name} />
+                      )}
                     </div>
                     <div className="author-info">
                       {author.bio ? (
@@ -60,48 +61,40 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
                           </p>
                         </div>
                       ) : (
-                          <>
-                            <h2>{author.name}</h2>
-                            <p>
-                              {text(`READ`)}{' '}
-                              <Link href={url}>
-                                <a>{text(`MORE_POSTS_SM`)}</a>
-                              </Link>{' '}
-                              {text(`BY_THIS_AUTHOR`)}.
+                        <>
+                          <h2>{author.name}</h2>
+                          <p>
+                            {text(`READ`)}{' '}
+                            <Link href={url}>
+                              <a>{text(`MORE_POSTS_SM`)}</a>
+                            </Link>{' '}
+                            {text(`BY_THIS_AUTHOR`)}.
                           </p>
-                          </>
-                        )}
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
                 <Link href={url}>
                   {profileImg && nextImages.feature ? (
                     <a className={`${(isPost && `author`) || `static`}-avatar`} aria-label={author.name}>
-                      <Image
-                        src={profileImg.url}
-                        alt={author.name}
-                        layout="responsive"
-                        quality={nextImages.quality}
-                        {...profileImg.dimensions}
-                      />
+                      <Image src={profileImg.url} alt={author.name} layout="responsive" quality={nextImages.quality} {...profileImg.dimensions} />
                     </a>
-                  ) : (author.profile_image ? (
+                  ) : author.profile_image ? (
                     <a className={`${(isPost && `author`) || `static`}-avatar`} aria-label={author.name}>
                       <img src={author.profile_image} alt={author.name} />
                     </a>
                   ) : (
-                      <a className={`${(isPost && `author`) || `static`}-avatar author-profile-image`} aria-label={author.name}>
-                        <AvatarIcon />
-                      </a>
-                    ))
-                  }
+                    <a className={`${(isPost && `author`) || `static`}-avatar author-profile-image`} aria-label={author.name}>
+                      <AvatarIcon />
+                    </a>
+                  )}
                 </Link>
               </li>
-            )
-            }
+            )}
           />
         )
       })}
-    </ul >
+    </ul>
   )
 }

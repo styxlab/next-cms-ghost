@@ -47,7 +47,7 @@ const AuthorIndex = ({ cmsData }: AuthorIndexProps) => {
   return (
     <>
       <SEO {...{ settings, description, seoImage, sameAs, title: name }} />
-      <Layout  {...{ settings, bodyClass }} header={<HeaderAuthor {...{ settings, author }} />}>
+      <Layout {...{ settings, bodyClass }} header={<HeaderAuthor {...{ settings, author }} />}>
         <PostView {...{ settings, posts }} />
       </Layout>
     </>
@@ -76,22 +76,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         posts,
         settings,
         seoImage: authorImage,
-        bodyClass: BodyClass({ author })
+        bodyClass: BodyClass({ author }),
       },
     },
-    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const authors = await getAllAuthors()
+  const settings = await getAllSettings()
+  const { url: cmsUrl } = settings
 
-  const paths = authors
-    .map(({ slug, url }) => resolveUrl({ slug, url: url || undefined }))
-    .filter(path => path.startsWith(`/author/`))
+  const paths = authors.map(({ slug, url }) => resolveUrl({ cmsUrl, slug, url: url || undefined })).filter((path) => path.startsWith(`/author/`))
 
   return {
     paths,
-    fallback: processEnv.isr.enable
+    fallback: processEnv.isr.enable,
   }
 }

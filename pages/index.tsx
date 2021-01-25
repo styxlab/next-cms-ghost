@@ -78,13 +78,13 @@ export const getStaticProps: GetStaticProps = async () => {
     settings,
     posts,
     seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
-    bodyClass: BodyClass({ isHome: true })
+    bodyClass: BodyClass({ isHome: true }),
   }
 
   return {
     props: {
       cmsData,
     },
-    ...processEnv.isr.enable && { revalidate: 1 }, // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
   }
 }

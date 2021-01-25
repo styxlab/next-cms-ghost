@@ -196,7 +196,6 @@ export async function getPostBySlug(slug: string): Promise<GhostPostOrPage | nul
       ...postAndPageFetchOptions,
       slug,
     })
-
     // older Ghost versions do not throw error on 404
     if (!post) return null
 

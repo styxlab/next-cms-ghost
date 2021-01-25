@@ -21,8 +21,9 @@ interface PostCardProps {
 export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
   const { nextImages } = settings.processEnv
   const text = get(useLang())
+  const cmsUrl = settings.url
   const collectionPath = collections.getCollectionByNode(post)
-  const url = resolveUrl({ collectionPath, slug: post.slug, url: post.url })
+  const url = resolveUrl({ cmsUrl, collectionPath, slug: post.slug, url: post.url })
   const featImg = post.featureImage
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
   const postClass = PostClass({ tags: post.tags, isFeatured: post.featured, isImage: !!featImg })
@@ -31,7 +32,7 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
 
   return (
     <article className={`post-card ${postClass} ${large}`}>
-      { featImg && (
+      {featImg && (
         <Link href={url}>
           <a className="post-card-image-link" aria-label={post.title}>
             {nextImages.feature ? (
@@ -45,9 +46,9 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
                   quality={nextImages.quality}
                 />
               </div>
-            ) : (post.feature_image && (
-              <img className="post-card-image" src={post.feature_image} alt={post.title} />
-            ))}
+            ) : (
+              post.feature_image && <img className="post-card-image" src={post.feature_image} alt={post.title} />
+            )}
           </a>
         </Link>
       )}
@@ -67,7 +68,7 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
         </Link>
 
         <footer className="post-card-meta">
-          <AuthorList {...{ settings, authors: post.authors}} />
+          <AuthorList {...{ settings, authors: post.authors }} />
           <div className="post-card-byline-content">
             {post.authors && post.authors.length > 2 && <span>{text(`MULTIPLE_AUTHORS`)}</span>}
             {post.authors && post.authors.length < 3 && (
@@ -75,7 +76,7 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
                 {authors?.map((author, i) => (
                   <div key={i}>
                     {i > 0 ? `, ` : ``}
-                    <Link href={resolveUrl({ slug: author.slug, url: author.url || undefined })}>
+                    <Link href={resolveUrl({ cmsUrl, slug: author.slug, url: author.url || undefined })}>
                       <a>{author.name}</a>
                     </Link>
                   </div>
@@ -89,6 +90,6 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
           </div>
         </footer>
       </div>
-    </article >
+    </article>
   )
 }
