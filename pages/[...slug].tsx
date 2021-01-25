@@ -150,22 +150,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const limitForPages = (enable && { limit: maxNumberOfPages }) || undefined
   const posts = await getAllPosts(limitForPosts)
   const pages = await getAllPages(limitForPages)
+  const settings = await getAllSettings()
+  const { url: cmsUrl } = settings
 
   const postRoutes = (posts as GhostPostsOrPages).map((post) => {
     const collectionPath = collections.getCollectionByNode(post)
     const { slug, url } = post
-    return resolveUrl({ collectionPath, slug, url })
+    return resolveUrl({ cmsUrl, collectionPath, slug, url })
   })
 
   let contactPageRoute: string | null = null
   if (processEnv.contactPage) {
     const contactPage = { ...defaultPage, ...customPage }
     const { slug, url } = contactPage
-    contactPageRoute = resolveUrl({ slug, url })
+    contactPageRoute = resolveUrl({ cmsUrl, slug, url })
   }
 
   const customRoutes = (contactPageRoute && [contactPageRoute]) || []
-  const pageRoutes = (pages as GhostPostsOrPages).map(({ slug, url }) => resolveUrl({ slug, url }))
+  const pageRoutes = (pages as GhostPostsOrPages).map(({ slug, url }) => resolveUrl({ cmsUrl, slug, url }))
   const paths = [...postRoutes, ...pageRoutes, ...customRoutes]
 
   return {
