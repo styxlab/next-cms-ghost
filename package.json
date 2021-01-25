@@ -62,6 +62,7 @@
     "rss": "^1.2.2",
     "sanitize-html": "^2.3.1",
     "sharethis-reactjs": "^1.6.0",
+    "sharp": "^0.27.0",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
