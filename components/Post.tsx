@@ -49,7 +49,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const description = meta_description || excerpt
 
   const { processEnv } = settings
-  const { nextImages, toc, memberSubscriptions, commento, prism } = processEnv
+  const { nextImages, toc, memberSubscriptions, commento, disqus, prism } = processEnv
 
   const text = get(useLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
@@ -143,12 +143,12 @@ export const Post = ({ cmsData }: PostProps) => {
                       />
                     </figure>
                   ) : (
-                    post.feature_image && (
-                      <figure className="post-full-image">
-                        <img src={post.feature_image} alt={post.title} />
-                      </figure>
-                    )
-                  ))}
+                      post.feature_image && (
+                        <figure className="post-full-image">
+                          <img src={post.feature_image} alt={post.title} />
+                        </figure>
+                      )
+                    ))}
 
                 <section className="post-full-content">
                   {toc.enable && !!post.toc && <TableOfContents {...{ toc: post.toc, url: resolveUrl({ cmsUrl, collectionPath, slug, url }), maxDepth: toc.maxDepth }} />}
@@ -159,9 +159,7 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 {memberSubscriptions && <Subscribe {...{ settings }} />}
 
-                <section>
-                  <DisqusComments {...post } />
-                </section>
+                {disqus.enable && (<DisqusComments {...post} />)}
 
                 {commento.enable && (
                   <Comments {...{ id: post.id, url: commento.url }} />

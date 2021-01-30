@@ -9,12 +9,12 @@ const DisqusComments = (post: GhostPostOrPage) => {
         title: post.title // Single post title
     }
     return (
-        <div>
+        <section>
             <DiscussionEmbed
                 shortname={disqusShortname}
                 config={disqusConfig}
             />
-        </div>
+        </section>
     )
 }
 export default DisqusComments;
