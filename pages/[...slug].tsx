@@ -172,6 +172,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: enable && 'blocking',
+    fallback: processEnv.isr.enable,
   }
 }

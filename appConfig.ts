@@ -46,6 +46,6 @@ import { NavItem } from '@lib/ghost'
 export const customNavigation: NavItem[] = []
 
 // Incremental Static Regenerations (ISR)
-export const isr: boolean = true
+export const isr: boolean = false
 export const maxNumberOfPosts: number = 20
 export const maxNumberOfPages: number = 20
