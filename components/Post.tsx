@@ -159,11 +159,9 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 {memberSubscriptions && <Subscribe {...{ settings }} />}
 
-                {disqus.enable && (<DisqusComments {...post} />)}
+                {disqus.enable && (<DisqusComments {...{ post: post, shortname: disqus.Shortname }} />)}
 
-                {commento.enable && (
-                  <Comments {...{ id: post.id, url: commento.url }} />
-                )}
+                {commento.enable && (<Comments {...{ id: post.id, url: commento.url }} />)}
               </article>
             </div>
           </Layout>
