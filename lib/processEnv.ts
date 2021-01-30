@@ -54,6 +54,10 @@ export interface ProcessEnvProps {
     enable: boolean
     url: string
   }
+  disqus: {
+    enable: boolean
+    Shortname: string
+  }
   prism: {
     enable: boolean
     ignoreMissing: boolean
@@ -89,6 +93,10 @@ export const processEnv: ProcessEnvProps = {
   commento: {
     enable: resolveBool(process.env.JAMIFY_COMMENTO, appConfig.commento),
     url: process.env.JAMIFY_COMMENTO_URL || appConfig.commentoUrl
+  },
+  disqus: {
+    enable: resolveBool(process.env.JAMIFY_DISQUS, appConfig.disqus),
+    Shortname: process.env.JAMIFY_DISQUS_SHORTNAME || appConfig.disqusShortname
   },
   prism: {
     enable: resolveBool(process.env.JAMIFY_PRISM, appConfig.prism),

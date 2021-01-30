@@ -15,6 +15,7 @@ import { RenderContent } from '@components/RenderContent'
 import { Comments } from '@components/Comments'
 import { Subscribe } from '@components/Subscribe'
 import { TableOfContents } from '@components/toc/TableOfContents'
+import DisqusComments from '@components/DisqusComments'
 
 import { StickyNavContainer } from '@effects/StickyNavContainer'
 import { SEO } from '@meta/seo'
@@ -24,6 +25,8 @@ import { GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
 import { collections } from '@lib/collections'
 
 import { ISeoImage } from '@meta/seoImage'
+
+import React from 'react'
 
 interface PostProps {
   cmsData: {
@@ -44,7 +47,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const description = meta_description || excerpt
 
   const { processEnv } = settings
-  const { nextImages, toc, memberSubscriptions, commento } = processEnv
+  const { nextImages, toc, memberSubscriptions, commento, disqus } = processEnv
 
   const text = get(useLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
@@ -133,12 +136,12 @@ export const Post = ({ cmsData }: PostProps) => {
                       />
                     </figure>
                   ) : (
-                    post.feature_image && (
-                      <figure className="post-full-image">
-                        <img src={post.feature_image} alt={post.title} />
-                      </figure>
-                    )
-                  ))}
+                      post.feature_image && (
+                        <figure className="post-full-image">
+                          <img src={post.feature_image} alt={post.title} />
+                        </figure>
+                      )
+                    ))}
 
                 <section className="post-full-content">
                   {toc.enable && !!post.toc && <TableOfContents {...{ toc: post.toc, url: resolveUrl({ cmsUrl, collectionPath, slug, url }), maxDepth: toc.maxDepth }} />}
@@ -149,7 +152,9 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 {memberSubscriptions && <Subscribe {...{ settings }} />}
 
-                {commento.enable && <Comments {...{ id: post.id, url: commento.url }} />}
+                {disqus.enable && (<DisqusComments {...{ post: post, shortname: disqus.Shortname }} />)}
+
+                {commento.enable && (<Comments {...{ id: post.id, url: commento.url }} />)}
               </article>
             </div>
           </Layout>
