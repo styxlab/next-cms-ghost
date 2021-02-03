@@ -1,7 +1,7 @@
 import Rehype from 'rehype'
 import { Node, Parent } from 'unist'
 import visit from 'unist-util-visit'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, upperCase } from 'lodash'
 import refractor from 'refractor'
 import nodeToString from 'hast-util-to-string'
 import { PostOrPage } from '@tryghost/content-api'
@@ -18,7 +18,13 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
   if (!cmsUrl) throw Error('ghost-normalize.ts: cmsUrl expected.')
   const rewriteGhostLinks = withRewriteGhostLinks(cmsUrl, basePath)
 
-  const processors = [rewriteGhostLinks, rewriteRelativeLinks, syntaxHighlightWithPrismJS, rewriteInlineImages]
+  const processors = [
+    rewriteMvpLinks,
+    rewriteGhostLinks,
+    // rewriteRelativeLinks,
+    syntaxHighlightWithPrismJS,
+    rewriteInlineImages
+  ]
 
   let htmlAst = rehype.parse(post.html || '')
   for (const process of processors) {
@@ -41,6 +47,29 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
     featureImage: (url && dimensions && { url, dimensions }) || null,
     toc,
   }
+}
+
+/**
+ * Rewrite Microsoft link to include my MVP tracking id
+ */
+
+const rewriteMvpLinks = (htmlAst: Node) => {
+  visit(htmlAst, { tagName: `a` }, (node: Node) => {
+    const href = (node.properties as HTMLAnchorElement).href
+    try {
+      var url = new URL(href);
+      if (url.hostname.endsWith('microsoft.com') 
+          || url.hostname.endsWith('azure.com')
+          || url.hostname.endsWith('linkedin.com')
+          || url.hostname.endsWith('github.com')) {
+        url.searchParams.set("WT.mc_id", "DOP-MVP-5003880");
+        (node.properties as HTMLAnchorElement).href = url.href
+      }
+    }
+    catch { }
+  })
+
+  return htmlAst
 }
 
 /**
@@ -90,38 +119,14 @@ interface NodeProperties {
 const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
   if (!prism.enable) return htmlAst
 
-  const getLanguage = (node: Node) => {
-    const className = (node.properties as NodeProperties).className || []
-
-    for (const classListItem of className) {
-      if (classListItem.slice(0, 9) === 'language-') {
-        return classListItem.slice(9).toLowerCase()
-      }
-    }
-    return null
-  }
-
   visit(htmlAst, 'element', (node: Node, _index: number, parent: Parent | undefined) => {
-    if (!parent || parent.tagName !== 'pre' || node.tagName !== 'code') {
+    if (node.tagName !== 'pre') {
       return
     }
 
-    const lang = getLanguage(node)
-    if (lang === null) return
-
-    let className = (node.properties as NodeProperties).className
-
-    let result
-    try {
-      className = (className || []).concat('language-' + lang)
-      result = refractor.highlight(nodeToString(node), lang)
-    } catch (err) {
-      if (prism.ignoreMissing && /Unknown language/.test(err.message)) {
-        return
-      }
-      throw err
-    }
-    node.children = result
+    // hack to enable the 'line-numbers' plugins
+    let className = (node.properties as NodeProperties).className;
+    (node.properties as NodeProperties).className = (className || []).concat('line-numbers');
   })
 
   return htmlAst

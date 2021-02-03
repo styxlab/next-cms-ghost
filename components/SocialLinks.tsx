@@ -1,5 +1,7 @@
 import { TwitterIcon } from '@icons/TwitterIcon'
 import { FacebookIcon } from '@icons/FacebookIcon'
+import { GithubIcon } from '@icons/GithubIcon'
+import { LinkedinIcon } from '@icons/LinkedinIcon'
 
 import { SocialRss } from '@components/SocialRss'
 import { GhostSettings } from '@lib/ghost'
@@ -28,7 +30,9 @@ export const SocialLinks = ({ siteUrl, site }: SocialLinkProps) => {
           <TwitterIcon />
         </a>
       )}
-      {!memberSubscriptions && <SocialRss {...{ siteUrl }} />}
+      <a className="social-link social-link-in" href="https://www.linkedin.com/in/miguelbernard/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedinIcon/></a>
+      <a className="social-link social-link-gh" href="https://github.com/mbernard/" title="Github" target="_blank" rel="noopener noreferrer"><GithubIcon/></a>
+      <SocialRss {...{ siteUrl }} />
     </>
   )
 }

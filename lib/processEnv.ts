@@ -54,7 +54,6 @@ export interface ProcessEnvProps {
   }
   prism: {
     enable: boolean
-    ignoreMissing: boolean
   }
   contactPage: boolean
   toc: {
@@ -90,8 +89,7 @@ export const processEnv: ProcessEnvProps = {
     disqusShortname: process.env.JAMIFY_DISQUS_SHORTNAME || appConfig.disqusShortname,
   },
   prism: {
-    enable: resolveBool(process.env.JAMIFY_PRISM, appConfig.prism),
-    ignoreMissing: resolveBool(process.env.JAMIFY_PRISM_IGNORE_MISSING, appConfig.prismIgnoreMissing),
+    enable: resolveBool(process.env.JAMIFY_PRISM, appConfig.prism)
   },
   contactPage: resolveBool(process.env.JAMIFY_CONTACT_PAGE, appConfig.contactPage),
   toc: {

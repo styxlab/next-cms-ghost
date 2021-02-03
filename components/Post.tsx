@@ -26,7 +26,9 @@ import { collections } from '@lib/collections'
 
 import { ISeoImage } from '@meta/seoImage'
 
-import React from 'react'
+import React, { useEffect } from 'react'
+import Prism from 'prismjs'
+
 
 interface PostProps {
   cmsData: {
@@ -47,7 +49,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const description = meta_description || excerpt
 
   const { processEnv } = settings
-  const { nextImages, toc, memberSubscriptions, commenting } = processEnv
+  const { nextImages, toc, memberSubscriptions, commenting, prism } = processEnv
 
   const text = get(useLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
@@ -58,6 +60,11 @@ export const Post = ({ cmsData }: PostProps) => {
   if (htmlAst === undefined) throw Error('Post.tsx: htmlAst must be defined.')
 
   const collectionPath = collections.getCollectionByNode(post)
+
+  // Prism
+  if (prism.enable) {
+    useEffect(() => Prism.highlightAll(), []);
+  }
 
   return (
     <>

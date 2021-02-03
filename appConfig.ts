@@ -32,10 +32,9 @@ export const disqusShortname: string = 'short-name-here'
 
 // PrismJS
 export const prism: boolean = true
-export const prismIgnoreMissing: boolean = true
 
 // Contact Page
-export const contactPage: boolean = true
+export const contactPage: boolean = false
 export const customPage = {}
 
 // Table of Contents
@@ -46,7 +45,7 @@ export const maxDepth: number = 2
 // Override: [{ label: 'Home', url: '/' }]
 // Add new: [{ label: 'Contact', url: '/contact' }]
 import { NavItem } from '@lib/ghost'
-export const customNavigation: NavItem[] = [{ label: 'Contact', url: '/contact' }]
+export const customNavigation: NavItem[] = []
 
 // Incremental Static Regenerations (ISR)
 export const isr: boolean = true

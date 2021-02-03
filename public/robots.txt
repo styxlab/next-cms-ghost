@@ -1,9 +1,3 @@
-# *
 User-agent: *
-Allow: /
-
-# Host
-Host: https://next.jamify.org
-
-# Sitemaps
-Sitemap: https://next.jamify.org/sitemap.xml
+Sitemap: https://blog.miguelbernard.com/sitemap.xml
+Disallow: /404

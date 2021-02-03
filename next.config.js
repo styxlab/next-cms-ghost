@@ -12,9 +12,6 @@ module.exports = withBundleAnalyzer({
       'static.gotsby.org',
       'static.ghost.org',
       'hooshmand.net',
-      'cms.jamify.org',
-      'demo.jamify.org',
-      'www.jamify.org',
       'www.gatsbyjs.org',
       'cdn.commento.io',
       'gatsby.ghost.io',
@@ -22,11 +19,19 @@ module.exports = withBundleAnalyzer({
       'repository-images.githubusercontent.com',
       'www.gravatar.com',
       'github.githubassets.com',
-      'www.crio.do',
-      'drive.google.com',
-      'lh3.googleusercontent.com',
-      'lh6.googleusercontent.com',
+      'miguelbernard.com',
+      'blog.miguelbernard.com',
+      'www.miguelbernard.com',
+      'cms.miguelbernard.com',
+      'cms-dev.miguelbernard.com',
     ],
   },
   reactStrictMode: true,
+  redirects: () => [
+    {
+      source: '/rss',
+      destination: '/rss.xml',
+      permanent: true,
+    },
+  ]
 })
