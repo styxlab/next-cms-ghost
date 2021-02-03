@@ -43,6 +43,7 @@
     "@types/refractor": "^3.0.0",
     "cheerio": "^1.0.0-rc.5",
     "dayjs": "^1.10.4",
+    "disqus-react": "^1.0.10",
     "email-validator": "^2.0.4",
     "fs": "^0.0.1-security",
     "hast-util-to-string": "^1.0.4",

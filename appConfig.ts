@@ -28,6 +28,10 @@ export const commento: boolean = false
 export const commentoUrl: string = 'https://cdn.commento.io'
 //export const commentoUrl: string = 'https://commento.your-blog.com'
 
+// disqus commenting system
+export const disqus: boolean = false
+export const disqusShortname: string = 'short-name-here'
+
 // PrismJS
 export const prism: boolean = true
 export const prismIgnoreMissing: boolean = true
