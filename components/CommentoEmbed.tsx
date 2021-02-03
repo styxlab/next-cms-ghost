@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 
 /**
-*
-* Credits to 👉 https://nehalist.io/adding-commento-to-react-apps-like-gatsby/#commento-login-box-container
-*
-*/
+ *
+ * Credits to 👉 https://nehalist.io/adding-commento-to-react-apps-like-gatsby/#commento-login-box-container
+ *
+ */
 
 // Helper to add scripts to our page
 const insertScript = (src: string, id: string, parentElement: HTMLElement) => {
@@ -24,12 +24,12 @@ const removeScript = (id: string, parentElement: HTMLElement) => {
   }
 }
 
-interface CommentoProps {
+interface CommentoEmbedProps {
   id: string
   url: string
 }
 
-export const Commento = ({ id, url }: CommentoProps) => {
+export const CommentoEmbed = ({ id, url }: CommentoEmbedProps) => {
   useEffect(() => {
     if (!url) return
 
