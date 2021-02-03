@@ -12,10 +12,10 @@ import { HeaderPost } from '@components/HeaderPost'
 import { AuthorList } from '@components/AuthorList'
 import { PreviewPosts } from '@components/PreviewPosts'
 import { RenderContent } from '@components/RenderContent'
-import { Comments } from '@components/Comments'
+import { CommentoComments } from '@components/CommentoComments'
+import { DisqusComments } from '@components/DisqusComments'
 import { Subscribe } from '@components/Subscribe'
 import { TableOfContents } from '@components/toc/TableOfContents'
-import DisqusComments from '@components/DisqusComments'
 
 import { StickyNavContainer } from '@effects/StickyNavContainer'
 import { SEO } from '@meta/seo'
@@ -47,7 +47,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const description = meta_description || excerpt
 
   const { processEnv } = settings
-  const { nextImages, toc, memberSubscriptions, commento, disqus } = processEnv
+  const { nextImages, toc, memberSubscriptions, commenting } = processEnv
 
   const text = get(useLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
@@ -136,12 +136,12 @@ export const Post = ({ cmsData }: PostProps) => {
                       />
                     </figure>
                   ) : (
-                      post.feature_image && (
-                        <figure className="post-full-image">
-                          <img src={post.feature_image} alt={post.title} />
-                        </figure>
-                      )
-                    ))}
+                    post.feature_image && (
+                      <figure className="post-full-image">
+                        <img src={post.feature_image} alt={post.title} />
+                      </figure>
+                    )
+                  ))}
 
                 <section className="post-full-content">
                   {toc.enable && !!post.toc && <TableOfContents {...{ toc: post.toc, url: resolveUrl({ cmsUrl, collectionPath, slug, url }), maxDepth: toc.maxDepth }} />}
@@ -152,9 +152,9 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 {memberSubscriptions && <Subscribe {...{ settings }} />}
 
-                {disqus.enable && (<DisqusComments {...{ post: post, shortname: disqus.Shortname }} />)}
+                {commenting.system === 'commento' && <CommentoComments {...{ id: post.id, url: commenting.commentoUrl }} />}
 
-                {commento.enable && (<Comments {...{ id: post.id, url: commento.url }} />)}
+                {commenting.system === 'disqus' && <DisqusComments {...{ post: post, shortname: commenting.disqusShortname }} />}
               </article>
             </div>
           </Layout>

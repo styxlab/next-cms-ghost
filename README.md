@@ -1,6 +1,7 @@
 ![next-cms-ghost](https://static.gotsby.org/v1/assets/images/next-ghost.png)
 
 # next-cms-ghost
+
 [![PRs welcome!](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 Create and publish flaring fast blogs with this Jamify blogging system. Powered by the React framework Next.js and content fed by headless Ghost, you'll get a production ready hybrid static & server-rendered website that you can easily distribute globally. At the same time your content creators can continue to work with the Ghost authoring system they are used to.
@@ -74,7 +75,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
 <br />
 <ul>
   <li>Member Subscriptions</li>
-  <li>Commenting with Commento</li>
+  <li>Commenting with Commento or Disqus</li>
   <li>Syntax highlighting with PrismJS</li>
   <li>Table Of Contents</li>
   <li>Contact Page with built-in notification service</li>

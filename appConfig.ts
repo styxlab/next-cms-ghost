@@ -23,13 +23,11 @@ export const rssFeed: boolean = true
 // Ghost Member Subscriptions
 export const memberSubscriptions: boolean = true
 
-// Commento commenting system
-export const commento: boolean = false
-export const commentoUrl: string = 'https://cdn.commento.io'
-//export const commentoUrl: string = 'https://commento.your-blog.com'
+// Commenting system
+export type CommentingSystem = 'commento' | 'disqus' | null
+export const commenting: CommentingSystem = null
 
-// disqus commenting system
-export const disqus: boolean = false
+export const commentoUrl: string = 'https://cdn.commento.io' // 'https://commento.your-blog.com'
 export const disqusShortname: string = 'short-name-here'
 
 // PrismJS
