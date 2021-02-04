@@ -1,3 +1,4 @@
+import { parse as urlParse, UrlWithStringQuery } from 'url'
 import GhostContentAPI, { Params, PostOrPage, SettingsResponse, Pagination, PostsOrPages, Tag, Author } from '@tryghost/content-api'
 import { normalizePost } from '@lib/ghost-normalize'
 import { Node } from 'unist'
@@ -200,7 +201,7 @@ export async function getPostBySlug(slug: string): Promise<GhostPostOrPage | nul
     if (!post) return null
 
     const { url } = await getAllSettings()
-    result = await normalizePost(post, url)
+    result = await normalizePost(post, (url && urlParse(url)) || undefined)
   } catch (error) {
     if (error.response?.status !== 404) throw new Error(error)
     return null
@@ -220,7 +221,7 @@ export async function getPageBySlug(slug: string): Promise<GhostPostOrPage | nul
     if (!page) return null
 
     const { url } = await getAllSettings()
-    result = await normalizePost(page, url)
+    result = await normalizePost(page, (url && urlParse(url)) || undefined)
   } catch (error) {
     if (error.response?.status !== 404) throw new Error(error)
     return null
