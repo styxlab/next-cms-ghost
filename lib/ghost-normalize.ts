@@ -8,13 +8,14 @@ import { PostOrPage } from '@tryghost/content-api'
 import { Dimensions, imageDimensions } from '@lib/images'
 import { generateTableOfContents } from '@lib/toc'
 import { GhostPostOrPage, createNextProfileImagesFromAuthors } from './ghost'
+import { parse as urlParse, UrlWithStringQuery } from 'url'
 
 import { processEnv } from '@lib/processEnv'
 const { prism, toc, nextImages } = processEnv
 
 const rehype = Rehype().use({ settings: { fragment: true, space: `html`, emitParseErrors: false, verbose: false } })
 
-export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined, basePath?: string): Promise<GhostPostOrPage> => {
+export const normalizePost = async (post: PostOrPage, cmsUrl: UrlWithStringQuery | undefined, basePath?: string): Promise<GhostPostOrPage> => {
   if (!cmsUrl) throw Error('ghost-normalize.ts: cmsUrl expected.')
   const rewriteGhostLinks = withRewriteGhostLinks(cmsUrl, basePath)
 
@@ -47,11 +48,11 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: string | undefined
  * Rewrite absolute Ghost CMS links to relative
  */
 
-const withRewriteGhostLinks = (cmsUrl: string, basePath = '/') => (htmlAst: Node) => {
+const withRewriteGhostLinks = (cmsUrl: UrlWithStringQuery, basePath = '/') => (htmlAst: Node) => {
   visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = (node.properties as HTMLAnchorElement).href
-    if (href?.startsWith(cmsUrl)) {
-      ;(node.properties as HTMLAnchorElement).href = href.replace(cmsUrl, basePath).replace('//', '/')
+    const href = urlParse((node.properties as HTMLAnchorElement).href)
+    if (href.protocol === cmsUrl.protocol && href.host === cmsUrl.host) {
+      ;(node.properties as HTMLAnchorElement).href = basePath + href.pathname?.substring(1)
     }
   })
 
