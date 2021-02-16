@@ -40,7 +40,7 @@ export const HeaderIndex = ({ settings }: HeaderIndexProps) => {
                   <a>
                     <div className="site-logo" style={{
                       marginTop: "8px",
-                      height: "${targetHeight}px",
+                      height: `${targetHeight}px`,
                       width: `${calcSiteLogoWidth(siteLogo, targetHeight)}px`
                     }}
                     >
