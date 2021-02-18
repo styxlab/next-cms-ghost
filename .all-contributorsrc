@@ -67,6 +67,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "imtoanle",
+      "name": "Toan Le",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4002252?v=4",
+      "profile": "https://github.com/imtoanle",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
