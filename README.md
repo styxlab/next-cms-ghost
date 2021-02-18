@@ -216,6 +216,9 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="https://blog.miguelbernard.com"><img src="https://avatars.githubusercontent.com/u/1928530?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Miguel Bernard</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=mbernard" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/marsflow"><img src="https://avatars.githubusercontent.com/u/7637037?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stevan Aji</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=marsflow" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/imtoanle"><img src="https://avatars.githubusercontent.com/u/4002252?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Toan Le</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Aimtoanle" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
