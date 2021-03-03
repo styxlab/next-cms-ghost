@@ -1,6 +1,5 @@
-import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import fs from 'fs'
 
 import { Layout } from '@components/Layout'
 import { PostView } from '@components/PostView'
@@ -11,7 +10,6 @@ import { SEO } from '@meta/seo'
 import { processEnv } from '@lib/processEnv'
 import { getAllPosts, getAllSettings, GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
 import { seoImage, ISeoImage } from '@meta/seoImage'
-import { generateRSSFeed } from '@utils/rss'
 
 import { BodyClass } from '@helpers/BodyClass'
 
@@ -67,18 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
     posts = await getAllPosts()
   } catch (error) {
     throw new Error('Index creation failed.')
-  }
-
-  if (settings.processEnv.rssFeed) {
-    const rss = generateRSSFeed({ posts, settings })
-    try
-    {
-      fs.writeFileSync('./public/rss.xml', rss)
-    }
-    catch{
-      // Ignore failure when live in prod
-      // This may fail because the filesystem is readonly once hosted in prod
-    }
   }
 
   const cmsData = {
