@@ -76,6 +76,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Buda9",
+      "name": "Davor Budimir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1422662?v=4",
+      "profile": "http://davor.pro",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
