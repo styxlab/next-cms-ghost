@@ -42,7 +42,7 @@ interface PostProps {
 
 export const Post = ({ cmsData }: PostProps) => {
   const { post, settings, seoImage, previewPosts, prevPost, nextPost, bodyClass } = cmsData
-  const { slug, url, meta_description, excerpt } = post
+  const { slug, url, meta_description, excerpt, title } = post
   const { url: cmsUrl } = settings
   const description = meta_description || excerpt
 
@@ -61,7 +61,7 @@ export const Post = ({ cmsData }: PostProps) => {
 
   return (
     <>
-      <SEO {...{ description, settings, seoImage, article: post }} />
+      <SEO {...{ description, settings, seoImage, article: post, title }} />
       <StickyNavContainer
         throttle={300}
         isPost={true}
@@ -69,7 +69,7 @@ export const Post = ({ cmsData }: PostProps) => {
         render={(sticky) => (
           <Layout
             {...{ bodyClass, settings, sticky }}
-            header={<HeaderPost {...{ settings, sticky, title: post.title }} />}
+            header={<HeaderPost {...{ settings, sticky, title }} />}
             previewPosts={<PreviewPosts {...{ settings, primaryTag: post.primary_tag, posts: previewPosts, prev: prevPost, next: nextPost }} />}
           >
             <div className="inner">
@@ -84,7 +84,7 @@ export const Post = ({ cmsData }: PostProps) => {
                   )}
 
                   <h1 ref={sticky && sticky.anchorRef} className="post-full-title">
-                    {post.title}
+                    {title}
                   </h1>
 
                   {post.custom_excerpt && <p className="post-full-custom-excerpt">{post.custom_excerpt}</p>}
@@ -122,7 +122,7 @@ export const Post = ({ cmsData }: PostProps) => {
                     <figure className="post-full-image" style={{ display: 'inherit' }}>
                       <Image
                         src={featImg.url}
-                        alt={post.title}
+                        alt={title}
                         quality={nextImages.quality}
                         layout="responsive"
                         sizes={`
@@ -138,7 +138,7 @@ export const Post = ({ cmsData }: PostProps) => {
                   ) : (
                     post.feature_image && (
                       <figure className="post-full-image">
-                        <img src={post.feature_image} alt={post.title} />
+                        <img src={post.feature_image} alt={title} />
                       </figure>
                     )
                   ))}

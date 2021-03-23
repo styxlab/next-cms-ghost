@@ -46,8 +46,8 @@ export const Page = ({ cmsData }: PageProps) => {
               <h1 className="post-full-title">{page.title}</h1>
             </header>
 
-            {featImg && (
-              nextImages.feature && featImg.dimensions ? (
+            {featImg &&
+              (nextImages.feature && featImg.dimensions ? (
                 <figure className="post-full-image" style={{ display: 'inherit' }}>
                   <Image
                     src={featImg.url}
@@ -64,12 +64,13 @@ export const Page = ({ cmsData }: PageProps) => {
                     {...featImg.dimensions}
                   />
                 </figure>
-              ) : (page.feature_image && (
-                <figure className="post-full-image">
-                  <img src={page.feature_image} alt={page.title} />
-                </figure>
-              ))
-            )}
+              ) : (
+                page.feature_image && (
+                  <figure className="post-full-image">
+                    <img src={page.feature_image} alt={page.title} />
+                  </figure>
+                )
+              ))}
 
             {/* The main page content */}
             <section className="post-full-content">
