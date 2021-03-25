@@ -1,4 +1,4 @@
-import { parse as urlParse, UrlWithStringQuery } from 'url'
+import { parse as urlParse } from 'url'
 import GhostContentAPI, { Params, PostOrPage, SettingsResponse, Pagination, PostsOrPages, Tag, Author } from '@tryghost/content-api'
 import { normalizePost } from '@lib/ghost-normalize'
 import { Node } from 'unist'

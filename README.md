@@ -18,6 +18,10 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
 
 <details>
 <summary>Ghost CMS integration</summary>
+<br />
+<ul>
+  <li>Supports Ghost `v3` and `v4`</li>
+</ul>
 </details>
 <details>
 <summary>Ghost Casper look & feel</summary>
