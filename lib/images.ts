@@ -1,10 +1,12 @@
 import probe from 'probe-image-size'
 import { getCache, setCache } from '@lib/cache'
 
-import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs'
+import { createReadStream, createWriteStream, existsSync } from 'fs'
 import { join } from 'path'
 import { processEnv } from '@lib/processEnv'
 import { promisify } from 'util'
+
+import { sha1 } from 'crypto-hash'
 
 const streamPipeline = promisify(require('stream').pipeline)
 
@@ -27,6 +29,13 @@ const maxRetries = 50
 const read_timeout = 3000 // ms
 const response_timeout = 3000 // ms
 
+const calcHash = async (input: ArrayBuffer | string) => await sha1(input)
+
+const genCacheKey = async (url: string, noCache?: boolean) => {
+  if (noCache) return null
+  return await calcHash(url)
+}
+
 export interface Dimensions {
   width: number
   height: number
@@ -35,7 +44,7 @@ export interface Dimensions {
 export const imageDimensions = async (url: string | undefined | null, noCache?: boolean): Promise<Dimensions | null> => {
   if (!url) return null
 
-  const cacheKey = (!noCache && encodeURIComponent(url)) || null
+  const cacheKey = await genCacheKey(url, noCache)
   const cached = getCache<Dimensions>(cacheKey)
   if (cached) return cached
 
@@ -81,7 +90,7 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
 export const imageDimensionsFromFile = async (file: string, noCache?: boolean) => {
   if (!file) return null
 
-  const cacheKey = (!noCache && encodeURIComponent(file)) || null
+  const cacheKey = await genCacheKey(file, noCache)
   const cached = getCache<Dimensions>(cacheKey)
   if (cached) return cached
 
