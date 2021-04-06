@@ -223,6 +223,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
   <tr>
     <td align="center"><a href="https://github.com/imtoanle"><img src="https://avatars.githubusercontent.com/u/4002252?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Toan Le</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Aimtoanle" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://davor.pro"><img src="https://avatars.githubusercontent.com/u/1422662?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Davor Budimir</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3ABuda9" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://simonholdorf.com"><img src="https://avatars.githubusercontent.com/u/4987937?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Holdorf</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Asimhol" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
