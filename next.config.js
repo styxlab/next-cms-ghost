@@ -29,4 +29,7 @@ module.exports = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
+  future: {
+    webpack5: true,
+  },
 })
