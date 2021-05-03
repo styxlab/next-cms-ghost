@@ -172,10 +172,10 @@ CMS_GHOST_API_KEY=9fccdb0e4ea5b572e2e5b92942
 
 If you build your project with a cloud provider, the best option is to provide the keys with environment variables:
 
-| Key               | Value (example)             |
-| ----------------- | --------------------------- |
-| CMS_GHOST_API_URL | https:\/\/cms.your-blog.org |
-| CMS_GHOST_API_KEY | 9fccdb0e4ea5b572e2e5b92942  |
+| Key               | Value (example)              |
+| ----------------- | ---------------------------- |
+| CMS_GHOST_API_URL | https:\/\/your-ghost-cms.org |
+| CMS_GHOST_API_KEY | 9fccdb0e4ea5b572e2e5b92942   |
 
 &nbsp;
 
