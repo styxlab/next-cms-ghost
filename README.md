@@ -122,17 +122,13 @@ yarn build
 
 ## 🌀 NextJS image optimizations
 
-You must add all domains that you use for in-sourcing images in the `next.config.js` file, for example:
+The `IMAGE_DOMAINS` environment variable must contain a comma separated list of all domains that you use for in-sourcing images. For example:
 
-```javascript
-module.exports = {
-  images: {
-    domains: ['images.unsplash.com', 'static.gotsby.org'],
-  },
-}
+```
+IMAGE_DOMAINS=res.cloudinary.com,yoursource.imgix.net
 ```
 
-Note that image optimization does not work with Netlify. Therefore, image optimization is automatically turned off when deploying to Netlify.
+> Image optimization is automatically turned off when deploying to Netlify, because it is currently on supported on Netlify.
 
 &nbsp;
 
