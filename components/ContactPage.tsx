@@ -58,17 +58,14 @@ export function Contact({ cmsData }: PageProps) {
       <Layout {...{ settings, bodyClass }} header={<HeaderPage {...{ settings }} />}>
         <div className="inner">
           <article className={`post-full ${postClass}`}>
-
             <header className="post-full-header">
               <h1 className="post-full-title">{page.title}</h1>
 
-              {page.custom_excerpt &&
-                <p className="post-full-custom-excerpt">{page.custom_excerpt}</p>
-              }
+              {page.custom_excerpt && <p className="post-full-custom-excerpt">{page.custom_excerpt}</p>}
             </header>
 
-            {featImg && (
-              nextImages.feature && featImg.dimensions ? (
+            {featImg &&
+              (nextImages.feature && featImg.dimensions ? (
                 <figure className="post-full-image" style={{ display: 'inherit' }}>
                   <Image
                     src={featImg.url}
@@ -85,15 +82,15 @@ export function Contact({ cmsData }: PageProps) {
                     {...featImg.dimensions}
                   />
                 </figure>
-              ) : (page.feature_image && (
-                <figure className="post-full-image">
-                  <img src={page.feature_image} alt={page.title} />
-                </figure>
-              ))
-            )}
+              ) : (
+                page.feature_image && (
+                  <figure className="post-full-image">
+                    <img src={page.feature_image} alt={page.title} />
+                  </figure>
+                )
+              ))}
 
             <section className="post-full-content">
-
               <div className="post-content">
                 <ContactForm topics={page.form_topics} serviceConfig={page.serviceConfig} />
               </div>
@@ -101,16 +98,14 @@ export function Contact({ cmsData }: PageProps) {
               <div className="post-content" dangerouslySetInnerHTML={{ __html: page.html || '' }}>
                 {/* <RenderContent htmlAst={htmlAst} /> */}
               </div>
-
             </section>
           </article>
 
           <div className="post-feed">
             {previewPosts?.map((post, i) => (
-              <PostCard key={post.id} {...{settings, post, num: i}} />
+              <PostCard key={post.id} {...{ settings, post, num: i }} />
             ))}
           </div>
-
         </div>
       </Layout>
     </>
