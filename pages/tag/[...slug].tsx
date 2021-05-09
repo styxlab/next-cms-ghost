@@ -45,7 +45,7 @@ const TagIndex = ({ cmsData }: TagIndexProps) => {
 
   return (
     <>
-      <SEO {...{ settings, meta_title, meta_description, seoImage }} />
+      <SEO {...{ settings, title: meta_title ?? '', description: meta_description ?? '', seoImage }} />
       <Layout {...{ settings, bodyClass }} header={<HeaderTag {...{ settings, tag }} />}>
         <PostView {...{ settings, posts }} />
       </Layout>
