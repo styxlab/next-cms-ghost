@@ -29,11 +29,11 @@ import { BodyClass } from '@helpers/BodyClass'
  */
 
 interface CmsDataCore {
-  collection?: string
-  posts?: GhostPostsOrPages
-  post?: GhostPostOrPage
-  page?: GhostPostOrPage
-  contactPage?: ContactPage
+  collection: string
+  posts: GhostPostsOrPages
+  post: GhostPostOrPage
+  page: GhostPostOrPage
+  contactPage: ContactPage
   settings: GhostSettings
   seoImage: ISeoImage
   previewPosts?: GhostPostsOrPages
@@ -55,15 +55,14 @@ const PostOrPageIndex = ({ cmsData }: PostOrPageProps) => {
   const router = useRouter()
   if (router.isFallback) return <div>Loading...</div>
 
-  const { isPost, contactPage, isCollection, collection, posts, settings, seoImage, bodyClass } = cmsData
+  const { isPost, contactPage, isCollection } = cmsData
   if (isPost) {
-    // @ts-ignore
     return <Post {...{ cmsData }} />
   } else if (!!contactPage) {
     const { contactPage, previewPosts, settings, seoImage, bodyClass } = cmsData
-    // @ts-ignore
     return <Contact cmsData={{ page: contactPage, previewPosts, settings, seoImage, bodyClass }} />
   } else if (isCollection) {
+    const { collection, posts, settings, seoImage, bodyClass } = cmsData
     return (
       <>
         <SEO {...{ settings, title: collection || '', description: collection || '', seoImage }} />
@@ -73,14 +72,12 @@ const PostOrPageIndex = ({ cmsData }: PostOrPageProps) => {
       </>
     )
   } else {
-    // @ts-ignore
     return <Page cmsData={cmsData} />
   }
 }
 
 export default PostOrPageIndex
 
-// @ts-ignore
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!(params && params.slug && Array.isArray(params.slug))) throw Error('getStaticProps: wrong parameters.')
   const [slug] = params.slug.reverse()
@@ -90,7 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let post: GhostPostOrPage | null = null
   let page: GhostPostOrPage | null = null
   let contactPage: ContactPage | null = null
-  let isCollection = collections.isCollectionPath(slug);
+  const isCollection = collections.isCollectionPath(slug)
 
   post = await getPostBySlug(slug)
   const isPost = !!post
@@ -165,23 +162,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
     }
   }
-  if (isCollection) {
-    const posts = collections.filterPostsByCollectionPath({ collectionPath: slug, posts: await getAllPosts()})
-    const settings = await getAllSettings()
-    return {
-      props: {
-        cmsData: {
-          collection: slug,
-          isPost,
-          isCollection,
-          posts,
-          settings,
-          seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
-          bodyClass: BodyClass({isPost, page: undefined, tags: []}),
-        },
+
+  // must be a collection index page
+  const posts = collections.filterPostsByCollectionPath({ collectionPath: slug, posts: await getAllPosts()})
+  return {
+    props: {
+      cmsData: {
+        collection: slug,
+        isPost,
+        isCollection,
+        posts,
+        settings,
+        seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
+        bodyClass: BodyClass({isPost, page: undefined, tags: []}),
       },
-      ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
-    }
+    },
+    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
   }
 }
 

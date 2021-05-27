@@ -1,7 +1,7 @@
 import { collections as config } from '@routesConfig'
 
 export interface Collection<T> {
-  path: string
+  path: string,
   selector: (node: T) => boolean | null | undefined
 }
 
