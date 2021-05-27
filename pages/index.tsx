@@ -6,6 +6,7 @@ import { PostView } from '@components/PostView'
 import { HeaderIndex } from '@components/HeaderIndex'
 import { StickyNavContainer } from '@effects/StickyNavContainer'
 import { SEO } from '@meta/seo'
+import { collections } from '@lib/collections'
 
 import { processEnv } from '@lib/processEnv'
 import { getAllPosts, getAllSettings, GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
@@ -62,7 +63,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   try {
     settings = await getAllSettings()
-    posts = await getAllPosts()
+    const allPosts = await getAllPosts()
+    posts = collections.filterPostsByCollectionPath({ posts: allPosts }) as GhostPostsOrPages
+    posts.meta = allPosts.meta
   } catch (error) {
     throw new Error('Index creation failed.')
   }

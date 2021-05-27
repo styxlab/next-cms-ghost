@@ -2,6 +2,10 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { Post } from '@components/Post'
 import { Page } from '@components/Page'
+import { HeaderIndex } from '@components/HeaderIndex'
+import { Layout } from '@components/Layout'
+import { PostView } from '@components/PostView'
+import { SEO } from '@meta/seo'
 
 import { getPostsByTag, getTagBySlug, GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
 
@@ -25,9 +29,11 @@ import { BodyClass } from '@helpers/BodyClass'
  */
 
 interface CmsDataCore {
-  post: GhostPostOrPage
-  page: GhostPostOrPage
-  contactPage: ContactPage
+  collection?: string
+  posts?: GhostPostsOrPages
+  post?: GhostPostOrPage
+  page?: GhostPostOrPage
+  contactPage?: ContactPage
   settings: GhostSettings
   seoImage: ISeoImage
   previewPosts?: GhostPostsOrPages
@@ -38,6 +44,7 @@ interface CmsDataCore {
 
 interface CmsData extends CmsDataCore {
   isPost: boolean
+  isCollection: boolean
 }
 
 interface PostOrPageProps {
@@ -48,19 +55,32 @@ const PostOrPageIndex = ({ cmsData }: PostOrPageProps) => {
   const router = useRouter()
   if (router.isFallback) return <div>Loading...</div>
 
-  const { isPost, contactPage } = cmsData
+  const { isPost, contactPage, isCollection, collection, posts, settings, seoImage, bodyClass } = cmsData
   if (isPost) {
+    // @ts-ignore
     return <Post {...{ cmsData }} />
   } else if (!!contactPage) {
     const { contactPage, previewPosts, settings, seoImage, bodyClass } = cmsData
+    // @ts-ignore
     return <Contact cmsData={{ page: contactPage, previewPosts, settings, seoImage, bodyClass }} />
+  } else if (isCollection) {
+    return (
+      <>
+        <SEO {...{ settings, title: collection || '', description: collection || '', seoImage }} />
+        <Layout {...{ settings, bodyClass }} header={<HeaderIndex {...{ settings }} />}>
+          <PostView {...{ settings, posts: posts! }} />
+        </Layout>
+      </>
+    )
   } else {
+    // @ts-ignore
     return <Page cmsData={cmsData} />
   }
 }
 
 export default PostOrPageIndex
 
+// @ts-ignore
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!(params && params.slug && Array.isArray(params.slug))) throw Error('getStaticProps: wrong parameters.')
   const [slug] = params.slug.reverse()
@@ -70,6 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let post: GhostPostOrPage | null = null
   let page: GhostPostOrPage | null = null
   let contactPage: ContactPage | null = null
+  let isCollection = collections.isCollectionPath(slug);
 
   post = await getPostBySlug(slug)
   const isPost = !!post
@@ -94,53 +115,73 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  if (!post && !page && !isContactPage) {
+  if (!post && !page && !isContactPage && !isCollection) {
     return {
       notFound: true,
     }
   }
 
-  let previewPosts: GhostPostsOrPages | never[] = []
-  let prevPost: GhostPostOrPage | null = null
-  let nextPost: GhostPostOrPage | null = null
+  if (post || page || isContactPage) {
+    let previewPosts: GhostPostsOrPages | never[] = []
+    let prevPost: GhostPostOrPage | null = null
+    let nextPost: GhostPostOrPage | null = null
 
-  if (isContactPage) {
-    previewPosts = await getAllPosts({ limit: 3 })
-  } else if (isPost && post?.id && post?.slug) {
-    const tagSlug = post?.primary_tag?.slug
-    previewPosts = (tagSlug && (await getPostsByTag(tagSlug, 3, post?.id))) || []
+    if (isContactPage) {
+      previewPosts = await getAllPosts({ limit: 3 })
+    } else if (isPost && post?.id && post?.slug) {
+      const tagSlug = post?.primary_tag?.slug
+      previewPosts = (tagSlug && (await getPostsByTag(tagSlug, 3, post?.id))) || []
 
-    const postSlugs = await getAllPostSlugs()
-    const index = postSlugs.indexOf(post?.slug)
-    const prevSlug = index > 0 ? postSlugs[index - 1] : null
-    const nextSlug = index < postSlugs.length - 1 ? postSlugs[index + 1] : null
+      const postSlugs = await getAllPostSlugs()
+      const index = postSlugs.indexOf(post?.slug)
+      const prevSlug = index > 0 ? postSlugs[index - 1] : null
+      const nextSlug = index < postSlugs.length - 1 ? postSlugs[index + 1] : null
 
-    prevPost = (prevSlug && (await getPostBySlug(prevSlug))) || null
-    nextPost = (nextSlug && (await getPostBySlug(nextSlug))) || null
-  }
+      prevPost = (prevSlug && (await getPostBySlug(prevSlug))) || null
+      nextPost = (nextSlug && (await getPostBySlug(nextSlug))) || null
+    }
+    const siteUrl = settings.processEnv.siteUrl
+    const imageUrl = (post || contactPage || page)?.feature_image || undefined
+    const image = await seoImage({ siteUrl, imageUrl })
 
-  const siteUrl = settings.processEnv.siteUrl
-  const imageUrl = (post || contactPage || page)?.feature_image || undefined
-  const image = await seoImage({ siteUrl, imageUrl })
+    const tags = (contactPage && contactPage.tags) || (page && page.tags) || undefined
 
-  const tags = (contactPage && contactPage.tags) || (page && page.tags) || undefined
-
-  return {
-    props: {
-      cmsData: {
-        settings,
-        post,
-        page,
-        contactPage,
-        isPost,
-        seoImage: image,
-        previewPosts,
-        prevPost,
-        nextPost,
-        bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags }),
+    return {
+      props: {
+        cmsData: {
+          settings,
+          post,
+          page,
+          contactPage,
+          isPost,
+          isCollection,
+          seoImage: image,
+          previewPosts,
+          prevPost,
+          nextPost,
+          bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags }),
+        },
       },
-    },
-    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
+      ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
+    }
+  }
+  if (isCollection) {
+    const posts = collections.filterPostsByCollectionPath({ collectionPath: slug, posts: await getAllPosts()})
+    const settings = await getAllSettings()
+    return {
+      props: {
+        cmsData: {
+          collection: slug,
+          isPost,
+          isCollection,
+          posts,
+          settings,
+          seoImage: await seoImage({ siteUrl: settings.processEnv.siteUrl }),
+          bodyClass: BodyClass({isPost, page: undefined, tags: []}),
+        },
+      },
+      ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
+    }
   }
 }
 
