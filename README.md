@@ -222,6 +222,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="https://simonholdorf.com"><img src="https://avatars.githubusercontent.com/u/4987937?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Holdorf</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Asimhol" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/timuster"><img src="https://avatars.githubusercontent.com/u/2242052?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sumit Kumar</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Atimuster" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/francolamcn"><img src="https://avatars.githubusercontent.com/u/73523739?v=4?s=100" width="100px;" alt=""/><br /><sub><b>francolamcn</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Afrancolamcn" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.ambrosesoft.com/"><img src="https://avatars.githubusercontent.com/u/60314?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Charles Chan</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=chancharles" title="Code">💻</a></td>
   </tr>
 </table>
 
