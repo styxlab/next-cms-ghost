@@ -112,6 +112,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "chancharles",
+      "name": "Charles Chan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60314?v=4",
+      "profile": "https://www.ambrosesoft.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
