@@ -121,6 +121,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "raihanameen",
+      "name": "Raihan Ameen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36153203?v=4",
+      "profile": "https://raihanameen.github.io",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
