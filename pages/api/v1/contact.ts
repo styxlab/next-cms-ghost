@@ -7,9 +7,9 @@ import sanitize from 'sanitize-html'
 import { processEnv } from '@lib/processEnv'
 
 interface SendEmailProps {
-  name: string,
-  email: string,
-  subject: string,
+  name: string
+  email: string
+  subject: string
   message: string
 }
 
@@ -22,7 +22,7 @@ const smtp = {
   auth: {
     user: process.env.SMTP_USER || '',
     pass: process.env.SMTP_PASS || '',
-  }
+  },
 }
 
 const transporter = nodemailer.createTransport(smtpTrans(smtp))
@@ -39,37 +39,36 @@ const sendEmail = async ({ name, email, subject, message }: SendEmailProps) => {
   const sendData = {
     from: email,
     to: process.env.EMAIL_TO || '',
-    subject: 'Jamify Contact Request - ' + (subject && subject.toUpperCase() || ''),
+    subject: 'Jamify Contact Request - ' + ((subject && subject.toUpperCase()) || ''),
     html: sanitize(output, {
-      allowedTags: sanitize.defaults.allowedTags.concat(['img'])
-    })
+      allowedTags: sanitize.defaults.allowedTags.concat(['img']),
+    }),
   }
   return await transporter.sendMail(sendData)
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
-
+const Contact = async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
   const { origin } = req.headers
   const { contactPage, siteUrl } = processEnv
 
   if (!contactPage) {
     return res.status(404).json({
       error: 404,
-      message: 'Endpoint not found.'
+      message: 'Endpoint not found.',
     })
   }
 
   if (origin !== siteUrl) {
     return res.status(400).json({
       error: 400,
-      message: 'Wrong origin. Check your siteUrl.'
+      message: 'Wrong origin. Check your siteUrl.',
     })
   }
 
   if (req.method !== 'POST') {
     return res.status(400).json({
       error: 400,
-      message: 'Wrong request method.'
+      message: 'Wrong request method.',
     })
   }
 
@@ -77,7 +76,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextAp
   if (!validator.validate(body.email)) {
     return res.status(400).json({
       error: 400,
-      message: 'Wrong email.'
+      message: 'Wrong email.',
     })
   }
 
@@ -87,9 +86,11 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextAp
     console.warn(error)
     return res.status(404).json({
       error: 404,
-      message: 'Sending message failed.'
+      message: 'Sending message failed.',
     })
   }
 
-  res.json({ status: "ok" })
+  res.json({ status: 'ok' })
 }
+
+export default Contact

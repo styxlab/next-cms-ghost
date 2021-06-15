@@ -24,7 +24,7 @@ export async function verifySlug(postSlug: string): Promise<string | null> {
   return resolveUrl({ cmsUrl, collectionPath, slug, url })
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
+const Preview = async (req: NextApiRequest, res: NextApiResponse): Promise<NextApiResponse | void> => {
   if (req.query.secret !== process.env.JAMIFY_PREVIEW_TOKEN || !req.query.slug) {
     return res.status(401).json({ message: 'Invalid token' })
   }
@@ -43,3 +43,5 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<NextAp
   // TODO: Option for cookie clearing
   // res.clearPreviewData()
 }
+
+export default Preview

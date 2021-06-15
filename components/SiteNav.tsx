@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Link from 'next/link'
 import { resolve } from 'url'
@@ -6,7 +7,7 @@ import { Navigation } from '@components/Navigation'
 import { SocialLinks } from '@components/SocialLinks'
 import { DarkMode } from '@components/DarkMode'
 import { SubscribeButton } from '@components/SubscribeButton'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { GhostSettings, NavItem, NextImage } from '@lib/ghost'
 
 export interface SiteNavProps {
@@ -16,7 +17,7 @@ export interface SiteNavProps {
 }
 
 export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const { processEnv } = settings
   const { customNavigation, nextImages, memberSubscriptions } = processEnv
   const config: {

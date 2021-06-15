@@ -85,6 +85,7 @@ export function Contact({ cmsData }: PageProps) {
               ) : (
                 page.feature_image && (
                   <figure className="post-full-image">
+                    {/* eslint-disable @next/next/no-img-element */}
                     <img src={page.feature_image} alt={page.title} />
                   </figure>
                 )

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
@@ -5,7 +6,7 @@ import dayjs from 'dayjs'
 import { readingTime as readingTimeHelper } from '@lib/readingTime'
 
 import { resolveUrl } from '@utils/routing'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 
 import { Layout } from '@components/Layout'
 import { HeaderPost } from '@components/HeaderPost'
@@ -49,7 +50,7 @@ export const Post = ({ cmsData }: PostProps) => {
   const { processEnv } = settings
   const { nextImages, toc, memberSubscriptions, commenting } = processEnv
 
-  const text = get(useLang())
+  const text = get(getLang())
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
   const featImg = post.featureImage
   const postClass = PostClass({ tags: post.tags, isFeatured: !!featImg, isImage: !!featImg })

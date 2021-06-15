@@ -17,14 +17,13 @@ const defaultValues = {
   handleChange: () => null,
   handleSubmit: () => null,
   email: '',
-  message: ''
+  message: '',
 }
 
 const OverlayContext = createContext<OverlayProviderValues>(defaultValues)
 export const useOverlay = (): OverlayProviderValues => useContext(OverlayContext)
 
-export interface DefaultModeProps {
-}
+export interface DefaultModeProps {}
 
 interface OverlayProviderProps extends DefaultModeProps {
   children: React.ReactNode
@@ -34,12 +33,6 @@ export const OverlayProvider = ({ children }: OverlayProviderProps): ReactElemen
   const [isOpen, setIsOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-
-  const escFunction = (event: globalThis.KeyboardEvent) => {
-    if (event.key === `Escape`) {
-      handleClose()
-    }
-  }
 
   const handleClose = () => {
     setIsOpen(false)
@@ -78,15 +71,16 @@ export const OverlayProvider = ({ children }: OverlayProviderProps): ReactElemen
   }
 
   useEffect(() => {
+    const escFunction = (event: globalThis.KeyboardEvent) => {
+      if (event.key === `Escape`) {
+        handleClose()
+      }
+    }
     window.addEventListener(`keydown`, escFunction, false)
     return function cleanup() {
       window.removeEventListener(`keydown`, escFunction, false)
     }
   }, [])
 
-  return (
-    <OverlayContext.Provider value={{ isOpen, handleOpen, handleClose, handleSubmit, handleChange, email, message }}>
-      {children}
-    </OverlayContext.Provider>
-  )
+  return <OverlayContext.Provider value={{ isOpen, handleOpen, handleClose, handleSubmit, handleChange, email, message }}>{children}</OverlayContext.Provider>
 }

@@ -10,7 +10,7 @@ export interface ThemeProviderValues {
 const defaultValues = {
   dark: null,
   getDark: () => null,
-  toggleDark: () => null
+  toggleDark: () => null,
 }
 
 const ThemeContext = createContext<ThemeProviderValues>(defaultValues)
@@ -55,12 +55,12 @@ interface SitesProviderProps extends DefaultModeProps {
 
 export const ThemeProvider = ({ defaultMode, overrideOS, children }: SitesProviderProps): ReactElement => {
   const [dark, setDark] = useState<DarkMode>(null)
+  const getDark = () => getDefaultMode({ defaultMode, overrideOS })
 
   useEffect(() => {
+    const getDark = () => getDefaultMode({ defaultMode, overrideOS })
     setDark(getDark())
-  }, [])
-
-  const getDark = () => getDefaultMode({ defaultMode, overrideOS })
+  }, [defaultMode, overrideOS])
 
   const toggleDark = () => {
     if (dark === null) return
@@ -69,9 +69,5 @@ export const ThemeProvider = ({ defaultMode, overrideOS, children }: SitesProvid
     setDark(toggle)
   }
 
-  return (
-    <ThemeContext.Provider value={{ dark, getDark, toggleDark }}>
-      {children}
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={{ dark, getDark, toggleDark }}>{children}</ThemeContext.Provider>
 }

@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
 
@@ -7,7 +6,7 @@ import { HeaderPage } from '@components/HeaderPage'
 import { PostCard } from '@components/PostCard'
 
 import { getAllPosts, getAllSettings, GhostSettings, GhostPostsOrPages } from '@lib/ghost'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { BodyClass } from '@helpers/BodyClass'
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -18,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       settings,
       posts,
-      bodyClass: BodyClass({})
+      bodyClass: BodyClass({}),
     },
   }
 }
@@ -30,7 +29,7 @@ interface Custom404Props {
 }
 
 export default function Custom404({ posts, settings, bodyClass }: Custom404Props) {
-  const text = get(useLang())
+  const text = get(getLang())
 
   return (
     <Layout {...{ settings, bodyClass }} header={<HeaderPage {...{ settings }} />} errorClass="error-content">
@@ -38,7 +37,9 @@ export default function Custom404({ posts, settings, bodyClass }: Custom404Props
         <section className="error-message">
           <h1 className="error-code">404</h1>
           <p className="error-description">{text(`PAGE_NOT_FOUND`)}</p>
-          <Link href="/" ><a className="error-link">{text(`GOTO_FRONT_PAGE`)} →</a></Link>
+          <Link href="/">
+            <a className="error-link">{text(`GOTO_FRONT_PAGE`)} →</a>
+          </Link>
         </section>
 
         <div className="post-feed">
@@ -46,7 +47,6 @@ export default function Custom404({ posts, settings, bodyClass }: Custom404Props
             <PostCard key={post.id} {...{ settings, post, num: i }} />
           ))}
         </div>
-
       </div>
     </Layout>
   )

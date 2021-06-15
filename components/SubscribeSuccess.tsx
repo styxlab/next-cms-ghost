@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { useRouter } from 'next/router'
 
 export const SubscribeSuccess = ({ title }: { title: string }) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const router = useRouter()
   const { action, success } = router.query
 
@@ -15,11 +15,9 @@ export const SubscribeSuccess = ({ title }: { title: string }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => setCloseButtonOpacity(1), 1000)
-    setType(
-      success === `true` ? `success` : `failure`
-    )
+    setType(success === `true` ? `success` : `failure`)
     return () => clearTimeout(timer)
-  }, [setType, setCloseButtonOpacity, action])
+  }, [setType, setCloseButtonOpacity, action, success])
 
   return (
     <div className={`subscribe-notification subscribe-${type}-message${closeState}`}>
@@ -39,13 +37,12 @@ export const SubscribeSuccess = ({ title }: { title: string }) => {
         }
       `}</style>
       <a
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault()
           setCloseState(` close`)
         }}
         className="subscribe-close-button"
-      >
-      </a>
+      ></a>
       {message}
     </div>
   )

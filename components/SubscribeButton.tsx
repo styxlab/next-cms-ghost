@@ -1,9 +1,9 @@
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { useOverlay } from '@components/contexts/overlayProvider'
 
 // The actual component
 export const SubscribeButton = () => {
-  const text = get(useLang())
+  const text = get(getLang())
   const { handleOpen } = useOverlay()
 
   return (
@@ -13,7 +13,7 @@ export const SubscribeButton = () => {
         a:hover {
           text-decoration: none;
           opacity: 1;
-          cursor: pointer
+          cursor: pointer;
         }
       `}</style>
     </a>
