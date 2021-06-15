@@ -2,7 +2,7 @@ import { Tag } from '@tryghost/content-api'
 import { GhostSettings } from '@lib/ghost'
 import { SiteNav } from '@components/SiteNav'
 import { HeaderBackground } from '@components/HeaderBackground'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 
 interface HeaderTagProps {
   settings: GhostSettings
@@ -10,7 +10,7 @@ interface HeaderTagProps {
 }
 
 export const HeaderTag = ({ settings, tag }: HeaderTagProps) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const featureImg = tag.feature_image || ''
   const numberOfPosts = tag.count?.posts
 
@@ -26,7 +26,9 @@ export const HeaderTag = ({ settings, tag }: HeaderTagProps) => {
           <h1 className="site-title">{tag.name}</h1>
           <h2 className="site-description">
             {tag.description ||
-              `${text(`A_COLLECTION_OF`)} ${(numberOfPosts && numberOfPosts > 0 && (numberOfPosts === 1 ? `1 ${text(`POST`)}` : `${numberOfPosts} ${text(`POSTS`)}`)) || `${text(`POSTS`)}`}`}
+              `${text(`A_COLLECTION_OF`)} ${
+                (numberOfPosts && numberOfPosts > 0 && (numberOfPosts === 1 ? `1 ${text(`POST`)}` : `${numberOfPosts} ${text(`POSTS`)}`)) || `${text(`POSTS`)}`
+              }`}
           </h2>
         </div>
       </HeaderBackground>

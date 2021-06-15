@@ -6,7 +6,7 @@ import { StickyNav } from '@components/StickyNav'
 import { SubscribeOverlay } from '@components/SubscribeOverlay'
 import { SubscribeSuccess } from '@components/SubscribeSuccess'
 
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { GhostSettings } from '@lib/ghost'
 
 import { StickyNavContainer } from '@effects/StickyNavContainer'
@@ -32,9 +32,8 @@ interface LayoutProps {
   errorClass?: string
 }
 
-
 export const Layout = ({ settings, header, children, isHome, sticky, previewPosts, bodyClass, errorClass }: LayoutProps) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const site = settings
   const title = text(`SITE_TITLE`, site.title)
   const { siteUrl, memberSubscriptions } = settings.processEnv
@@ -52,12 +51,12 @@ export const Layout = ({ settings, header, children, isHome, sticky, previewPost
         {/* The main header section on top of the screen */}
         {header}
         {/* The main content area */}
-        <main ref={isHome && sticky && sticky.anchorRef || null} id="site-main" className={`site-main outer ${errorClass}`}>
+        <main ref={(isHome && sticky && sticky.anchorRef) || null} id="site-main" className={`site-main outer ${errorClass}`}>
           {/* All the main content gets inserted here, index.js, post.js */}
           {children}
         </main>
         {/* For sticky nav bar */}
-        {isHome && <StickyNav className={`site-nav ${sticky && sticky.state.currentClass}`}  {...{ siteUrl, settings }} />}
+        {isHome && <StickyNav className={`site-nav ${sticky && sticky.state.currentClass}`} {...{ siteUrl, settings }} />}
         {/* Links to Previous/Next posts */}
         {previewPosts}
 
@@ -90,14 +89,10 @@ export const Layout = ({ settings, header, children, isHome, sticky, previewPost
         </footer>
       </div>
 
-      {memberSubscriptions && (
-        <SubscribeSuccess {...{ title }} />
-      )}
+      {memberSubscriptions && <SubscribeSuccess {...{ title }} />}
 
       {/* The big email subscribe modal content */}
-      {memberSubscriptions && (
-        <SubscribeOverlay {...{ settings }} />
-      )}
+      {memberSubscriptions && <SubscribeOverlay {...{ settings }} />}
     </>
   )
 }

@@ -5,7 +5,7 @@ import { PostCard } from '@components/PostCard'
 
 import { readingTime as readingTimeHelper } from '@lib/readingTime'
 import { resolveUrl } from '@utils/routing'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { Tag } from '@tryghost/content-api'
 import { collections } from '@lib/collections'
 import { GhostPostOrPage, GhostPostsOrPages, GhostSettings } from '@lib/ghost'
@@ -19,7 +19,7 @@ interface PreviewPostsProps {
 }
 
 export const PreviewPosts = ({ settings, primaryTag, posts, prev, next }: PreviewPostsProps) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const { url: cmsUrl } = settings
   const url = (primaryTag && resolveUrl({ cmsUrl, slug: primaryTag.slug, url: primaryTag.url })) || ''
   const primaryTagCount = primaryTag?.count?.posts

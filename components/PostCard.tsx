@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 
 import { readingTime as readingTimeHelper } from '@lib/readingTime'
 import { resolveUrl } from '@utils/routing'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 
 import { AuthorList } from '@components/AuthorList'
 import { PostClass } from '@helpers/PostClass'
@@ -20,7 +21,7 @@ interface PostCardProps {
 
 export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
   const { nextImages } = settings.processEnv
-  const text = get(useLang())
+  const text = get(getLang())
   const cmsUrl = settings.url
   const collectionPath = collections.getCollectionByNode(post)
   const url = resolveUrl({ cmsUrl, collectionPath, slug: post.slug, url: post.url })

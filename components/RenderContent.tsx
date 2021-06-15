@@ -6,6 +6,7 @@ import { Node } from 'unist'
 import { NextLink } from '@components/NextLink'
 import { NextImage } from '@components/NextImage'
 
+/* eslint-disable react/display-name */
 const options = {
   createElement: React.createElement,
   Fragment: React.Fragment,

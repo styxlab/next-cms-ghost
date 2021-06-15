@@ -17,7 +17,7 @@ export const NextImage = (props: ComponentPropsWithNode) => {
   return (
     <div className="next-image-wrapper">
       <div {...{ className }}>
-        <Image src={src} {...imageDimensions} {...{ className }} />
+        <Image src={src} {...imageDimensions} {...{ className }} alt="" />
       </div>
     </div>
   )

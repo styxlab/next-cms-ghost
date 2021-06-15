@@ -1,11 +1,11 @@
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 import { useInputProps, useInputError, useSelectProps, useSelectError } from '@components/common/elements'
 
 export class Validate {
   text
 
   constructor() {
-    this.text = get(useLang())
+    this.text = get(getLang())
   }
 
   name(item: useInputProps, setError: useInputError) {

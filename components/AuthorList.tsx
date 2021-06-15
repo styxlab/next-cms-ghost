@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { resolveUrl } from '@utils/routing'
-import { useLang, get } from '@utils/use-lang'
+import { getLang, get } from '@utils/use-lang'
 
 import { HoverOnAvatar } from '@components/effects/HoverOnAvatar'
 import { AvatarIcon } from '@icons/AvatarIcon'
@@ -15,7 +16,7 @@ interface AuthorListProps {
 }
 
 export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
-  const text = get(useLang())
+  const text = get(getLang())
   const { nextImages } = settings.processEnv
   const { url: cmsUrl } = settings
 
