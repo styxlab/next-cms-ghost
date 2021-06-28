@@ -53,17 +53,13 @@ const estimatedReadingTimeInMinutes = ({ wordCount, imageCount }: readingTimePro
   return readingTimeMinutes
 }
 
-const readingMinutes = (html: string, additionalImages: number) => {
-  if (!html) {
-    return ''
-  }
+const readingMinutes = (html?: string, additionalImages?: number): number => {
+  if (!html) return 0
 
   let imageCount = countImages(html)
   let wordCount = countWords(html)
 
-  if (additionalImages) {
-    imageCount += additionalImages
-  }
+  if (additionalImages) imageCount += additionalImages
 
   return estimatedReadingTimeInMinutes({ wordCount, imageCount })
 }
@@ -77,19 +73,12 @@ export const readingTime = (post: PostOrPage, options: ReadingTimeOptions = {}) 
   const minuteStr = typeof options.minute === 'string' ? options.minute : '1 min read'
   const minutesStr = typeof options.minutes === 'string' ? options.minutes : '% min read'
 
-  if (!post.html || !post.reading_time) {
-    return ''
-  }
+  if (!post.html && !post.reading_time) return ''
 
-  let imageCount = 0
+  const imageCount = post.feature_image ? 1 : 0
+  const time = post.reading_time || readingMinutes(post.html!, imageCount)
 
-  if (post.feature_image) {
-    imageCount += 1
-  }
-
-  const time = post.reading_time || readingMinutes(post.html, imageCount)
   let readingTime = ''
-
   if (time <= 1) {
     readingTime = minuteStr
   } else {

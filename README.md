@@ -157,12 +157,14 @@ All content is sourced from a Ghost CMS. Choose the method according to your bui
 
 ### Building locally
 
-Create a new text file `.env.local` in the project root folder:
+Create a new text file `.env.local` in the project root folder with the following content:
 
 ```
 CMS_GHOST_API_URL=http://localhost:2368
 CMS_GHOST_API_KEY=9fccdb0e4ea5b572e2e5b92942
 ```
+
+Change `CMS_GHOST_API_URL` and `CMS_GHOST_API_KEY` with the values that you can generate in your Ghost Admin under `Integrations`.
 
 ### Building with cloud providers
 
