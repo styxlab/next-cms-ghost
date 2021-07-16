@@ -227,6 +227,9 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="https://www.ambrosesoft.com/"><img src="https://avatars.githubusercontent.com/u/60314?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Charles Chan</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=chancharles" title="Code">💻</a></td>
     <td align="center"><a href="https://raihanameen.github.io"><img src="https://avatars.githubusercontent.com/u/36153203?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Raihan Ameen</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Araihanameen" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://andygrunwald.com/"><img src="https://avatars.githubusercontent.com/u/320064?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Grunwald</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=andygrunwald" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
