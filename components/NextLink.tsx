@@ -8,9 +8,15 @@ interface PropertyProps {
   href?: string
 }
 
+interface LinkNode extends Node {
+  children: Node[]
+  properties: PropertyProps
+}
+
 export const NextLink = (props: ComponentPropsWithNode) => {
-  const { href } = props.node?.properties as PropertyProps
-  const [child] = props.node?.children as Node[]
+  const node = props.node as LinkNode
+  const { href } = node?.properties
+  const [child] = node?.children
 
   return (
     <>

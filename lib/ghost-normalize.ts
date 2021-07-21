@@ -48,24 +48,33 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: UrlWithStringQuery
  * Rewrite absolute Ghost CMS links to relative
  */
 
-const withRewriteGhostLinks = (cmsUrl: UrlWithStringQuery, basePath = '/') => (htmlAst: Node) => {
-  visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = urlParse((node.properties as HTMLAnchorElement).href)
-    if (href.protocol === cmsUrl.protocol && href.host === cmsUrl.host) {
-      ;(node.properties as HTMLAnchorElement).href = basePath + href.pathname?.substring(1)
-    }
-  })
-
-  return htmlAst
+interface LinkElement extends Node {
+  tagName: string
+  properties?: HTMLAnchorElement
+  children?: Node[]
 }
+
+const withRewriteGhostLinks =
+  (cmsUrl: UrlWithStringQuery, basePath = '/') =>
+  (htmlAst: Node) => {
+    visit(htmlAst, { tagName: `a` }, (node: LinkElement) => {
+      if (!node.properties) return
+      const href = urlParse(node.properties.href)
+      if (href.protocol === cmsUrl.protocol && href.host === cmsUrl.host) {
+        node.properties.href = basePath + href.pathname?.substring(1)
+      }
+    })
+
+    return htmlAst
+  }
 
 /**
  * Rewrite relative links to be used with next/link
  */
 
 const rewriteRelativeLinks = (htmlAst: Node) => {
-  visit(htmlAst, { tagName: `a` }, (node: Node) => {
-    const href = (node.properties as HTMLAnchorElement).href
+  visit(htmlAst, { tagName: `a` }, (node: LinkElement) => {
+    const href = node.properties?.href
     if (href && !href.startsWith(`http`)) {
       const copyOfNode = cloneDeep(node)
       delete copyOfNode.properties
@@ -88,11 +97,21 @@ interface NodeProperties {
   style?: string | string[]
 }
 
+interface PropertiesElement extends Node {
+  tagName: string
+  properties?: NodeProperties
+  children?: Node[]
+}
+
+interface PropertiesParent extends Parent {
+  tagName?: string
+}
+
 const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
   if (!prism.enable) return htmlAst
 
-  const getLanguage = (node: Node) => {
-    const className = (node.properties as NodeProperties).className || []
+  const getLanguage = (node: PropertiesElement) => {
+    const className = node.properties?.className || []
 
     for (const classListItem of className) {
       if (classListItem.slice(0, 9) === 'language-') {
@@ -102,7 +121,7 @@ const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
     return null
   }
 
-  visit(htmlAst, 'element', (node: Node, _index: number, parent: Parent | undefined) => {
+  visit(htmlAst, 'element', (node: PropertiesElement, _index: number, parent: PropertiesParent | undefined) => {
     if (!parent || parent.tagName !== 'pre' || node.tagName !== 'code') {
       return
     }
@@ -110,7 +129,7 @@ const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
     const lang = getLanguage(node)
     if (lang === null) return
 
-    let className = (node.properties as NodeProperties).className
+    let className = node.properties?.className
 
     let result
     try {
@@ -142,15 +161,25 @@ const tableOfContents = (htmlAst: Node) => {
  * Always attach aspectRatio for image cards
  */
 
-const rewriteInlineImages = async (htmlAst: Node) => {
-  let nodes: { node: Node; parent: Parent | undefined }[] = []
+interface ImageElement extends Node {
+  tagName: string
+  properties: HTMLImageElement
+  imageDimensions: Promise<Dimensions | null> | Dimensions
+}
 
-  visit(htmlAst, { tagName: `img` }, (node: Node, _index: number, parent: Parent | undefined) => {
+interface ImageParent extends Parent {
+  properties?: NodeProperties
+}
+
+const rewriteInlineImages = async (htmlAst: Node) => {
+  let nodes: { node: ImageElement; parent: ImageParent | undefined }[] = []
+
+  visit(htmlAst, { tagName: `img` }, (node: ImageElement, _index: number, parent: ImageParent | undefined) => {
     if (nextImages.inline) {
       node.tagName = `Image`
     }
 
-    const { src } = node.properties as HTMLImageElement
+    const { src } = node.properties
     node.imageDimensions = imageDimensions(src)
     nodes.push({ node, parent })
   })
@@ -158,15 +187,15 @@ const rewriteInlineImages = async (htmlAst: Node) => {
   const dimensions = await Promise.all(nodes.map(({ node }) => node.imageDimensions))
 
   nodes.forEach(({ node, parent }, i) => {
-    node.imageDimensions = dimensions[i]
     if (dimensions[i] === null) return
-    const { width, height } = dimensions[i] as Dimensions
+    node.imageDimensions = dimensions[i] as Dimensions
+    const { width, height } = node.imageDimensions
     const aspectRatio = width / height
     const flex = `flex: ${aspectRatio} 1 0`
-    if (parent) {
-      let parentStyle = (parent.properties as NodeProperties).style || []
+    if (parent && parent.properties) {
+      let parentStyle = parent.properties.style || []
       if (typeof parentStyle === 'string') parentStyle = [parentStyle]
-      ;(parent.properties as NodeProperties).style = [...parentStyle, flex]
+      parent.properties.style = [...parentStyle, flex]
     }
   })
 
