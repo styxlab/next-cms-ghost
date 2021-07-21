@@ -20,9 +20,13 @@ As the interest in this project rises, I want to give some guidelines on how you
 
 - Do not open an issue on GitHub until you have collected positive feedback about the change. GitHub issues are primarily intended for bug reports and fixes.
 
-#### **Do you have questions about the source code?**
+#### **Do you have questions about this project?**
 
 - Ask any question about how to use next-cms-ghost in the [Github Discussions](https://github.com/styxlab/next-cms-ghost/discussions).
+
+#### **How do you acknowledge contributions?**
+
+- This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) guidelines which means all contributors are regognized, not just the ones who push code. We list all contributors in the [README](https://github.com/styxlab/next-cms-ghost#-contributions).
 
 If you have any idea or concern that doesn't fit into any of the above categories, just [send me a private message on twitter](https://twitter.com/JamifyJS).
 
