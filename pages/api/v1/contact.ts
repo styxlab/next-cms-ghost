@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import nodemailer from 'nodemailer'
-import smtpTrans from 'nodemailer-smtp-transport'
 import validator from 'email-validator'
 import sanitize from 'sanitize-html'
 import { processEnv } from '@lib/processEnv'
@@ -25,7 +24,7 @@ const smtp = {
   },
 }
 
-const transporter = nodemailer.createTransport(smtpTrans(smtp))
+const transporter = nodemailer.createTransport(smtp)
 
 const sendEmail = async ({ name, email, subject, message }: SendEmailProps) => {
   const output = `
