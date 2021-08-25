@@ -29,7 +29,7 @@ interface Custom404Props {
 }
 
 export default function Custom404({ posts, settings, bodyClass }: Custom404Props) {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
 
   return (
     <Layout {...{ settings, bodyClass }} header={<HeaderPage {...{ settings }} />} errorClass="error-content">

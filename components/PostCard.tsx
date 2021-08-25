@@ -21,7 +21,7 @@ interface PostCardProps {
 
 export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
   const { nextImages } = settings.processEnv
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const cmsUrl = settings.url
   const collectionPath = collections.getCollectionByNode(post)
   const url = resolveUrl({ cmsUrl, collectionPath, slug: post.slug, url: post.url })

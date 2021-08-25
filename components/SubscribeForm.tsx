@@ -5,7 +5,7 @@ import { useOverlay } from '@components/contexts/overlayProvider'
 import { LoaderIcon } from '@icons/LoaderIcon'
 
 export const SubscribeForm = ({ settings }: { settings: GhostSettings }) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const { message, handleSubmit, email, handleChange } = useOverlay()
 
   return (

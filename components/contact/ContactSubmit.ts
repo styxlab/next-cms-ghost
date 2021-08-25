@@ -30,9 +30,9 @@ const encodeFormData = (data: DataValues, contentType: string) => {
   return JSON.stringify(data)
 }
 
-export const handleSubmit = async (serviceConfig: ServiceConfig, values: FormValues, clearForm: () => void, setStatus: (msg: string) => void) => {
+export const handleSubmit = async (serviceConfig: ServiceConfig, values: FormValues, clearForm: () => void, setStatus: (msg: string) => void, lang?: string) => {
   const { url, contentType } = serviceConfig
-  const text = get(getLang())
+  const text = get(getLang(lang))
 
   // Convert FormValues to DataValues
   const entries = Object.entries(values).map(([key, v]) => ('value' in v ? [key, v.value] : [key, v.index > 0 ? v.values[v.index - 1] : '']))

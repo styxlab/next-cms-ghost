@@ -40,10 +40,11 @@ interface TableOfContentsProps {
   toc: IToC[]
   url: string
   maxDepth?: number
+  lang?: string
 }
 
-export const TableOfContents = ({ toc, url, maxDepth = 2 }: TableOfContentsProps) => {
-  const text = get(getLang())
+export const TableOfContents = ({ toc, url, maxDepth = 2, lang }: TableOfContentsProps) => {
+  const text = get(getLang(lang))
 
   const [isDesktop, setIsDesktop] = useState(false)
   const activeHash = useActiveHash(getHeadingIds(toc, true, maxDepth))

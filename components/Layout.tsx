@@ -33,7 +33,8 @@ interface LayoutProps {
 }
 
 export const Layout = ({ settings, header, children, isHome, sticky, previewPosts, bodyClass, errorClass }: LayoutProps) => {
-  const text = get(getLang())
+  const lang = settings.lang
+  const text = get(getLang(lang))
   const site = settings
   const title = text(`SITE_TITLE`, site.title)
   const { siteUrl, memberSubscriptions } = settings.processEnv
@@ -89,7 +90,7 @@ export const Layout = ({ settings, header, children, isHome, sticky, previewPost
         </footer>
       </div>
 
-      {memberSubscriptions && <SubscribeSuccess {...{ title }} />}
+      {memberSubscriptions && <SubscribeSuccess {...{ title, lang }} />}
 
       {/* The big email subscribe modal content */}
       {memberSubscriptions && <SubscribeOverlay {...{ settings }} />}

@@ -17,7 +17,7 @@ export interface SiteNavProps {
 }
 
 export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const { processEnv } = settings
   const { customNavigation, nextImages, memberSubscriptions } = processEnv
   const config: {
@@ -98,7 +98,7 @@ export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
           </div>
         )}
         <DarkMode {...{ settings }} />
-        {memberSubscriptions && <SubscribeButton />}
+        {memberSubscriptions && <SubscribeButton {...{ lang: settings.lang }} />}
       </div>
     </nav>
   )

@@ -14,10 +14,11 @@ export interface ServiceConfig {
 interface ContactFormProps {
   topics: string[]
   serviceConfig: ServiceConfig
+  lang?: string
 }
 
-export const ContactForm = ({ topics, serviceConfig }: ContactFormProps) => {
-  const text = get(getLang())
+export const ContactForm = ({ topics, serviceConfig, lang }: ContactFormProps) => {
+  const text = get(getLang(lang))
   const [name, setNameError, clearName] = useInput('')
   const [email, setEmailError, clearEmail] = useInput('')
   const [textArea, setTextAreaError, clearTextArea] = useInput('')
@@ -32,7 +33,7 @@ export const ContactForm = ({ topics, serviceConfig }: ContactFormProps) => {
   const clear = [clearName, clearEmail, clearTextArea, clearSubject]
   const clearForm = () => clear.forEach((c) => c())
 
-  const validate = new Validate()
+  const validate = new Validate({ lang })
   const validateAll = ({ name, email, subject, message }: typeof fields) => {
     if (!validate.name(name, setNameError)) return false
     if (!validate.email(email, setEmailError)) return false
@@ -59,7 +60,7 @@ export const ContactForm = ({ topics, serviceConfig }: ContactFormProps) => {
         onSubmit={(ev) => {
           ev.preventDefault()
           if (!validateAll(fields)) return
-          handleSubmit(serviceConfig, fields, clearForm, (msg: string) => setSuccess(msg))
+          handleSubmit(serviceConfig, fields, clearForm, (msg: string) => setSuccess(msg), lang)
         }}
         data-netlify="true"
         data-netlify-honeypot="bot-field"

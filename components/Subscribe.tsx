@@ -3,7 +3,7 @@ import { getLang, get } from '@utils/use-lang'
 import { SubscribeForm } from '@components/SubscribeForm'
 
 export const Subscribe = ({ settings }: { settings: GhostSettings }) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const title = text(`SITE_TITLE`, settings.title)
 
   return (
