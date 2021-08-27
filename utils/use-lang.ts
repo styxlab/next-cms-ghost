@@ -1,7 +1,7 @@
 import { lang, StringKeyObjectMap } from '@utils/lang'
 
 const getLang = (locale: string = 'en') => {
-  return lang[locale]
+  return lang[locale] ?? lang.en
 }
 
 const get = (text: StringKeyObjectMap) => (name: string, fallback?: string) => {
