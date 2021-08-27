@@ -63,7 +63,7 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
       width = w
       height = h
       hasError = false
-    } catch (error) {
+    } catch (error: any) {
       const { code } = error
 
       hasError = true

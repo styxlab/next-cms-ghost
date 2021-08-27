@@ -202,7 +202,7 @@ export async function getPostBySlug(slug: string): Promise<GhostPostOrPage | nul
 
     const { url } = await getAllSettings()
     result = await normalizePost(post, (url && urlParse(url)) || undefined)
-  } catch (error) {
+  } catch (error: any) {
     if (error.response?.status !== 404) throw new Error(error)
     return null
   }
@@ -222,7 +222,7 @@ export async function getPageBySlug(slug: string): Promise<GhostPostOrPage | nul
 
     const { url } = await getAllSettings()
     result = await normalizePost(page, (url && urlParse(url)) || undefined)
-  } catch (error) {
+  } catch (error: any) {
     if (error.response?.status !== 404) throw new Error(error)
     return null
   }
