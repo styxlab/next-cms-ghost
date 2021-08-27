@@ -10,7 +10,7 @@ Create and publish flaring fast blogs with <i>next-cms-ghost</i>. Powered by the
 
 &nbsp;
 
-## 🔥 Alternatives
+## 🔥 Alternative
 
 Check out [Blogody](https://www.blogody.com) for an integrated solution with all the benefits of this repository included!
 
