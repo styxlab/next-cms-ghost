@@ -10,7 +10,7 @@ interface HeaderTagProps {
 }
 
 export const HeaderTag = ({ settings, tag }: HeaderTagProps) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const featureImg = tag.feature_image || ''
   const numberOfPosts = tag.count?.posts
 

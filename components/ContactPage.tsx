@@ -93,7 +93,7 @@ export function Contact({ cmsData }: PageProps) {
 
             <section className="post-full-content">
               <div className="post-content">
-                <ContactForm topics={page.form_topics} serviceConfig={page.serviceConfig} />
+                <ContactForm {...{ topics: page.form_topics, serviceConfig: page.serviceConfig, lang: settings.lang }} />
               </div>
 
               <div className="post-content" dangerouslySetInnerHTML={{ __html: page.html || '' }}>

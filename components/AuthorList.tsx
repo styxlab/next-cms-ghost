@@ -16,7 +16,7 @@ interface AuthorListProps {
 }
 
 export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const { nextImages } = settings.processEnv
   const { url: cmsUrl } = settings
 

@@ -50,7 +50,8 @@ export const Post = ({ cmsData }: PostProps) => {
   const { processEnv } = settings
   const { nextImages, toc, memberSubscriptions, commenting } = processEnv
 
-  const text = get(getLang())
+  const lang = settings.lang
+  const text = get(getLang(lang))
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
   const featImg = post.featureImage
   const postClass = PostClass({ tags: post.tags, isFeatured: !!featImg, isImage: !!featImg })
@@ -145,7 +146,7 @@ export const Post = ({ cmsData }: PostProps) => {
                   ))}
 
                 <section className="post-full-content">
-                  {toc.enable && !!post.toc && <TableOfContents {...{ toc: post.toc, url: resolveUrl({ cmsUrl, collectionPath, slug, url }), maxDepth: toc.maxDepth }} />}
+                  {toc.enable && !!post.toc && <TableOfContents {...{ toc: post.toc, url: resolveUrl({ cmsUrl, collectionPath, slug, url }), maxDepth: toc.maxDepth, lang }} />}
                   <div className="post-content load-external-scripts">
                     <RenderContent htmlAst={htmlAst} />
                   </div>

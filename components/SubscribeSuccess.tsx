@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { getLang, get } from '@utils/use-lang'
 import { useRouter } from 'next/router'
 
-export const SubscribeSuccess = ({ title }: { title: string }) => {
-  const text = get(getLang())
+export const SubscribeSuccess = ({ title, lang }: { title: string; lang?: string }) => {
+  const text = get(getLang(lang))
   const router = useRouter()
   const { action, success } = router.query
 

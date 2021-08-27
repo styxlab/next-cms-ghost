@@ -136,7 +136,7 @@ const syntaxHighlightWithPrismJS = (htmlAst: Node) => {
       className = (className || []).concat('language-' + lang)
       result = refractor.highlight(nodeToString(node), lang)
     } catch (err) {
-      if (prism.ignoreMissing && /Unknown language/.test(err.message)) {
+      if (prism.ignoreMissing && /Unknown language/.test((err as Error).message)) {
         return
       }
       throw err

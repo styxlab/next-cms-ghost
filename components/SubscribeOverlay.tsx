@@ -9,7 +9,7 @@ import { siteIcon } from '@meta/siteDefaults'
 import { SubscribeForm } from '@components/SubscribeForm'
 
 export const SubscribeOverlay = ({ settings }: { settings: GhostSettings }) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const { isOpen, handleClose } = useOverlay()
 
   const title = text(`SITE_TITLE`, settings.title)

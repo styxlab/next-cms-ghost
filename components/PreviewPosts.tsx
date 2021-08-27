@@ -19,7 +19,7 @@ interface PreviewPostsProps {
 }
 
 export const PreviewPosts = ({ settings, primaryTag, posts, prev, next }: PreviewPostsProps) => {
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const { url: cmsUrl } = settings
   const url = (primaryTag && resolveUrl({ cmsUrl, slug: primaryTag.slug, url: primaryTag.url })) || ''
   const primaryTagCount = primaryTag?.count?.posts

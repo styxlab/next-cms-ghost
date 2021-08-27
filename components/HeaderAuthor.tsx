@@ -14,7 +14,7 @@ interface HeaderAuthorProps {
 
 export const HeaderAuthor = ({ settings, author }: HeaderAuthorProps) => {
   const { nextImages } = settings.processEnv
-  const text = get(getLang())
+  const text = get(getLang(settings.lang))
   const twitterUrl = author.twitter ? `https://twitter.com/${author.twitter.replace(/^@/, ``)}` : null
   const facebookUrl = author.facebook ? `https://www.facebook.com/${author.facebook.replace(/^\//, ``)}` : null
 

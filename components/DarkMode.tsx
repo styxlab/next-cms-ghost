@@ -8,5 +8,5 @@ interface DarkModeProps {
 export const DarkMode = ({ settings }: DarkModeProps) => {
   const { darkMode } = settings.processEnv
   if (darkMode.defaultMode === null) return null
-  return <DarkModeToggle />
+  return <DarkModeToggle {...{ lang: settings.lang }} />
 }

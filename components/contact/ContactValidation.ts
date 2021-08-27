@@ -4,8 +4,8 @@ import { useInputProps, useInputError, useSelectProps, useSelectError } from '@c
 export class Validate {
   text
 
-  constructor() {
-    this.text = get(getLang())
+  constructor({ lang }: { lang?: string }) {
+    this.text = get(getLang(lang))
   }
 
   name(item: useInputProps, setError: useInputError) {
