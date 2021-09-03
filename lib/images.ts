@@ -63,7 +63,8 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
       width = w
       height = h
       hasError = false
-    } catch (error: any) {
+    } catch (e) {
+      const error = e as { code: string }
       const { code } = error
 
       hasError = true
@@ -75,7 +76,7 @@ export const imageDimensions = async (url: string | undefined | null, noCache?: 
       }
       if (!['ECONNRESET', 'ECONTENT'].includes(code)) {
         console.warn(`images.ts: Error while probing image with url: ${url}.`)
-        throw new Error(error)
+        throw e
       }
       //console.warn(`images.ts: Network error while probing image with url: ${url}.`)
     }
