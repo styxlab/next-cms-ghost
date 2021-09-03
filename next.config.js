@@ -20,4 +20,5 @@ module.exports = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
+  experimental: { esmExternals: true },
 })
