@@ -1,5 +1,6 @@
 import path from 'path'
 import { resolve } from 'url'
+import { existsSync } from 'fs'
 
 import { siteImage } from '@meta/siteDefaults'
 import { imageDimensions, imageDimensionsFromFile, Dimensions } from '@lib/images'
@@ -21,14 +22,19 @@ export const seoImage = async (props: SeoImageProps): Promise<ISeoImage> => {
 
   if (imageUrl) {
     const url = imageUrl
-    const dimensions = await imageDimensions(url) || defaultDimensions
+    const dimensions = (await imageDimensions(url)) || defaultDimensions
     return { url, dimensions }
   }
 
   const publicRoot = path.join(process.cwd(), 'public')
   const file = path.join(publicRoot, imageName || siteImage)
-  const dimensions = await imageDimensionsFromFile(file) || defaultDimensions
+
   const url = resolve(siteUrl, imageName || siteImage)
+  if (existsSync(file)) {
+    const dimensions = (await imageDimensionsFromFile(file)) || defaultDimensions
+    return { url, dimensions }
+  }
+  const dimensions = (await imageDimensions(url)) || defaultDimensions
 
   return { url, dimensions }
 }
