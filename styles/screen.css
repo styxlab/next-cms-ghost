@@ -2066,13 +2066,13 @@ html.casper .read-next-card-footer a:hover {
 
 /* 7.5. Koenig Styles
 /* ---------------------------------------------------------- */
-
+/*
 html.casper .post-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
+*/
 html.casper .post-full-content .kg-image {
     margin: 0 auto;
     max-width: 100%;
