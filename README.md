@@ -237,6 +237,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
   </tr>
   <tr>
     <td align="center"><a href="http://andygrunwald.com/"><img src="https://avatars.githubusercontent.com/u/320064?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Grunwald</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=andygrunwald" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/seoxyz"><img src="https://avatars.githubusercontent.com/u/54107458?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hikz</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=seoxyz" title="Code">💻</a></td>
   </tr>
 </table>
 
