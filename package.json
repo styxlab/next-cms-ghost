@@ -32,7 +32,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "cross-env IS_EXPORT=true ANALYZE=true next build && next export",
+    "export": "cross-env IS_EXPORT=true next build && next export",
     "clean": "rm -rf .cache public/images",
     "format": "prettier --write **/*.{js,ts,tsx}",
     "lint": "eslint . --ext ts --ext tsx --ext js",
