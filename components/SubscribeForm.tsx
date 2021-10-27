@@ -14,12 +14,14 @@ export const SubscribeForm = ({ settings }: { settings: GhostSettings }) => {
         <label htmlFor="email">
           {text(`EMAIL`)}
           <style jsx>{`
-            position: absolute;
-            height: 1px;
-            width: 1px;
-            clip: rect(1px, 1px, 1px, 1px);
-            border: 0;
-            overflow: hidden;
+            label {
+              position: absolute;
+              height: 1px;
+              width: 1px;
+              clip: rect(1px, 1px, 1px, 1px);
+              border: 0;
+              overflow: hidden;
+            }
           `}</style>
         </label>
         <input
