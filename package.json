@@ -46,7 +46,6 @@
     "disqus-react": "^1.1.2",
     "email-validator": "^2.0.4",
     "fs": "^0.0.1-security",
-    "hast-util-to-string": "^1.0.4",
     "lodash.throttle": "^4.1.1",
     "next": "^11.1.2",
     "nodemailer": "^6.6.3",
