@@ -64,6 +64,7 @@ export interface ProcessEnvProps {
   customNavigation: NavItem[]
   isr: {
     enable: boolean
+    revalidate: number
     maxNumberOfPosts: number
     maxNumberOfPages: number
   }
@@ -101,6 +102,7 @@ export const processEnv: ProcessEnvProps = {
   customNavigation: reolveJSON(process.env.JAMIFY_CUSTOM_NAVIGATION, appConfig.customNavigation),
   isr: {
     enable: resolveBool(process.env.JAMIFY_NEXT_ISR, appConfig.isr),
+    revalidate: resolveNumber(process.env.JAMIFY_NEXT_ISR_REVALIDATE, appConfig.revalidate),
     maxNumberOfPosts: resolveNumber(process.env.JAMIFY_NEXT_ISR_MAX_NUMBER_POSTS, appConfig.maxNumberOfPosts),
     maxNumberOfPages: resolveNumber(process.env.JAMIFY_NEXT_ISR_MAX_NUMBER_PAGES, appConfig.maxNumberOfPages),
   },

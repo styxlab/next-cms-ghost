@@ -50,5 +50,6 @@ export const customNavigation: NavItem[] = [{ label: 'Contact', url: '/contact' 
 
 // Incremental Static Regenerations (ISR)
 export const isr: boolean = true
+export const revalidate: number = 10
 export const maxNumberOfPosts: number = 20
 export const maxNumberOfPages: number = 20
