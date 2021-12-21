@@ -60,6 +60,8 @@ export const getStaticProps: GetStaticProps = async () => {
   let settings
   let posts: GhostPostsOrPages | []
 
+  console.time('Index - getStaticProps')
+
   try {
     settings = await getAllSettings()
     posts = await getAllPosts()
@@ -74,10 +76,12 @@ export const getStaticProps: GetStaticProps = async () => {
     bodyClass: BodyClass({ isHome: true }),
   }
 
+  console.timeEnd('Index - getStaticProps')
+
   return {
     props: {
       cmsData,
     },
-    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: processEnv.isr.revalidate }), // re-generate at most once every revalidate second
   }
 }

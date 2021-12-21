@@ -1,14 +1,14 @@
 import Rehype from 'rehype'
-import { Node, Parent } from 'unist'
+import { Node as UnistNode, Parent } from 'unist'
 import visit from 'unist-util-visit'
 import { cloneDeep } from 'lodash'
 import refractor from 'refractor'
-import nodeToString from 'hast-util-to-string'
 import { PostOrPage } from '@tryghost/content-api'
 import { Dimensions, imageDimensions } from '@lib/images'
 import { generateTableOfContents } from '@lib/toc'
 import { GhostPostOrPage, createNextProfileImagesFromAuthors } from './ghost'
 import { parse as urlParse, UrlWithStringQuery } from 'url'
+import { toString as nodeToString } from './nodeToString'
 
 import { processEnv } from '@lib/processEnv'
 const { prism, toc, nextImages } = processEnv
@@ -47,6 +47,10 @@ export const normalizePost = async (post: PostOrPage, cmsUrl: UrlWithStringQuery
 /**
  * Rewrite absolute Ghost CMS links to relative
  */
+
+interface Node extends UnistNode {
+  value?: string
+}
 
 interface LinkElement extends Node {
   tagName: string

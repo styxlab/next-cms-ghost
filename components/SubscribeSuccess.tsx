@@ -20,11 +20,12 @@ export const SubscribeSuccess = ({ title, lang }: { title: string; lang?: string
   }, [setType, setCloseButtonOpacity, action, success])
 
   return (
-    <div className={`subscribe-notification subscribe-${type}-message${closeState}`}>
+    <div className={`subscribe-notification subscribe-${type}-message${closeState}`} style={{ opacity: `${showBanner ? 1 : 0}` }}>
       <style jsx>{`
-        opacity: ${showBanner ? 1 : 0};
         @media (max-width: 368px) {
-          padding: 5.5rem 0 2rem;
+          a {
+            padding: 5.5rem 0 2rem;
+          }
         }
         a {
           left: unset;

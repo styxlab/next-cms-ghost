@@ -37,22 +37,54 @@
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
     "paths": {
-      "@siteOptions": ["siteOptions"],
-      "@siteConfig": ["siteConfig"],
-      "@mediaConfig": ["mediaConfig"],
-      "@appConfig": ["appConfig"],
-      "@routesConfig": ["routesConfig"],
-      "@lib/*": ["lib/*"],
-      "@pages/*": ["pages/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@dashboard/*": ["pages/dashboard/*"],
-      "@components/*": ["components/*"],
-      "@common/*": ["components/common/*"],
-      "@icons/*": ["components/icons/*"],
-      "@effects/*": ["components/effects/*"],
-      "@helpers/*": ["components/helpers/*"],
-      "@meta/*": ["components/meta/*"]
+      "@siteOptions": [
+        "siteOptions"
+      ],
+      "@siteConfig": [
+        "siteConfig"
+      ],
+      "@mediaConfig": [
+        "mediaConfig"
+      ],
+      "@appConfig": [
+        "appConfig"
+      ],
+      "@routesConfig": [
+        "routesConfig"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@dashboard/*": [
+        "pages/dashboard/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@common/*": [
+        "components/common/*"
+      ],
+      "@icons/*": [
+        "components/icons/*"
+      ],
+      "@effects/*": [
+        "components/effects/*"
+      ],
+      "@helpers/*": [
+        "components/helpers/*"
+      ],
+      "@meta/*": [
+        "components/meta/*"
+      ]
     } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     "typeRoots": [
@@ -74,16 +106,30 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": ["node_modules", "types", ".next", "out"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "types",
+    ".next",
+    "out"
+  ]
 }
-
 //include[".next/common/icons/avatar-icon.tsx"]

@@ -22,7 +22,6 @@ const defaultOptions = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
-  experimental: { esmExternals: true },
 })
 
 /**

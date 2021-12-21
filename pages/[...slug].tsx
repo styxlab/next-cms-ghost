@@ -65,6 +65,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!(params && params.slug && Array.isArray(params.slug))) throw Error('getStaticProps: wrong parameters.')
   const [slug] = params.slug.reverse()
 
+  console.time('Post - getStaticProps')
+
   const settings = await getAllSettings()
 
   let post: GhostPostOrPage | null = null
@@ -125,6 +127,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const tags = (contactPage && contactPage.tags) || (page && page.tags) || undefined
 
+  console.timeEnd('Post - getStaticProps')
+
   return {
     props: {
       cmsData: {
@@ -140,7 +144,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         bodyClass: BodyClass({ isPost, page: contactPage || page || undefined, tags }),
       },
     },
-    ...(processEnv.isr.enable && { revalidate: 1 }), // re-generate at most once every second
+    ...(processEnv.isr.enable && { revalidate: processEnv.isr.revalidate }), // re-generate at most once every revalidate second
   }
 }
 
