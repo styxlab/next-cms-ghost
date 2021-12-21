@@ -49,6 +49,7 @@ import { NavItem } from '@lib/ghost'
 export const customNavigation: NavItem[] = [{ label: 'Contact', url: '/contact' }]
 
 // Incremental Static Regenerations (ISR)
+// Note: must be disbaled, when using `next export`
 export const isr: boolean = false
 export const revalidate: number = 10
 export const maxNumberOfPosts: number = 20
