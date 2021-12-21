@@ -85,14 +85,14 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "next-image-loader": "^2.0.5",
+    "next-image-loader": "^2.0.6",
     "next-sitemap": "^1.6.203",
     "postcss": "^8.4.5",
     "postcss-color-mod-function": "^3.0.3",
     "postcss-easy-import": "^3.0.0",
     "postcss-preset-env": "^7.0.2",
     "prettier": "^2.5.1",
-     "serve": "^12.0.1",
+    "serve": "^13.0.2",
     "typescript": "^4.5.4"
   }
 }
