@@ -28,7 +28,7 @@ export const SEO = (props: SEOProps) => {
 
   const router = useRouter()
   const siteUrl = settings.processEnv.siteUrl
-  const canonical = url.resolve(siteUrl, router.asPath)
+  const canonical = url.resolve(siteUrl, `${router.basePath}${router.asPath}`)
 
   const { twitter, title: settingsTitle, description: settingsDescription, meta_title, meta_description } = settings
   const title = t || meta_title || settingsTitle || siteTitleMeta
