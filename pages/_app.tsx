@@ -2,6 +2,7 @@ import { AppProps } from 'next/app'
 import { OverlayProvider } from '@components/contexts/overlayProvider'
 import { ThemeProvider } from '@components/contexts/themeProvider'
 import { processEnv } from '@lib/processEnv'
+import { ToggleScript } from '@components/ToggleScript'
 
 import '@styles/screen.css'
 import '@styles/screen-fixings.css'
@@ -14,6 +15,7 @@ function App({ Component, pageProps }: AppProps) {
     <ThemeProvider {...processEnv.darkMode} >
       <OverlayProvider >
         <Component {...pageProps} />
+        <ToggleScript/>
       </OverlayProvider>
     </ThemeProvider>
   )
