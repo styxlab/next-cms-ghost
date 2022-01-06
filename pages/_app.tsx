@@ -11,12 +11,11 @@ import '@styles/prism.css'
 import '@styles/toc.css'
 
 function App({ Component, pageProps }: AppProps) {
-  const { url } = pageProps
   return (
     <ThemeProvider {...processEnv.darkMode} >
       <OverlayProvider >
         <Component {...pageProps} />
-        <CorrectTocScript { ...url || "" }/>
+        <CorrectTocScript/>
       </OverlayProvider>
     </ThemeProvider>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import Script from 'next/script'
 
-export const CorrectTocScript = (url: string) => {
+export const CorrectTocScript = () => {
   return (
     <Script
       id={"CorrectTocScript" + new Date().getTime()}
