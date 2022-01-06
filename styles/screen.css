@@ -2348,6 +2348,139 @@ html.casper .kg-bookmark-publisher {
     }
 }
 
+/*** Toggle and Callouts ***/
+html.casper .kg-callout-card .kg-callout-text,
+html.casper .kg-toggle-card .kg-toggle-content > ol,
+html.casper .kg-toggle-card .kg-toggle-content > ul,
+html.casper .kg-toggle-card .kg-toggle-content > p {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.6em;
+}
+
+html.casper .kg-toggle-card .kg-toggle-heading-text {
+    font-size: 2.0rem;
+}
+
+html.casper .kg-toggle-card .kg-toggle-content > ol,
+html.casper .kg-toggle-card .kg-toggle-content > ul,
+html.casper .kg-product-card .kg-product-card-description > ol,
+html.casper .kg-product-card .kg-product-card-description > ul {
+    padding-left: 1.9em;
+}
+
+@media (max-width: 650px) {
+    html.casper .kg-callout-card .kg-callout-text,
+    html.casper .kg-toggle-card .kg-toggle-content > ol,
+    html.casper .kg-toggle-card .kg-toggle-content > ul,
+    html.casper .kg-toggle-card .kg-toggle-content > p {
+        font-size: 1.7rem;
+    }
+}
+
+html.casper .kg-callout-card .kg-callout-text,
+html.casper .kg-toggle-card .kg-toggle-content > ol,
+html.casper .kg-toggle-card .kg-toggle-content > ul,
+html.casper .kg-toggle-card .kg-toggle-content > p {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.6em;
+}
+
+html.casper .kg-toggle-card {
+        background: 0 0;
+        box-shadow: inset 0 0 0 1px rgba(124, 139, 154, .25);
+        border-radius: 4px;
+        padding: 1.2em;
+    width: 100%;
+}
+
+html.casper .kg-toggle-card[data-kg-toggle-state=close] .kg-toggle-content {
+        height: 0;
+        overflow: hidden;
+        transition: opacity .5s ease, top .35s ease;
+        opacity: 0;
+        top: -.5em;
+        position: relative
+}
+
+html.casper .kg-toggle-content {
+        height: auto;
+        opacity: 1;
+        transition: opacity 1s ease, top .35s ease;
+        top: 0;
+        position: relative
+}
+
+html.casper .kg-toggle-card[data-kg-toggle-state=close] svg {
+        transform: unset
+}
+
+html.casper .kg-toggle-heading {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start
+}
+
+html.casper .kg-toggle-card h4.kg-toggle-heading-text {
+        font-size: 1.15em;
+        font-weight: 700;
+        line-height: 1.3em;
+        margin-top: 0;
+        margin-bottom: 0
+}
+
+html.casper .kg-toggle-content p:first-of-type {
+        margin-top: .5em
+}
+
+html.casper .kg-toggle-card .kg-toggle-content ol,
+html.casper .kg-toggle-card .kg-toggle-content p,
+html.casper .kg-toggle-card .kg-toggle-content ul {
+        font-size: .95em;
+        line-height: 1.5em;
+        margin-top: .95em;
+        margin-bottom: 0
+}
+
+html.casper .kg-toggle-card-icon {
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -1em;
+        background: 0 0;
+        border: 0
+}
+
+html.casper .kg-toggle-heading svg {
+        width: 14px;
+        color: rgba(124, 139, 154, .5);
+        transition: all .3s;
+        transform: rotate(-180deg)
+}
+
+html.casper .kg-toggle-heading path {
+        fill: none;
+        stroke: currentcolor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5;
+        fill-rule: evenodd
+}
+
+html.casper .kg-toggle-card+.kg-toggle-card {
+        margin-top: 1em
+}
+
+html.casper .kg-toggle-card li+li {
+        margin-top: .5em
+}
+
 /* 8. Author Template
 /* ---------------------------------------------------------- */
 html.casper .author-header {
