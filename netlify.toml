@@ -1,15 +1,8 @@
 [build]
   command = "yarn build"
-  functions = "out_functions"
-  publish = "out_publish"
+  publish = ".next"
 
 [build.environment]
   JAMIFY_NEXT_ISR = "false"
   JAMIFY_NEXT_FEATURE_IMAGES = "false"
   JAMIFY_NEXT_INLINE_IMAGES = "false"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[[plugins]]
-  package = "netlify-plugin-cache-nextjs"
