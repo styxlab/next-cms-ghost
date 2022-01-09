@@ -240,6 +240,7 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="https://github.com/seoxyz"><img src="https://avatars.githubusercontent.com/u/54107458?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hikz</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=seoxyz" title="Code">💻</a></td>
     <td align="center"><a href="https://huydhoang.com"><img src="https://avatars.githubusercontent.com/u/8493044?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Huy</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Ahuydhoang" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://meyer-laurent.com"><img src="https://avatars.githubusercontent.com/u/94935904?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Laurent Meyer</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=laurentmmeyer" title="Code">💻</a></td>
+    <td align="center"><a href="https://prettyfrenchgames.com/"><img src="https://avatars.githubusercontent.com/u/10576004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Garfounkel</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=Garfounkel" title="Code">💻</a></td>
   </tr>
 </table>
 
