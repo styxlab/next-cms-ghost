@@ -53,6 +53,8 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Dark Mode</li>
   <li>Featured posts pinned on top</li>
   <li>Customizable navigation headers</li>
+  <li>Zoom images on click to full-screen</li>
+  <li>Render GitHub Gists</li>
 </ul>
 </details>
 <details>
