@@ -2,6 +2,9 @@ import Image from 'next/image'
 import { ComponentPropsWithNode } from 'rehype-react'
 import { Node } from 'unist'
 import { Dimensions } from '@lib/images'
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
+
 
 interface PropertyProps {
   src: string
@@ -24,7 +27,9 @@ export const NextImage = (props: ComponentPropsWithNode) => {
   return (
     <div className="next-image-wrapper">
       <div {...{ className }}>
-        <Image src={src} {...imageDimensions} {...{ className }} alt="" />
+        <Zoom>
+          <Image src={src} {...imageDimensions} {...{ className }} alt="" />
+        </Zoom>
       </div>
     </div>
   )
