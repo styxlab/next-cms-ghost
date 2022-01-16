@@ -38,3 +38,7 @@ export const resolveUrl = ({ cmsUrl, collectionPath = `/`, slug, url }: ResolveU
   const dirUrl = url.replace(cmsUrl, '/').replace('//', '/')
   return resolvePath(dirUrl)
 }
+
+export const resolvePostFullPath = (siteUrl: string, slug: string) => {
+  return `${trimSlash(siteUrl)}/${slug}`
+}
