@@ -93,6 +93,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Syntax highlighting with PrismJS</li>
   <li>Table Of Contents</li>
   <li>Contact Page with built-in notification service</li>
+  <li>Google Analytics</li> 
 </ul>
 </details>
 <details>
