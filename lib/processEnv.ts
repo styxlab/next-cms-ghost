@@ -35,6 +35,7 @@ function reolveJSON<T>(value: string | undefined, defaultValue: T) {
 export interface ProcessEnvProps {
   siteUrl: string
   platform: string
+  gaMeasurementId: string
   darkMode: {
     defaultMode: appConfig.DarkMode
     overrideOS: boolean
@@ -73,6 +74,7 @@ export interface ProcessEnvProps {
 export const processEnv: ProcessEnvProps = {
   siteUrl,
   platform,
+  gaMeasurementId: process.env.JAMIFY_GA_MEASUREMENT_ID || appConfig.gaMeasurementId,
   darkMode: {
     defaultMode: resolveDarkMode(process.env.JAMIFY_DARK_MODE_DEFAULT, appConfig.defaultMode),
     overrideOS: resolveBool(process.env.JAMIFY_DARK_MODE_OVERRIDE_OS, appConfig.overrideOS),
