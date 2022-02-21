@@ -68,7 +68,7 @@ export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
               <a className="site-nav-logo">
                 <div
                   style={{
-                    height: '${targetHeight}px',
+                    height: `${targetHeight}px`,
                     width: `${calcSiteLogoWidth(siteLogo, targetHeight)}px`,
                   }}
                 >
