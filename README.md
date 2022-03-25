@@ -250,6 +250,9 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
   <tr>
     <td align="center"><a href="https://github.com/nring"><img src="https://avatars.githubusercontent.com/u/801071?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nat Ring</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=nring" title="Code">💻</a></td>
   </tr>
+    <tr>
+    <td align="center"><a href="https://github.com/vitoropereira"><img src="https://avatars.githubusercontent.com/u/47868559?v=4?s=100" width="100px;" alt=""/><br /><sub><b>VITOR PEREIRA</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=vitoropereira" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
