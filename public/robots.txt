@@ -7,3 +7,4 @@ Host: https://next.jamify.org
 
 # Sitemaps
 Sitemap: https://next.jamify.org/sitemap.xml
+Sitemap: https://next.jamify.org/sitemap-0.xml
