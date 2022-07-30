@@ -47,7 +47,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
 </ul>
 </details>
 <details>
-<summary>Extened Casper Styles ✨</summary>
+<summary>Extended Casper Styles ✨</summary>
 <br />
 <ul>
   <li>Dark Mode</li>
