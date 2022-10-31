@@ -16,12 +16,6 @@ Check out [Blogody](https://www.blogody.com) for an integrated solution with all
 
 &nbsp;
 
-## 🎉 Demo
-
-Play with the [Demo](https://next.jamify.org/) to get a first impression.
-
-&nbsp;
-
 ## ✨ Features
 
 <details>
