@@ -3,5 +3,5 @@ module.exports = {
   siteUrl: 'https://next.jamify.org',
   generateRobotsTxt: true,
   sitemapSize: 7000,
-  sourceDir: 'build'
+/*   sourceDir: 'build' */
 }
