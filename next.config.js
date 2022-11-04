@@ -23,6 +23,7 @@ const defaultOptions = withBundleAnalyzer({
     ],
   },
   reactStrictMode: true,
+  distDir: 'build',
 })
 
 /**
