@@ -40,3 +40,4 @@ yarn-error.log*
 
 # cache
 /.cache
+.env
