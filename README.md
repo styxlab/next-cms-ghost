@@ -16,12 +16,6 @@ Check out [Blogody](https://www.blogody.com) for an integrated solution with all
 
 &nbsp;
 
-## 🎉 Demo
-
-Play with the [Demo](https://next.jamify.org/) to get a first impression.
-
-&nbsp;
-
 ## ✨ Features
 
 <details>
@@ -53,6 +47,8 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Dark Mode</li>
   <li>Featured posts pinned on top</li>
   <li>Customizable navigation headers</li>
+  <li>Zoom images on click to full-screen</li>
+  <li>Render GitHub Gists</li>
 </ul>
 </details>
 <details>
@@ -91,6 +87,7 @@ Play with the [Demo](https://next.jamify.org/) to get a first impression.
   <li>Syntax highlighting with PrismJS</li>
   <li>Table Of Contents</li>
   <li>Contact Page with built-in notification service</li>
+  <li>Google Analytics</li> 
 </ul>
 </details>
 <details>
@@ -239,6 +236,14 @@ Special thanks goes to these wonderful people ([emoji key](https://allcontributo
     <td align="center"><a href="http://andygrunwald.com/"><img src="https://avatars.githubusercontent.com/u/320064?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Grunwald</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=andygrunwald" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/seoxyz"><img src="https://avatars.githubusercontent.com/u/54107458?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hikz</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=seoxyz" title="Code">💻</a></td>
     <td align="center"><a href="https://huydhoang.com"><img src="https://avatars.githubusercontent.com/u/8493044?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Huy</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/issues?q=author%3Ahuydhoang" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://meyer-laurent.com"><img src="https://avatars.githubusercontent.com/u/94935904?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Laurent Meyer</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=laurentmmeyer" title="Code">💻</a></td>
+    <td align="center"><a href="https://prettyfrenchgames.com/"><img src="https://avatars.githubusercontent.com/u/10576004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Garfounkel</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=Garfounkel" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.dassiorleando.xyz"><img src="https://avatars.githubusercontent.com/u/7150752?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Orleando Dassi</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=dassiorleando" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/flaviolivolsi"><img src="https://avatars.githubusercontent.com/u/5151628?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Flavio Li Volsi</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=flaviolivolsi" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/nring"><img src="https://avatars.githubusercontent.com/u/801071?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nat Ring</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=nring" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vitoropereira"><img src="https://avatars.githubusercontent.com/u/47868559?v=4?s=100" width="100px;" alt=""/><br /><sub><b>VITOR PEREIRA</b></sub></a><br /><a href="https://github.com/styxlab/next-cms-ghost/commits?author=vitoropereira" title="Code">💻</a></td>
   </tr>
 </table>
 

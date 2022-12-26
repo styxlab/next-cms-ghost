@@ -156,7 +156,7 @@ export const Post = ({ cmsData }: PostProps) => {
 
                 {commenting.system === 'commento' && <CommentoComments {...{ id: post.id, url: commenting.commentoUrl }} />}
 
-                {commenting.system === 'disqus' && <DisqusComments {...{ post, shortname: commenting.disqusShortname }} />}
+                {commenting.system === 'disqus' && <DisqusComments {...{ post, shortname: commenting.disqusShortname, siteUrl: processEnv.siteUrl }} />}
               </article>
             </div>
           </Layout>

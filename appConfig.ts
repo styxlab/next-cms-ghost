@@ -6,6 +6,9 @@
 // Cache control
 export const fileCache: boolean = true
 
+// Google analytics tracking ID (now called measurement ID in version 4)
+export const gaMeasurementId: string = 'UA-XXXXXXX_or_G-XXXXXXX'
+
 // Dark mode
 export type DarkMode = 'dark' | 'light' | null
 export const defaultMode: DarkMode = 'light'
@@ -49,6 +52,7 @@ import { NavItem } from '@lib/ghost'
 export const customNavigation: NavItem[] = [{ label: 'Contact', url: '/contact' }]
 
 // Incremental Static Regenerations (ISR)
+// Note: must be disbaled, when using `next export`
 export const isr: boolean = false
 export const revalidate: number = 10
 export const maxNumberOfPosts: number = 20

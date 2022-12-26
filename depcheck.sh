@@ -41,4 +41,4 @@ mv compare/screen-original.css  compare/screen.css
 diff --ignore-all-space -B -q -s compare/global.css compare/global-used.css
 diff --ignore-all-space -B -q -s compare/screen.css compare/screen-used.css
 
-rm -rf compare out
+#rm -rf compare out
